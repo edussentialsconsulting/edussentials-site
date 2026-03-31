@@ -18,30 +18,23 @@ const keyServiceAreas = [
   {
     title: "Admissions counselling",
     description:
-      "Thoughtful guidance on university choices, positioning, timelines, and decision-making.",
+      "University selection, application strategy, and deadline management. We help students and families make informed decisions about where to apply and how to position each application with care and precision.",
   },
   {
-    title: "Profile building",
+    title: "Profile Building",
     description:
-      "Focused planning to help students shape a stronger, more intentional academic and extracurricular profile.",
+      "The right activities, projects, and experiences don't happen by accident. We work with students early to identify meaningful areas of engagement and help them build a profile that reflects genuine interest, not a manufactured checklist.",
   },
   {
-    title: "Essays and applications",
+    title: "Essays and Applications",
     description:
-      "Careful support on application strategy, storytelling, drafting, and final execution.",
+      "This is where most of the real work happens. We help students find what's worth saying, structure it well, and present it with confidence. Every essay goes through rigorous rounds of feedback. Nothing leaves half-done.",
   },
   {
-    title: "Career labs and career exploration",
+    title: "Career Labs",
     description:
-      "Structured exposure to industries, roles, and pathways so students can explore with clarity.",
+      "Many students apply without a clear sense of what they're working toward. Our career exploration sessions help them think through interests, industries, and academic paths before making decisions that are hard to reverse.",
   },
-];
-
-const whyEdussentials = [
-  "Honest guidance instead of inflated promises.",
-  "A boutique, hands-on approach with strong attention to detail.",
-  "Academic seriousness paired with warmth and approachability.",
-  "Execution-focused support from planning through submission.",
 ];
 
 export default function Home() {
@@ -84,16 +77,10 @@ export default function Home() {
               <h1
                 className={`${displayFont.className} max-w-3xl text-5xl font-semibold leading-[0.94] text-[#f6f0e8] sm:text-6xl lg:text-7xl`}
               >
-                Refined, honest guidance for students building their next chapter.
+                Expertise. Execution. Excellence.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-white/78 sm:text-xl">
-                Edussentials is a focused consultancy built around honest guidance,
-                strong execution, and thoughtful career exploration.
-              </p>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-white/66">
-                We support students through admissions counselling, profile building,
-                essays and applications, and career labs that make exploration feel
-                grounded, informed, and intentional.
+                Edussentials is a boutique admissions consultancy built on knowing the work, doing the work, and getting it right.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <a
@@ -149,31 +136,16 @@ export default function Home() {
       </section>
 
       <section className="border-b border-[#002147]/10 bg-[#f6f0e8]">
-        <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:px-12 lg:py-24">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
-              What We Do
-            </p>
-            <h2
-              className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
-            >
-              We help students move from possibility to clear, considered action.
-            </h2>
-          </div>
-          <div className="space-y-6 text-lg leading-8 text-[#6B6258]">
+        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
+          <div className="max-w-3xl space-y-6 text-left text-lg leading-8 text-[#6B6258]">
             <p>
-              Edussentials brings together academic planning, application support,
-              and career exploration in one focused advisory experience.
+              Most admissions support sounds the same. Big claims, vague reassurance, long lists of services that blur together. We started Edussentials because we believed the process deserved more care than that.
             </p>
             <p>
-              Our work is built for students who want more than generic advice.
-              We believe strong outcomes come from careful thinking, steady guidance,
-              and disciplined execution.
+              We work with a small number of students at a time. That&apos;s a deliberate choice. It means we know every application we touch, every essay we review, every profile we help shape. The work is specific, grounded, and built around what each student actually brings to the table rather than what sounds good on a brochure.
             </p>
             <p>
-              That means helping each student build a profile with intention, write
-              with clarity, apply with confidence, and explore career paths with
-              maturity and context.
+              Our students apply to strong universities around the world. The destination varies. The standard of work does not.
             </p>
           </div>
         </div>
@@ -183,13 +155,8 @@ export default function Home() {
         <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
-              Key Service Areas
+              What we do
             </p>
-            <h2
-              className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
-            >
-              Focused support across the work that matters most.
-            </h2>
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -214,42 +181,45 @@ export default function Home() {
       </section>
 
       <section className="bg-[#002147] text-[#f6f0e8]">
-        <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[1fr_1.05fr] lg:px-12 lg:py-24">
+        <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[0.92fr_1.08fr] lg:px-12 lg:py-24">
           <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
-              Why Edussentials
+              Why families work with us
             </p>
-            <h2 className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight sm:text-5xl`}>
-              Serious about outcomes, without losing warmth or perspective.
-            </h2>
-            <p className="mt-6 text-base leading-8 text-white/74">
-              Students often need guidance that is both rigorous and human. Our
-              approach is intentionally measured, attentive, and built around the
-              real work of preparing well.
-            </p>
+            <div className="mt-6 space-y-6 text-base leading-8 text-white/74">
+              <p>
+                We are not a large agency. We don&apos;t operate at volume, and we don&apos;t run on templates.
+              </p>
+              <p>
+                What we offer instead is focus. A small team that knows your application inside and out. Advisors who will tell you when something isn&apos;t working rather than letting it slide. A process that prioritises getting it right over getting it done fast.
+              </p>
+              <p>
+                Families come to us because they want substance. They want someone who will sit with the hard questions, push back when needed, and take the work as seriously as the student does.
+              </p>
+              <p>That&apos;s what Edussentials was built to do.</p>
+            </div>
           </div>
 
-          <div className="grid gap-4">
-            {whyEdussentials.map((item) => (
-              <div
-                key={item}
-                className="rounded-[1.5rem] border border-white/10 bg-white/6 p-6"
+          <div
+            id="career-labs"
+            className="rounded-[2rem] border border-[#d2b48c]/20 bg-[#d2b48c]/10 p-8"
+          >
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
+              Career Labs
+            </p>
+            <p className={`${displayFont.className} mt-4 text-3xl font-medium leading-tight text-[#f6f0e8]`}>
+              Thoughtful exploration before difficult decisions are made.
+            </p>
+            <p className="mt-5 text-base leading-8 text-white/78">
+              Many students apply without a clear sense of what they&apos;re working toward. Our career exploration sessions help them think through interests, industries, and academic paths before making decisions that are hard to reverse.
+            </p>
+            <div className="mt-8">
+              <a
+                href="mailto:founder@edussentialsconsulting.com"
+                className="inline-flex items-center justify-center rounded-full border border-[#d2b48c]/35 px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#f6f0e8] transition-colors duration-200 hover:bg-white/8"
               >
-                <p className="text-lg leading-8 text-[#f6f0e8]">{item}</p>
-              </div>
-            ))}
-            <div
-              id="career-labs"
-              className="rounded-[1.5rem] border border-[#d2b48c]/25 bg-[#d2b48c]/10 p-6"
-            >
-              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
-                Career Labs
-              </p>
-              <p className="mt-3 text-base leading-8 text-white/78">
-                Our career labs are designed to make exploration more concrete.
-                Instead of abstract ambition, students get a clearer view of roles,
-                industries, and pathways they may want to pursue.
-              </p>
+                Book a consultation
+              </a>
             </div>
           </div>
         </div>
@@ -261,26 +231,35 @@ export default function Home() {
             <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
-                  Closing CTA
+                  Start a conversation
                 </p>
                 <h2
                   className={`${displayFont.className} mt-4 max-w-3xl text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
                 >
-                  Guidance should feel clear, thoughtful, and well executed from the very beginning.
+                  Start a conversation
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-[#6B6258]">
-                  If you are looking for a more deliberate admissions and career
-                  guidance experience, Edussentials offers a focused partnership
-                  built on clarity, care, and execution.
+                  If you&apos;re beginning to think about admissions, or if you&apos;re already in the middle of it and something feels off, we&apos;re happy to talk. No pitch, no pressure. Just an honest conversation about where things stand and whether we can help.
+                </p>
+                <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-[#6B6258]">
+                  Contact
+                </p>
+                <p className="mt-2 text-base leading-8 text-[#002147]">
+                  <a
+                    href="mailto:founder@edussentialsconsulting.com"
+                    className="underline decoration-[#C65D3A]/60 underline-offset-4 transition-colors duration-200 hover:text-[#C65D3A]"
+                  >
+                    founder@edussentialsconsulting.com
+                  </a>
                 </p>
               </div>
 
               <div className="flex flex-col gap-4 lg:items-end">
                 <a
-                  href="#service-areas"
+                  href="mailto:founder@edussentialsconsulting.com"
                   className="inline-flex items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232]"
                 >
-                  Explore Services
+                  Book a consultation
                 </a>
                 <a
                   href="#career-labs"
