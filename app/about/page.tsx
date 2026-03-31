@@ -14,30 +14,6 @@ const bodyFont = Libre_Franklin({
 
 const lightLogoPath = "/Edulogo-Light.png";
 
-const pillars = [
-  {
-    title: "What Edussentials is",
-    description:
-      "Edussentials is a focused consultancy supporting students across admissions counselling, profile building, essays and applications, and career exploration.",
-  },
-  {
-    title: "The thinking behind it",
-    description:
-      "The work is built on a simple idea: important decisions deserve more care, more clarity, and more discipline than broad, hurried advice can offer.",
-  },
-  {
-    title: "What matters most",
-    description:
-      "We value honest guidance, thoughtful planning, and strong execution. That means saying what is useful, not merely what is reassuring.",
-  },
-];
-
-const distinctions = [
-  "Boutique support allows for closer attention to detail, stronger continuity, and more considered decision-making.",
-  "A volume-based model often moves quickly across students. Edussentials is designed to move carefully through the work that shapes real outcomes.",
-  "Execution is treated as seriously as strategy, because good plans only matter when they are carried through well.",
-];
-
 export default function AboutPage() {
   return (
     <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
@@ -61,7 +37,7 @@ export default function AboutPage() {
                   Edussentials Consulting
                 </p>
                 <p className={`${displayFont.className} mt-1 text-lg font-medium italic text-white/75`}>
-                  About
+                  Careful. Honest. Good at what it does.
                 </p>
               </div>
             </div>
@@ -78,31 +54,28 @@ export default function AboutPage() {
               <h1
                 className={`${displayFont.className} max-w-4xl text-5xl font-semibold leading-[0.95] text-[#f6f0e8] sm:text-6xl lg:text-7xl`}
               >
-                Built for students who need careful thinking, not hurried advice.
+                Built on a simple frustration.
               </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/78 sm:text-xl">
-                Edussentials was created as a more deliberate kind of consultancy:
-                one that takes the work seriously, stays honest about choices, and
-                treats execution as essential.
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-white/78 sm:text-xl">
+                Edussentials exists because too much of admissions consulting runs on autopilot. Students get shuffled through systems. Families get reassured instead of informed. Applications get polished on the surface but never questioned underneath.
               </p>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-white/66">
-                The intention is not to make the process louder or more theatrical.
-                It is to make it clearer, steadier, and better carried through.
+              <p className="mt-5 max-w-3xl text-base leading-8 text-white/66">
+                We thought there was room for something more deliberate. A consultancy that treats every student&apos;s application as a problem worth thinking through, not a template worth filling in. One that values the quality of the work over the number of students it can handle in a cycle.
+              </p>
+              <p className="mt-5 max-w-3xl text-base leading-8 text-white/66">
+                That&apos;s what Edussentials was built to be. Not the biggest. Not the loudest. Just careful, honest, and good at what it does.
               </p>
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
-                Positioning
-              </p>
-              <p className={`${displayFont.className} mt-5 text-3xl font-medium leading-tight text-[#f6f0e8]`}>
-                A boutique model for thoughtful admissions and career guidance.
-              </p>
-              <p className="mt-5 text-base leading-8 text-white/72">
-                We work from the belief that students benefit from guidance that is
-                measured, candid, and attentive to detail rather than broad and
-                formulaic.
-              </p>
+            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 lg:self-center">
+              <div className="mx-auto flex min-h-[15rem] max-w-md flex-col justify-center space-y-5 text-center">
+                <p className={`${displayFont.className} text-3xl font-medium leading-tight text-[#f6f0e8]`}>
+                  Careful, honest, and good at what it does.
+                </p>
+                <p className="text-base leading-8 text-white/72">
+                  A focused consultancy built for students and families who want the work taken seriously.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -112,29 +85,24 @@ export default function AboutPage() {
         <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
-              Core Ideas
+              What this consultancy is really about.
             </p>
             <h2
               className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
             >
-              The page is simple because the work itself should be clear.
+              What this consultancy is really about.
             </h2>
           </div>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {pillars.map((pillar) => (
-              <article
-                key={pillar.title}
-                className="rounded-[1.75rem] border border-[#002147]/10 bg-white p-7 shadow-[0_14px_40px_rgba(0,33,71,0.06)]"
-              >
-                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#C65D3A]">
-                  {pillar.title}
-                </p>
-                <p className="mt-4 text-base leading-8 text-[#6B6258]">
-                  {pillar.description}
-                </p>
-              </article>
-            ))}
+          <div className="mt-12 max-w-4xl space-y-6 text-lg leading-8 text-[#6B6258]">
+            <p>Two things sit at the centre of everything we do.</p>
+            <p>
+              The first is honest guidance. We will tell a student when their list needs rethinking. We will flag when an essay isn&apos;t working. We will have the conversations that are uncomfortable but necessary, because that is what produces better outcomes than polite encouragement ever could.
+            </p>
+            <p>
+              The second is strong execution. Ideas without follow-through don&apos;t mean much in admissions. Deadlines are real. Details matter. We stay close to the work, and we hold ourselves to the same standard we ask of our students.
+            </p>
+            <p>Everything else at Edussentials follows from those two commitments.</p>
           </div>
         </div>
       </section>
@@ -143,28 +111,23 @@ export default function AboutPage() {
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[0.95fr_1.05fr] lg:px-12 lg:py-24">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
-              Honest Guidance
+              Boutique is not a buzzword here.
             </p>
             <h2
               className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
             >
-              Trust is built through candour, not performance.
+              Boutique is not a buzzword here.
             </h2>
           </div>
           <div className="space-y-6 text-lg leading-8 text-[#6B6258]">
             <p>
-              Honest guidance means being careful with ambition. It means helping
-              students think well, prepare responsibly, and make decisions with a
-              fuller view of what the work requires.
+              There is a meaningful difference between a consultancy that works with hundreds of students and one that works with a few. It shows up in how well someone knows your application. It shows up in how quickly problems get caught. It shows up in whether your advisor has the bandwidth to think carefully about your profile or is stretched across too many others to notice what&apos;s missing.
             </p>
             <p>
-              Strong execution means carrying that thinking into action: shaping the
-              profile, refining the writing, managing the application process, and
-              maintaining standards all the way through.
+              We keep our numbers small on purpose. Not because exclusivity is the point, but because the work demands it. Admissions consulting done well is labour-intensive. It requires attention, iteration, and the willingness to redo things that aren&apos;t right. That&apos;s difficult to deliver at scale, so we don&apos;t try.
             </p>
             <p>
-              The point is not just to advise. It is to help students proceed with
-              seriousness and clarity.
+              What we offer instead is a working relationship where nothing falls through the cracks. Where feedback is specific, not generic. Where someone is paying close attention.
             </p>
           </div>
         </div>
@@ -172,24 +135,15 @@ export default function AboutPage() {
 
       <section className="bg-[#002147] text-[#f6f0e8]">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:px-12 lg:py-24">
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
-              Boutique Difference
-            </p>
-            <h2 className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight sm:text-5xl`}>
-              Why a smaller, more deliberate model matters.
-            </h2>
-          </div>
-
-          <div className="grid gap-4">
-            {distinctions.map((point) => (
-              <div
-                key={point}
-                className="rounded-[1.5rem] border border-white/10 bg-white/6 p-6"
-              >
-                <p className="text-lg leading-8 text-[#f6f0e8]">{point}</p>
-              </div>
-            ))}
+          <div className="rounded-[2rem] border border-white/10 bg-white/6 p-8 lg:col-span-2">
+            <div className="mx-auto flex min-h-[18rem] max-w-4xl flex-col items-center justify-center text-center">
+              <h2 className={`${displayFont.className} text-4xl font-medium leading-tight sm:text-5xl`}>
+                This is the consultancy we wanted to build.
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-[#f6f0e8]">
+                Edussentials is not trying to be everything to everyone. It is a small, focused practice built around doing this work properly. If that sounds like what you&apos;ve been looking for, we should talk.
+              </p>
+            </div>
           </div>
         </div>
       </section>

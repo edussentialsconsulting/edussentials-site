@@ -23,7 +23,7 @@ const keyServiceAreas = [
   {
     title: "Profile Building",
     description:
-      "The right activities, projects, and experiences don't happen by accident. We work with students early to identify meaningful areas of engagement and help them build a profile that reflects genuine interest, not a manufactured checklist.",
+      "The right activities, projects, and experiences don't happen by accident. We work with students early to identify meaningful areas of engagement and help them develop a profile that reads as credible and considered.",
   },
   {
     title: "Essays and Applications",
@@ -33,7 +33,7 @@ const keyServiceAreas = [
   {
     title: "Career Labs",
     description:
-      "Many students apply without a clear sense of what they're working toward. Our career exploration sessions help them think through interests, industries, and academic paths before making decisions that are hard to reverse.",
+      "Choosing a university is easier when you know what you're working toward. Our structured exploration sessions help students connect their interests to academic fields and industries before the application begins.",
   },
 ];
 
@@ -71,9 +71,6 @@ export default function Home() {
 
           <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
             <div className="max-w-3xl">
-              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
-                Focused Consultancy
-              </p>
               <h1
                 className={`${displayFont.className} max-w-3xl text-5xl font-semibold leading-[0.94] text-[#f6f0e8] sm:text-6xl lg:text-7xl`}
               >
@@ -102,7 +99,7 @@ export default function Home() {
               <div className="absolute -left-6 top-12 hidden h-28 w-28 rounded-full border border-[#d2b48c]/25 lg:block" />
               <div className="absolute -right-3 bottom-10 hidden h-36 w-36 rounded-full bg-[#C65D3A]/10 blur-3xl lg:block" />
               <div className="rounded-[2.2rem] border border-white/10 bg-[linear-gradient(160deg,rgba(246,240,232,0.14),rgba(246,240,232,0.04))] p-3 shadow-[0_28px_90px_rgba(0,0,0,0.28)]">
-                <div className="rounded-[1.8rem] border border-[#d2b48c]/18 bg-[#0b2d57] p-8 text-[#f6f0e8]">
+                <div className="rounded-[1.8rem] border border-[#d2b48c]/18 bg-[#0b2d57] p-8">
                   <div className="relative mx-auto flex h-[18.5rem] w-[18.5rem] items-center justify-center p-2">
                     <Image
                       src={lightLogoPath}
@@ -112,21 +109,6 @@ export default function Home() {
                       unoptimized
                       className="h-full w-full object-contain"
                     />
-                  </div>
-                  <div className="mt-6 text-center">
-                    <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
-                      Boutique. Premium. Execution-Focused.
-                    </p>
-                    <p className={`${displayFont.className} mt-4 text-3xl font-medium leading-tight text-[#f6f0e8]`}>
-                      Designed to feel considered, calm, and deeply attentive.
-                    </p>
-                    <p className="mt-4 text-base leading-8 text-white/72">
-                      Built around care, discretion, and clarity for families who
-                      value thoughtful planning as much as final outcomes.
-                    </p>
-                    <p className={`${displayFont.className} mt-6 text-2xl italic leading-8 text-[#d2b48c]`}>
-                      &quot;A more deliberate path to admissions and career clarity.&quot;
-                    </p>
                   </div>
                 </div>
               </div>
@@ -181,8 +163,8 @@ export default function Home() {
       </section>
 
       <section className="bg-[#002147] text-[#f6f0e8]">
-        <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[0.92fr_1.08fr] lg:px-12 lg:py-24">
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
+        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
+          <div className="max-w-4xl rounded-[2rem] border border-white/10 bg-white/5 p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
               Why families work with us
             </p>
@@ -191,35 +173,12 @@ export default function Home() {
                 We are not a large agency. We don&apos;t operate at volume, and we don&apos;t run on templates.
               </p>
               <p>
-                What we offer instead is focus. A small team that knows your application inside and out. Advisors who will tell you when something isn&apos;t working rather than letting it slide. A process that prioritises getting it right over getting it done fast.
+                What we offer instead is focus. A small team that knows your application inside and out. A process that prioritises getting it right over getting it done fast. And a level of involvement that most larger firms simply cannot sustain.
               </p>
               <p>
                 Families come to us because they want substance. They want someone who will sit with the hard questions, push back when needed, and take the work as seriously as the student does.
               </p>
               <p>That&apos;s what Edussentials was built to do.</p>
-            </div>
-          </div>
-
-          <div
-            id="career-labs"
-            className="rounded-[2rem] border border-[#d2b48c]/20 bg-[#d2b48c]/10 p-8"
-          >
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
-              Career Labs
-            </p>
-            <p className={`${displayFont.className} mt-4 text-3xl font-medium leading-tight text-[#f6f0e8]`}>
-              Thoughtful exploration before difficult decisions are made.
-            </p>
-            <p className="mt-5 text-base leading-8 text-white/78">
-              Many students apply without a clear sense of what they&apos;re working toward. Our career exploration sessions help them think through interests, industries, and academic paths before making decisions that are hard to reverse.
-            </p>
-            <div className="mt-8">
-              <a
-                href="mailto:founder@edussentialsconsulting.com"
-                className="inline-flex items-center justify-center rounded-full border border-[#d2b48c]/35 px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#f6f0e8] transition-colors duration-200 hover:bg-white/8"
-              >
-                Book a consultation
-              </a>
             </div>
           </div>
         </div>
@@ -233,16 +192,8 @@ export default function Home() {
                 <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
                   Start a conversation
                 </p>
-                <h2
-                  className={`${displayFont.className} mt-4 max-w-3xl text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
-                >
-                  Start a conversation
-                </h2>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-[#6B6258]">
                   If you&apos;re beginning to think about admissions, or if you&apos;re already in the middle of it and something feels off, we&apos;re happy to talk. No pitch, no pressure. Just an honest conversation about where things stand and whether we can help.
-                </p>
-                <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-[#6B6258]">
-                  Contact
                 </p>
                 <p className="mt-2 text-base leading-8 text-[#002147]">
                   <a
@@ -260,12 +211,6 @@ export default function Home() {
                   className="inline-flex items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232]"
                 >
                   Book a consultation
-                </a>
-                <a
-                  href="#career-labs"
-                  className="inline-flex items-center justify-center rounded-full border border-[#002147]/15 px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#002147] transition-colors duration-200 hover:bg-[#002147]/5"
-                >
-                  View Career Labs
                 </a>
               </div>
             </div>
