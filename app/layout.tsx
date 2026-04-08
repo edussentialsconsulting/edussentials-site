@@ -81,11 +81,11 @@ export default function RootLayout({
         {children}
 
         <footer className="border-t border-[#002147]/10 bg-white">
-          <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-8 sm:px-10 lg:flex-row lg:items-center lg:justify-between lg:px-12 lg:py-10">
+          <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-5 py-6 sm:px-10 lg:flex-row lg:items-center lg:justify-between lg:px-12 lg:py-10">
             <p className="text-sm text-[#6B6258]">
               Edussentials Consulting · Premium academic guidance
             </p>
-            <ul className="flex flex-wrap justify-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#002147] lg:justify-end lg:gap-4">
+            <ul className="flex flex-wrap justify-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-[#002147] lg:justify-end lg:gap-4">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link

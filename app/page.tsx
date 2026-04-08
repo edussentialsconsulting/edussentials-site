@@ -86,11 +86,11 @@ export default function Home() {
     <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
       <section className="relative overflow-hidden bg-[#002147] text-[#f6f0e8]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(210,180,140,0.18),_transparent_36%),radial-gradient(circle_at_bottom_left,_rgba(198,93,58,0.16),_transparent_28%)]" />
-        <div className="relative mx-auto w-full max-w-7xl px-6 py-12 sm:px-10 lg:px-12 lg:py-20">
+        <div className="relative mx-auto w-full max-w-7xl px-6 py-10 sm:px-10 lg:px-12 lg:py-20">
           <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
             <div className="max-w-3xl">
               <h1
-                className={`${displayFont.className} max-w-3xl text-4xl font-semibold leading-[0.94] text-[#f6f0e8] sm:text-5xl lg:text-6xl xl:text-7xl`}
+                className={`${displayFont.className} max-w-3xl text-4xl font-semibold leading-[1.02] text-[#f6f0e8] sm:text-5xl lg:text-6xl xl:text-7xl`}
               >
                 Expertise. Execution. Excellence.
               </h1>
@@ -108,11 +108,10 @@ export default function Home() {
             </div>
 
             <div className="relative mx-auto w-full max-w-md">
-              <div className="absolute -left-6 top-12 hidden h-28 w-28 rounded-full border border-[#d2b48c]/25 lg:block" />
               <div className="absolute -right-3 bottom-10 hidden h-36 w-36 rounded-full bg-[#C65D3A]/10 blur-3xl lg:block" />
               <div className="rounded-[2.2rem] border border-white/10 bg-[linear-gradient(160deg,rgba(246,240,232,0.14),rgba(246,240,232,0.04))] p-3 shadow-[0_28px_90px_rgba(0,0,0,0.28)]">
-                <div className="rounded-[1.8rem] border border-[#d2b48c]/18 bg-[#0b2d57] p-8">
-                  <div className="relative mx-auto flex h-[18.5rem] w-[18.5rem] items-center justify-center p-2">
+                <div className="rounded-[1.8rem] border border-[#d2b48c]/18 bg-[#0b2d57] p-6 sm:p-8">
+                  <div className="relative mx-auto flex h-[14.5rem] w-[14.5rem] items-center justify-center p-2 sm:h-[18.5rem] sm:w-[18.5rem]">
                     <Image
                       src={lightLogoPath}
                       alt="Edussentials circular emblem"
@@ -197,17 +196,17 @@ export default function Home() {
       </section>
 
       <section className="bg-[#f6f0e8]">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="rounded-[2.25rem] border border-[#002147]/10 bg-white p-8 shadow-[0_18px_60px_rgba(42,36,32,0.08)] sm:p-10 lg:p-12">
-            <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+        <div className="mx-auto w-full max-w-7xl px-6 py-12 sm:px-10 lg:px-12 lg:py-24">
+          <div className="rounded-[2.25rem] border border-[#002147]/10 bg-white p-6 shadow-[0_18px_60px_rgba(42,36,32,0.08)] sm:p-8 lg:p-12">
+            <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-8">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
                   Start a conversation
                 </p>
-                <p className="mt-5 max-w-2xl text-base leading-8 text-[#6B6258]">
+                <p className="mt-5 max-w-2xl text-base leading-7 text-[#6B6258] sm:leading-8">
                   If you&apos;re beginning to think about admissions, or if you&apos;re already in the middle of it and something feels off, we&apos;re happy to talk. No pitch, no pressure. Just an honest conversation about where things stand and whether we can help.
                 </p>
-                <p className="mt-2 text-base leading-8 text-[#002147]">
+                <p className="mt-4 text-base leading-7 text-[#002147] sm:mt-2 sm:leading-8">
                   <a
                     href="mailto:founder@edussentialsconsulting.com"
                     className="underline decoration-[#C65D3A]/60 underline-offset-4 transition-colors duration-200 hover:text-[#C65D3A]"
@@ -220,7 +219,7 @@ export default function Home() {
               <div className="flex flex-col gap-4 lg:items-end">
                 <a
                   href="https://docs.google.com/forms/d/e/1FAIpQLSdN_Jao6i_T3LMrkW2-r6XYsAuL7PxdWbrt3OJVX4agcLlbYg/viewform?usp=header"
-                  className="inline-flex items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232]"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232] lg:w-auto"
                 >
                   Book a consultation
                 </a>
