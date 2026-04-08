@@ -131,7 +131,7 @@ export default function Home() {
                   Explore Services
                 </a>
                 <a
-                  href="#career-labs"
+                  href="/career-labs"
                   className="inline-flex items-center justify-center rounded-full border border-[#d2b48c]/40 bg-transparent px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#f6f0e8] transition-colors duration-200 hover:bg-white/8"
                 >
                   View Career Labs

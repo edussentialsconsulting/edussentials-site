@@ -62,7 +62,7 @@ export default function RootLayout({
             </div>
 
             <nav>
-              <ul className="flex flex-wrap items-center justify-end gap-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#002147]">
+              <ul className="flex flex-wrap justify-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#002147] lg:justify-end">
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -85,7 +85,7 @@ export default function RootLayout({
             <p className="text-sm text-[#6B6258]">
               Edussentials Consulting · Premium academic guidance
             </p>
-            <ul className="flex flex-wrap items-center justify-center gap-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#002147]">
+            <ul className="flex flex-wrap justify-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#002147] lg:justify-end">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
