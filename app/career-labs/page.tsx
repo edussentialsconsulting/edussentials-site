@@ -110,7 +110,7 @@ export default function CareerLabsPage() {
               </h2>
               <div className="mt-6 space-y-6 text-lg leading-8 text-[#6B6258]">
                 <p>
-                  The typical path looks something like this. A student reaches their final two years of school, picks a subject or major based on a mix of parental input, peer influence, and surface-level research, then builds an entire application around that choice. If the foundation is shaky, everything built on top of it is harder to defend.
+                  The typical path often follows the same pattern. A student starts moving toward a subject or field based on a mix of parental input, peer influence, and surface-level research, then builds important academic decisions around that choice before they have properly tested it. If the foundation is shaky, everything built on top of it is harder to defend.
                 </p>
                 <p>
                   We created Career Labs because we kept seeing the same problem repeat. Some students were building applications around fields they had never actually tested. Others were holding back from choosing anything at all because nothing had been made concrete enough to evaluate. In both cases, the decision-making was thin. That gap makes applications weaker. More importantly, it leads to choices that are much harder to revisit once university begins.
@@ -238,7 +238,7 @@ export default function CareerLabsPage() {
                 If a student is approaching the stage where subject choices, university preferences, and application narratives are beginning to take shape, Career Labs is worth considering. A conversation with us will help you understand which format fits and when to begin.
               </p>
               <a
-                href="#"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdN_Jao6i_T3LMrkW2-r6XYsAuL7PxdWbrt3OJVX4agcLlbYg/viewform?usp=header"
                 className="mt-8 inline-flex items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232]"
               >
                 Book a consultation
