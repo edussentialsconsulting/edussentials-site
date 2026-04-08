@@ -68,7 +68,7 @@ export default function CareerLabsPage() {
               Some students have a vague answer. Others have none at all. Both need a better way to figure it out than guesswork and Google searches.
             </p>
             <p>
-              Career Labs is where that question gets taken seriously. It is designed for students in grades 8 through 12, whether they are just beginning to think about direction or already narrowing down and want to be sure.
+              Career Labs is where that question gets taken seriously. It is designed for students who want more than surface-level guidance and need a clearer way to understand what a field actually asks of them.
             </p>
           </div>
         </div>
@@ -113,7 +113,7 @@ export default function CareerLabsPage() {
                   The typical path looks something like this. A student reaches their final two years of school, picks a subject or major based on a mix of parental input, peer influence, and surface-level research, then builds an entire application around that choice. If the foundation is shaky, everything built on top of it is harder to defend.
                 </p>
                 <p>
-                  We created Career Labs because we kept seeing two patterns repeat. Students in their senior years locked into a field they had never actually tested, unable to describe the work beyond a job title. And students a few years younger, paralysed by optionality, unable to commit to a direction because nothing had been made concrete enough to evaluate. Both groups were making decisions on incomplete information. That gap makes applications weaker. More importantly, it leads to choices that are hard to walk back once university begins.
+                  We created Career Labs because we kept seeing the same problem repeat. Some students were building applications around fields they had never actually tested. Others were holding back from choosing anything at all because nothing had been made concrete enough to evaluate. In both cases, the decision-making was thin. That gap makes applications weaker. More importantly, it leads to choices that are much harder to revisit once university begins.
                 </p>
                 <p>
                   Career Labs exists to close that gap well before the pressure of deadlines takes over.
@@ -128,7 +128,7 @@ export default function CareerLabsPage() {
         <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
-              Two ways in, depending on what the student needs.
+              Two formats, depending on the depth of exploration needed.
             </p>
           </div>
 
@@ -142,13 +142,13 @@ export default function CareerLabsPage() {
                 </h3>
                 <div className="mt-6 space-y-6 text-lg leading-8 text-[#6B6258]">
                   <p>
-                    This is the deeper format. A mentored, flexible programme that runs over roughly three months and focuses on one field in depth. A dedicated guide works with the student throughout, walking them through each stage, answering questions, and helping them engage with the field in a way that goes well beyond reading about it.
+                    Career Labs Guided is a three-month, self-paced but guided programme designed for students who want to explore one field in depth.
                   </p>
                   <p>
-                    The programme includes a learning module designed to help the student build a stronger working foundation in the field. If they later choose to pursue it academically or professionally, they come in with context most applicants do not have.
+                    Students move through structured activities, selected reading material, and sustained exploration that helps them understand how the field works in practice, not just how it appears from the outside. A guide supports the process throughout, answers questions, and helps the student think through what they are learning at each stage.
                   </p>
                   <p>
-                    Guided works well for students in grades 10 through 12 who have a strong leaning toward a particular area and want to pressure-test that interest with real substance. It is equally valuable for students at the same stage who have no leaning at all but are willing to invest the time to find one. The key requirement is commitment. This format asks students to show up consistently and do the thinking.
+                    The programme ends with a final project that brings the exploration together. If done well, that project can become a meaningful addition to the student's resume.
                   </p>
                 </div>
               </div>
@@ -163,13 +163,10 @@ export default function CareerLabsPage() {
                 </h3>
                 <div className="mt-6 space-y-6 text-lg leading-8 text-[#6B6258]">
                   <p>
-                    Explore is a lighter, self-guided format. It is built around short case studies, simulation-style tasks, and structured activities that give students a practical window into a field without the time commitment of the mentored version.
+                    Career Labs Explore is a 3–5 hour experience designed to give students a practical window into a specific field.
                   </p>
                   <p>
-                    It works well for students in grades 8 and 9 who are still years away from applications but benefit from starting the conversation early. It is also a strong fit for older students in grades 10 through 12 who want to survey a few areas before committing to the depth of Guided. The format is still rigorous in design. The difference is pacing, depth, and the level of one-on-one involvement.
-                  </p>
-                  <p>
-                    Explore is not a watered-down version of Guided. It is a different tool for a different stage of readiness.
+                    Through a short case, activity set, or simulation-style task, students get a feel for the kind of work, questions, and thinking the field involves. It is a focused first look, useful for students who want to test an area before deciding whether they want to explore it more deeply.
                   </p>
                 </div>
               </div>
@@ -238,7 +235,7 @@ export default function CareerLabsPage() {
                 The best time to explore is before you have to decide.
               </h2>
               <p className="mt-6 text-lg leading-8 text-[#f6f0e8]">
-                Whether your child is in grade 8 and just starting to think about what interests them, or in grade 11 and already building a university list without much conviction behind it, Career Labs is worth considering. A conversation with us will help you understand which format fits and when to begin.
+                If a student is approaching the stage where subject choices, university preferences, and application narratives are beginning to take shape, Career Labs is worth considering. A conversation with us will help you understand which format fits and when to begin.
               </p>
               <a
                 href="#"
