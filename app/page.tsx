@@ -14,28 +14,72 @@ const bodyFont = Libre_Franklin({
 
 const lightLogoPath = "/Edulogo-Light.png";
 
-const keyServiceAreas = [
+type ServiceIconKey = "compass" | "growth" | "writing" | "explore";
+
+const keyServiceAreas: Array<{
+  title: string;
+  description: string;
+  icon: ServiceIconKey;
+}> = [
   {
     title: "Admissions counselling",
     description:
       "University selection, application strategy, and deadline management. We help students and families make informed decisions about where to apply and how to position each application with care and precision.",
+    icon: "compass",
   },
   {
     title: "Profile Building",
     description:
       "The right activities, projects, and experiences don't happen by accident. We work with students early to identify meaningful areas of engagement and help them develop a profile that reads as credible and considered.",
+    icon: "growth",
   },
   {
     title: "Essays and Applications",
     description:
       "This is where most of the real work happens. We help students find what's worth saying, structure it well, and present it with confidence. Every essay goes through rigorous rounds of feedback. Nothing leaves half-done.",
+    icon: "writing",
   },
   {
     title: "Career Labs",
     description:
       "Choosing a university is easier when you know what you're working toward. Our structured exploration sessions help students connect their interests to academic fields and industries before the application begins.",
+    icon: "explore",
   },
 ];
+
+const serviceIcons = {
+  compass: (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="5.5" />
+      <path d="M12 6.5L13.7 12.2L12 13.5L10.3 12.2L12 6.5Z" />
+      <path d="M12 12l4-1.5" />
+      <path d="M12 12l-3.5 3.5" />
+    </svg>
+  ),
+  growth: (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 17v-4h3v4" />
+      <path d="M11 17v-6h3v6" />
+      <path d="M15 17v-8h3v8" />
+    </svg>
+  ),
+  writing: (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 5h8l3 3v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+      <path d="M10 9h5" />
+      <path d="M10 13h4" />
+      <path d="M10 17h3" />
+    </svg>
+  ),
+  explore: (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="10" cy="10" r="4.5" />
+      <path d="M13.4 13.4L17 17" />
+      <path d="M8 10h4" />
+      <path d="M10 8v4" />
+    </svg>
+  ),
+};
 
 export default function Home() {
   return (
@@ -147,8 +191,8 @@ export default function Home() {
                 key={service.title}
                 className="rounded-[1.75rem] border border-[#002147]/10 bg-[#f8f4ee] p-7 shadow-[0_14px_40px_rgba(0,33,71,0.06)]"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#002147] text-sm font-semibold uppercase tracking-[0.12em] text-[#f6f0e8]">
-                  EC
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#002147] text-[#f6f0e8]">
+                  {serviceIcons[service.icon]}
                 </div>
                 <h3 className={`${displayFont.className} mt-5 text-3xl font-medium text-[#002147]`}>
                   {service.title}
