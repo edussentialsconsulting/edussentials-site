@@ -20,37 +20,11 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-[#002147] text-[#f6f0e8]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(210,180,140,0.18),_transparent_36%),radial-gradient(circle_at_bottom_left,_rgba(198,93,58,0.14),_transparent_28%)]" />
-        <div className="relative mx-auto w-full max-w-7xl px-6 py-8 sm:px-10 lg:px-12">
-          <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-6">
-            <div className="flex items-center gap-4 rounded-full border border-white/10 bg-white/5 px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#d2b48c]/25 bg-[#f6f0e8]/10 p-2">
-                <Image
-                  src={lightLogoPath}
-                  alt="Edussentials Consulting logo"
-                  width={500}
-                  height={500}
-                  unoptimized
-                  className="h-full w-full object-contain"
-                />
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
-                  Edussentials Consulting
-                </p>
-                <p className={`${displayFont.className} mt-1 text-lg font-medium italic text-white/75`}>
-                  Contact
-                </p>
-              </div>
-            </div>
-            <div className="hidden rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-white/70 lg:block">
-              Premium Academic Guidance
-            </div>
-          </div>
-
+        <div className="relative mx-auto w-full max-w-7xl px-6 py-12 sm:px-10 lg:px-12 lg:py-20">
           <div className="py-16 lg:py-24">
             <div className="max-w-4xl">
               <h1
-                className={`${displayFont.className} max-w-4xl text-5xl font-semibold leading-[0.95] text-[#f6f0e8] sm:text-6xl lg:text-7xl`}
+                className={`${displayFont.className} max-w-4xl text-4xl font-semibold leading-[0.95] text-[#f6f0e8] sm:text-5xl lg:text-6xl xl:text-7xl`}
               >
                 Contact
               </h1>
