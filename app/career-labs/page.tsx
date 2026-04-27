@@ -1,5 +1,10 @@
-import Image from "next/image";
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Career Labs | Edussentials Consulting",
+  description: "Structured exploration sessions that help students examine their interests, understand how academic fields and industries connect, and make decisions that hold up beyond the application.",
+};
 
 const displayFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -11,8 +16,6 @@ const bodyFont = Libre_Franklin({
   subsets: ["latin"],
   weight: ["400", "600"],
 });
-
-const lightLogoPath = "/Edulogo-Light.png";
 
 export default function CareerLabsPage() {
   return (
@@ -62,7 +65,7 @@ export default function CareerLabsPage() {
                   Career Labs is a focused programme designed to help students engage with real fields of work before making academic decisions around them. It is not a personality quiz. It is not a one-off conversation about strengths and interests. It is applied, structured, and built to produce clarity rather than reassurance.
                 </p>
                 <p>
-                  For a student who already has a direction in mind, Career Labs tests that interest against reality. For a student who feels genuinely unsure, it provides a structured way to discover what resonates and what doesn't. In both cases, students work through activities tied to actual industries and disciplines. They encounter real problems, realistic scenarios, and the kind of thinking these fields demand. The goal is the same regardless of where the student starts. Enough meaningful contact with a field that they can speak about it with understanding, not just enthusiasm.
+                  For a student who already has a direction in mind, Career Labs tests that interest against reality. For a student who feels genuinely unsure, it provides a structured way to discover what resonates and what doesn&apos;t. In both cases, students work through activities tied to actual industries and disciplines. They encounter real problems, realistic scenarios, and the kind of thinking these fields demand. The goal is the same regardless of where the student starts. Enough meaningful contact with a field that they can speak about it with understanding, not just enthusiasm.
                 </p>
                 <p>
                   Each completed programme comes with a certificate of completion.
@@ -122,7 +125,7 @@ export default function CareerLabsPage() {
                     Students move through structured activities, selected reading material, and sustained exploration that helps them understand how the field works in practice, not just how it appears from the outside. A guide supports the process throughout, answers questions, and helps the student think through what they are learning at each stage.
                   </p>
                   <p>
-                    The programme ends with a final project that brings the exploration together. If done well, that project can become a meaningful addition to the student's resume.
+                    The programme ends with a final project that brings the exploration together. If done well, that project can become a meaningful addition to the student&apos;s resume.
                   </p>
                 </div>
               </div>

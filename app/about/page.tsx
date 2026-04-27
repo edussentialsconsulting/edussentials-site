@@ -1,5 +1,10 @@
-import Image from "next/image";
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About | Edussentials Consulting",
+  description: "Edussentials Consulting was founded by Aniruddha Sapru after years of advisory work at The Red Pen, Collegepond, The Right Coll, and Eduabroad. Built to optimise for outcomes, one student at a time.",
+};
 
 const displayFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -11,8 +16,6 @@ const bodyFont = Libre_Franklin({
   subsets: ["latin"],
   weight: ["400", "600"],
 });
-
-const lightLogoPath = "/Edulogo-Light.png";
 
 export default function AboutPage() {
   return (
@@ -55,11 +58,44 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="bg-white">
+        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
+              About the founder
+            </p>
+            <h2
+              className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
+            >
+              Aniruddha Sapru
+            </h2>
+            <p className="mt-2 text-base font-semibold uppercase tracking-[0.18em] text-[#d2b48c]">
+              Founder and Principal Counsellor
+            </p>
+          </div>
+
+          <div className="mt-8 max-w-3xl space-y-6 text-lg leading-8 text-[#6B6258]">
+            <p>
+              Aniruddha founded Edussentials after several years of working with families navigating the global admissions process at four of India&apos;s established advisory firms: The Red Pen, Collegepond, The Right Coll, and Eduabroad (Dr. Pratibha Jain&apos;s practice).
+            </p>
+            <p>
+              He holds a postgraduate degree from the Indian Institute of Management, Indore.
+            </p>
+            <p>
+              The premise behind Edussentials is straightforward. Most admissions support in India is built to optimise for volume. Edussentials was built to optimise for outcomes, one student at a time. That choice runs through everything the firm does, from how engagements are scoped to how essays are reviewed.
+            </p>
+            <p>
+              Every student who works with Edussentials gets the founder&apos;s direct attention. No handoffs, no junior associates, no recycled templates.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="border-b border-[#002147]/10 bg-[#f6f0e8]">
         <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
-              What this consultancy is really about.
+              Two commitments
             </p>
             <h2
               className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
@@ -85,7 +121,7 @@ export default function AboutPage() {
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[0.95fr_1.05fr] lg:px-12 lg:py-24">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
-              Boutique is not a buzzword here.
+              Working at our size
             </p>
             <h2
               className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}

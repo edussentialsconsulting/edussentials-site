@@ -1,5 +1,10 @@
-import Image from "next/image";
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Services | Edussentials Consulting",
+  description: "Admissions counselling, profile building, essays, Career Labs, career counselling, and entrance exam tutoring. Each service treated as the distinct problem it is.",
+};
 
 const displayFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -11,8 +16,6 @@ const bodyFont = Libre_Franklin({
   subsets: ["latin"],
   weight: ["400", "600"],
 });
-
-const lightLogoPath = "/Edulogo-Light.png";
 
 const services = [
   {
@@ -44,6 +47,21 @@ const services = [
       "One of the least discussed problems in admissions is that many students are choosing universities without a clear sense of direction. They pick a major because it sounds right or because someone suggested it. The application moves forward, but the thinking behind it stays thin.",
       "Our Career Labs exist to address that gap. These are structured exploration sessions designed to help students examine their interests, understand how industries and academic fields connect, and make decisions that hold up beyond the application. We are not career counsellors in the traditional sense. We are not placing students in jobs. What we are doing is making sure the choices they make about their education are grounded in something more than assumption.",
       "For many families, this is where the process should begin.",
+    ],
+  },
+  {
+    title: "Career Counselling",
+    paragraphs: [
+      "Career Counselling sits earlier in the journey than admissions work. It is for students who are not yet asking which university to apply to, but which direction to walk in.",
+      "We work one-on-one to map a student's strengths, interests, and the practical viability of different paths. The conversation is structured but not rigid. We use established frameworks where they help, set them aside where they do not, and stay focused on the specific student in front of us rather than a generic profile of where they should fit.",
+      "Families benefit most from this service when they engage well before Grade 11. By the time stream selection or course shortlisting is happening, the foundational thinking is most useful if it has already been done.",
+    ],
+  },
+  {
+    title: "Entrance Exam Tutoring",
+    paragraphs: [
+      "We offer preparation support for the SAT, ACT, IELTS, and TOEFL. This service runs alongside admissions and essay work for students applying internationally, and is structured around the test calendar so that score-readiness lines up with application deadlines.",
+      "We do not handle JEE or NEET. Those exams have their own ecosystem and are best served by specialists who work in that space full-time.",
     ],
   },
 ];

@@ -1,5 +1,10 @@
-import Image from "next/image";
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact | Edussentials Consulting",
+  description: "Book a complimentary 45-minute call with Aniruddha Sapru, founder of Edussentials Consulting. No pitch, no pressure. Just an honest conversation about where you stand.",
+};
 
 const displayFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -11,8 +16,6 @@ const bodyFont = Libre_Franklin({
   subsets: ["latin"],
   weight: ["400", "600"],
 });
-
-const lightLogoPath = "/Edulogo-Light.png";
 
 export default function ContactPage() {
   return (
@@ -82,7 +85,7 @@ export default function ContactPage() {
         <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
           <div className="max-w-3xl">
             <p className="text-lg leading-8 text-[#6B6258]">
-              You can use the enquiry form below, or write to us directly. We typically respond within one working day.
+              You can book a 45-minute call directly using the link below, or write to us if you would prefer to share context first.
             </p>
 
             <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:gap-12">
@@ -121,16 +124,18 @@ export default function ContactPage() {
               <h2
                 className={`${displayFont.className} text-4xl font-medium leading-tight sm:text-5xl`}
               >
-                Let's talk about what's next.
+                Let&apos;s talk about what&apos;s next.
               </h2>
               <p className="mt-6 text-lg leading-8 text-[#f6f0e8]">
                 We are here to help you think through the right approach for your situation.
               </p>
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdN_Jao6i_T3LMrkW2-r6XYsAuL7PxdWbrt3OJVX4agcLlbYg/viewform?usp=header"
+                href="https://cal.com/aniruddha-sapru-6kmawu/initial-call-with-founder"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232]"
               >
-                Open Enquiry Form
+                Book a 45-minute call
               </a>
             </div>
           </div>

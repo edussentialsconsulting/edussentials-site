@@ -1,5 +1,18 @@
 import Image from "next/image";
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Edussentials Consulting | Boutique Admissions Advisory",
+  description: "Founder-led admissions advisory for students applying to top universities across the US, UK, Canada, Europe, Singapore, Australia, Ireland, New Zealand, and India.",
+  openGraph: {
+    title: "Edussentials Consulting",
+    description: "Boutique admissions advisory. Founder-led. Five years and 500+ students. Zero left without an admit.",
+    url: "https://www.edussentialsconsulting.com",
+    siteName: "Edussentials Consulting",
+    type: "website",
+  },
+};
 
 const displayFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -14,7 +27,7 @@ const bodyFont = Libre_Franklin({
 
 const lightLogoPath = "/Edulogo-Light.png";
 
-type ServiceIconKey = "compass" | "growth" | "writing" | "explore";
+type ServiceIconKey = "compass" | "growth" | "writing" | "explore" | "direction" | "exam";
 
 const keyServiceAreas: Array<{
   title: string;
@@ -44,6 +57,18 @@ const keyServiceAreas: Array<{
     description:
       "Choosing a university is easier when you know what you're working toward. Our structured exploration sessions help students connect their interests to academic fields and industries before the application begins.",
     icon: "explore",
+  },
+  {
+    title: "Career Counselling",
+    description:
+      "One-on-one guidance that maps strengths, interests, and practical viability into a concrete career direction. This sits earlier in the journey than admissions counselling and is often where families benefit most when they engage well before Grade 11.",
+    icon: "direction",
+  },
+  {
+    title: "Entrance Exam Tutoring",
+    description:
+      "Support for SAT, ACT, IELTS, and TOEFL preparation, offered alongside admissions and essay work for students applying internationally. We do not handle JEE or NEET.",
+    icon: "exam",
   },
 ];
 
@@ -77,6 +102,20 @@ const serviceIcons = {
       <path d="M13.4 13.4L17 17" />
       <path d="M8 10h4" />
       <path d="M10 8v4" />
+    </svg>
+  ),
+  direction: (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 19V5" />
+      <path d="M5 12l7-7 7 7" />
+    </svg>
+  ),
+  exam: (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 4h9l3 3v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z" />
+      <path d="M9 10l1.5 1.5L13 9" />
+      <path d="M9 14l1.5 1.5L13 13" />
+      <path d="M9 18h5" />
     </svg>
   ),
 };
@@ -144,7 +183,95 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="service-areas" className="bg-white">
+      <section className="bg-white">
+        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
+              Five years. Hundreds of students. Zero left without an admit.
+            </p>
+            <h2
+              className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
+            >
+              Outcomes that hold up.
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            <div className="rounded-[1.75rem] border border-[#002147]/10 bg-[#f8f4ee] p-7 shadow-[0_14px_40px_rgba(0,33,71,0.06)]">
+              <p className={`${displayFont.className} text-6xl font-medium leading-none text-[#002147]`}>
+                5+
+              </p>
+              <p className="mt-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#C65D3A]">
+                Years in advisory
+              </p>
+              <p className="mt-3 text-sm leading-7 text-[#6B6258]">
+                Across The Red Pen, Collegepond, The Right Coll, Eduabroad, and Edussentials Consulting.
+              </p>
+            </div>
+
+            <div className="rounded-[1.75rem] border border-[#002147]/10 bg-[#f8f4ee] p-7 shadow-[0_14px_40px_rgba(0,33,71,0.06)]">
+              <p className={`${displayFont.className} text-6xl font-medium leading-none text-[#002147]`}>
+                500+
+              </p>
+              <p className="mt-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#C65D3A]">
+                Students guided
+              </p>
+              <p className="mt-3 text-sm leading-7 text-[#6B6258]">
+                Across career, profile, and application decisions through every stage of the journey.
+              </p>
+            </div>
+
+            <div className="rounded-[1.75rem] border border-[#002147]/10 bg-[#f8f4ee] p-7 shadow-[0_14px_40px_rgba(0,33,71,0.06)]">
+              <p className={`${displayFont.className} text-6xl font-medium leading-none text-[#002147]`}>
+                0
+              </p>
+              <p className="mt-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#C65D3A]">
+                Students without an admit
+              </p>
+              <p className="mt-3 text-sm leading-7 text-[#6B6258]">
+                Across the founder&apos;s full career. Every student has secured at least one admission offer.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-12 max-w-4xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
+              Where our students have gone
+            </p>
+            <p className="mt-4 text-base leading-8 text-[#6B6258]">
+              Cornell, NYU, Boston University, Babson, ESCP Business School, ESSEC, Durham, University of Southampton, Singapore Management University, Ashoka University (including the Young India Fellowship), FLAME, BITS School of Management, and others across the US, UK, Canada, Europe, Singapore, Australia, Ireland, New Zealand, and India.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#002147] text-[#f6f0e8]">
+        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
+          <div className="max-w-4xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
+              Founder-led, by design
+            </p>
+            <h2
+              className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#f6f0e8] sm:text-5xl`}
+            >
+              Aniruddha Sapru
+            </h2>
+            <p className="mt-2 text-base font-semibold uppercase tracking-[0.18em] text-[#d2b48c]">
+              Founder and Principal Counsellor
+            </p>
+            <div className="mt-6 space-y-5 text-lg leading-8 text-white/78">
+              <p>
+                IIM Indore alumnus with five years in admissions advisory across The Red Pen, Collegepond, The Right Coll, and Eduabroad before founding Edussentials.
+              </p>
+              <p>
+                Every engagement at Edussentials is handled by him directly. No handoffs, no junior associates, no recycled templates.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="service-areas" className="bg-[#f6f0e8]">
         <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
@@ -169,6 +296,51 @@ export default function Home() {
                 </p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white">
+        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
+              In their words
+            </p>
+            <h2
+              className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
+            >
+              What families say about working with us.
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            <article className="rounded-[1.75rem] border border-[#002147]/10 bg-[#f8f4ee] p-8 shadow-[0_14px_40px_rgba(0,33,71,0.06)]">
+              <p className={`${displayFont.className} text-2xl leading-9 italic text-[#002147]`}>
+                &ldquo;When we began working with Edussentials Consulting, Ashoka University felt like a distant dream. With their consistent guidance, the entire process became structured and manageable. They supported us thoroughly throughout the financial aid application.&rdquo;
+              </p>
+              <div className="mt-6 border-t border-[#002147]/10 pt-5">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#C65D3A]">
+                  Sameer Sharangpani, Parent
+                </p>
+                <p className="mt-2 text-sm leading-7 text-[#6B6258]">
+                  Mansha admitted to Ashoka University (50% scholarship), Singapore Management University, Durham University, and the University of Southampton.
+                </p>
+              </div>
+            </article>
+
+            <article className="rounded-[1.75rem] border border-[#002147]/10 bg-[#f8f4ee] p-8 shadow-[0_14px_40px_rgba(0,33,71,0.06)]">
+              <p className={`${displayFont.className} text-2xl leading-9 italic text-[#002147]`}>
+                &ldquo;Edussentials Consulting was extremely patient throughout my college essay process and always made it feel collaborative, never rushed or dismissive. They understood what different schools look for and how an admissions reviewer is likely to interpret an essay, while crafting sharp, powerful sentences and staying fully engaged through multiple revisions.&rdquo;
+              </p>
+              <div className="mt-6 border-t border-[#002147]/10 pt-5">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#C65D3A]">
+                  Pranav Mitra, Student
+                </p>
+                <p className="mt-2 text-sm leading-7 text-[#6B6258]">
+                  Admitted to ESCP Business School, Cornell University NYC, EBS Business School (MSc Real Estate), and BITS School of Management (Flagship MBA).
+                </p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -218,10 +390,12 @@ export default function Home() {
 
               <div className="flex flex-col gap-4 lg:items-end">
                 <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSdN_Jao6i_T3LMrkW2-r6XYsAuL7PxdWbrt3OJVX4agcLlbYg/viewform?usp=header"
+                  href="https://cal.com/aniruddha-sapru-6kmawu/initial-call-with-founder"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex w-full items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232] lg:w-auto"
                 >
-                  Book a consultation
+                  Book a 45-minute call
                 </a>
               </div>
             </div>
