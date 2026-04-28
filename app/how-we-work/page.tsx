@@ -18,6 +18,66 @@ export const metadata: Metadata = {
     "A grade-by-grade view of how Edussentials engages with students from Grade 9 through application submission and beyond. Built around the timeline families are actually living through.",
 };
 
+type Stage = {
+  id: string;
+  number: string;
+  label: string;
+  heading: string;
+  shortLabel: string;
+  paragraphs: string[];
+};
+
+const stages: Stage[] = [
+  {
+    id: "grade-9-10",
+    number: "01",
+    label: "Grade 9 to Grade 10",
+    shortLabel: "Foundations",
+    heading: "Foundations.",
+    paragraphs: [
+      "The early years of secondary school are not when applications are filed. They are when the foundation is laid for everything that follows. The work at this stage is exploratory, and that is the point.",
+      "We help students examine their interests honestly, understand how academic fields connect to industries and careers, and start identifying areas where they might want to engage more deeply. The aim is not to lock in a decision about a future career. It is to make sure that by the time real decisions arrive, the student has thought about them rather than guessed.",
+      "For families engaging with us at this stage, the work usually includes early career conversations, structured exploration of fields the student finds interesting, and guidance on how to use Grade 9 and 10 productively without overloading.",
+    ],
+  },
+  {
+    id: "grade-11",
+    number: "02",
+    label: "Grade 11",
+    shortLabel: "Serious work begins",
+    heading: "The serious work begins.",
+    paragraphs: [
+      "Grade 11 is where admissions work shifts from preparation to execution. Subject combinations get finalised. Profile-building moves from exploratory to deliberate. Standardised testing enters the picture for international applicants. University lists start taking shape.",
+      "We work closely with students through this year because it is where most of the durable thinking gets done. A good Grade 11 makes Grade 12 manageable. A weak Grade 11 makes Grade 12 frantic.",
+      "The work at this stage typically includes building a coherent profile around genuine areas of engagement, planning the test calendar so it lines up with application deadlines, beginning university research seriously, and having the early conversations about academic direction that make essay writing easier when it begins.",
+    ],
+  },
+  {
+    id: "grade-12",
+    number: "03",
+    label: "Grade 12",
+    shortLabel: "Execution",
+    heading: "Execution.",
+    paragraphs: [
+      "Grade 12 is when the application takes its final shape. By this point, the foundational thinking should already be done. The work now is translating that thinking into applications that hold up under scrutiny.",
+      "This is where essays go through multiple rounds. Where supplemental questions get the same attention as primary ones. Where activity descriptions get rewritten until they say something specific. Where the university list gets pressure-tested against fit, fees, and feasibility. Where deadlines get tracked rigorously, not approximately.",
+      "We stay close to the work through this entire phase. There are no handoffs to junior associates. The same person who has known the student through Grade 11 stays involved through every essay revision and every application submitted. That continuity matters more in Grade 12 than at any other point in the process.",
+    ],
+  },
+  {
+    id: "after-application",
+    number: "04",
+    label: "After the application",
+    shortLabel: "Closing the loop",
+    heading: "Closing the loop.",
+    paragraphs: [
+      "The work does not end when applications are submitted. Decisions arrive over weeks or months. Financial aid offers need to be evaluated against full cost of attendance. Multiple admits need to be compared on dimensions that matter for the specific student, not on rankings.",
+      "We stay involved through this phase as well. Conversations about which offer makes sense, how to weigh aid against fit, how to think about deferrals, how to handle waitlists. These are decisions that shape the next four years, and they deserve the same care as the application itself.",
+      "For students applying internationally, we also coordinate with our visa counselling partner so the post-admit logistics do not become their own crisis.",
+    ],
+  },
+];
+
 export default function HowWeWorkPage() {
   return (
     <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
@@ -71,108 +131,74 @@ export default function HowWeWorkPage() {
 
       <section className="bg-white">
         <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
-              Grade 9 to Grade 10
-            </p>
-            <h2
-              className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
-            >
-              Foundations.
-            </h2>
-          </div>
+          <div className="grid gap-12 lg:grid-cols-[1fr_320px] lg:gap-16">
+            <div className="min-w-0 space-y-16 lg:space-y-24">
+              {stages.map((stage) => (
+                <article key={stage.id} id={stage.id} className="scroll-mt-24">
+                  <div className="lg:hidden">
+                    <div className="mb-6 flex items-center gap-3">
+                      <span
+                        className={`${displayFont.className} text-3xl font-medium leading-none text-[#C65D3A]`}
+                      >
+                        {stage.number}
+                      </span>
+                      <span className="h-px flex-1 bg-[#d2b48c]/40" />
+                      <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#d2b48c]">
+                        {stage.shortLabel}
+                      </span>
+                    </div>
+                  </div>
 
-          <div className="mt-8 max-w-3xl space-y-6 text-lg leading-8 text-[#6B6258]">
-            <p>
-              The early years of secondary school are not when applications are filed. They are when the foundation is laid for everything that follows. The work at this stage is exploratory, and that is the point.
-            </p>
-            <p>
-              We help students examine their interests honestly, understand how academic fields connect to industries and careers, and start identifying areas where they might want to engage more deeply. The aim is not to lock in a decision about a future career. It is to make sure that by the time real decisions arrive, the student has thought about them rather than guessed.
-            </p>
-            <p>
-              For families engaging with us at this stage, the work usually includes early career conversations, structured exploration of fields the student finds interesting, and guidance on how to use Grade 9 and 10 productively without overloading.
-            </p>
-          </div>
-        </div>
-      </section>
+                  <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
+                    {stage.label}
+                  </p>
+                  <h2
+                    className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
+                  >
+                    {stage.heading}
+                  </h2>
 
-      <section className="border-b border-[#002147]/10 bg-[#f6f0e8]">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
-              Grade 11
-            </p>
-            <h2
-              className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
-            >
-              The serious work begins.
-            </h2>
-          </div>
+                  <div className="mt-6 space-y-6 text-lg leading-8 text-[#6B6258]">
+                    {stage.paragraphs.map((paragraph, index) => (
+                      <p key={`${stage.id}-p-${index}`}>{paragraph}</p>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
 
-          <div className="mt-8 max-w-3xl space-y-6 text-lg leading-8 text-[#6B6258]">
-            <p>
-              Grade 11 is where admissions work shifts from preparation to execution. Subject combinations get finalised. Profile-building moves from exploratory to deliberate. Standardised testing enters the picture for international applicants. University lists start taking shape.
-            </p>
-            <p>
-              We work closely with students through this year because it is where most of the durable thinking gets done. A good Grade 11 makes Grade 12 manageable. A weak Grade 11 makes Grade 12 frantic.
-            </p>
-            <p>
-              The work at this stage typically includes building a coherent profile around genuine areas of engagement, planning the test calendar so it lines up with application deadlines, beginning university research seriously, and having the early conversations about academic direction that make essay writing easier when it begins.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
-              Grade 12
-            </p>
-            <h2
-              className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
-            >
-              Execution.
-            </h2>
-          </div>
-
-          <div className="mt-8 max-w-3xl space-y-6 text-lg leading-8 text-[#6B6258]">
-            <p>
-              Grade 12 is when the application takes its final shape. By this point, the foundational thinking should already be done. The work now is translating that thinking into applications that hold up under scrutiny.
-            </p>
-            <p>
-              This is where essays go through multiple rounds. Where supplemental questions get the same attention as primary ones. Where activity descriptions get rewritten until they say something specific. Where the university list gets pressure-tested against fit, fees, and feasibility. Where deadlines get tracked rigorously, not approximately.
-            </p>
-            <p>
-              We stay close to the work through this entire phase. There are no handoffs to junior associates. The same person who has known the student through Grade 11 stays involved through every essay revision and every application submitted. That continuity matters more in Grade 12 than at any other point in the process.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-[#002147]/10 bg-[#f6f0e8]">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
-              After the application
-            </p>
-            <h2
-              className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
-            >
-              Closing the loop.
-            </h2>
-          </div>
-
-          <div className="mt-8 max-w-3xl space-y-6 text-lg leading-8 text-[#6B6258]">
-            <p>
-              The work does not end when applications are submitted. Decisions arrive over weeks or months. Financial aid offers need to be evaluated against full cost of attendance. Multiple admits need to be compared on dimensions that matter for the specific student, not on rankings.
-            </p>
-            <p>
-              We stay involved through this phase as well. Conversations about which offer makes sense, how to weigh aid against fit, how to think about deferrals, how to handle waitlists. These are decisions that shape the next four years, and they deserve the same care as the application itself.
-            </p>
-            <p>
-              For students applying internationally, we also coordinate with our visa counselling partner so the post-admit logistics do not become their own crisis.
-            </p>
+            <aside className="hidden lg:block">
+              <div className="sticky top-24">
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
+                  The journey
+                </p>
+                <ol className="relative mt-8 space-y-10 border-l border-[#d2b48c]/40 pl-8">
+                  {stages.map((stage) => (
+                    <li key={`map-${stage.id}`} className="relative">
+                      <span
+                        aria-hidden="true"
+                        className="absolute -left-[37px] top-1 flex h-4 w-4 items-center justify-center rounded-full border-2 border-[#d2b48c] bg-[#f6f0e8]"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#C65D3A]" />
+                      </span>
+                      <a href={`#${stage.id}`} className="group block">
+                        <p
+                          className={`${displayFont.className} text-2xl font-medium leading-none text-[#002147] transition-colors duration-200 group-hover:text-[#C65D3A]`}
+                        >
+                          {stage.number}
+                        </p>
+                        <p className="mt-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#C65D3A]">
+                          {stage.label}
+                        </p>
+                        <p className="mt-1 text-sm leading-6 text-[#6B6258] transition-colors duration-200 group-hover:text-[#2A2420]">
+                          {stage.shortLabel}
+                        </p>
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
