@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import StructuredData from "./components/StructuredData";
 import "./globals.css";
 
 const displayFont = Cormorant_Garamond({
@@ -21,6 +23,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
+  { href: "/how-we-work", label: "How We Work" },
   { href: "/career-labs", label: "Career Labs" },
   { href: "/contact", label: "Contact" },
 ];
@@ -38,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bodyFont.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#f6f0e8] text-[#2A2420]">
+        <StructuredData />
         <header className="border-b border-[#002147]/10 bg-white/95 backdrop-blur-sm">
           <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-6 py-4 sm:px-10 lg:flex-row lg:items-center lg:justify-between lg:px-12 lg:py-6">
             <div className="inline-flex items-center gap-4 rounded-full border border-[#002147]/10 bg-[#002147]/5 px-3 py-2 shadow-[0_8px_30px_rgba(0,33,71,0.08)]">
@@ -147,6 +151,7 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+        <Analytics />
       </body>
     </html>
   );
