@@ -17,7 +17,7 @@ const bodyFont = Libre_Franklin({
   weight: ["400", "600"],
 });
 
-const lightLogoPath = "/Edulogo-Light.png";
+const headerLogoPath = "/Edulogo-Wordmark-Alt.png";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -42,28 +42,19 @@ export default function RootLayout({
     <html lang="en" className={`${bodyFont.className} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#f6f0e8] text-[#2A2420]">
         <StructuredData />
-        <header className="border-b border-[#002147]/10 bg-white/95 backdrop-blur-sm">
-          <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-6 py-4 sm:px-10 lg:flex-row lg:items-center lg:justify-between lg:px-12 lg:py-6">
-            <div className="inline-flex items-center gap-4 rounded-full border border-[#002147]/10 bg-[#002147]/5 px-3 py-2 shadow-[0_8px_30px_rgba(0,33,71,0.08)]">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#d2b48c]/25 bg-[#f6f0e8]/10 p-2 shadow-[0_6px_18px_rgba(0,0,0,0.08)] sm:h-12 sm:w-12">
-                <Image
-                  src={lightLogoPath}
-                  alt="Edussentials Consulting logo"
-                  width={500}
-                  height={500}
-                  unoptimized
-                  className="h-full w-full object-contain"
-                />
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
-                  Edussentials Consulting
-                </p>
-                <p className={`${displayFont.className} text-sm font-medium italic text-[#002147] sm:text-base`}>
-                  Premium academic guidance
-                </p>
-              </div>
-            </div>
+        <header className="border-b border-[#002147]/10 bg-[#f6f0e8]/95 backdrop-blur-sm">
+          <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-6 py-3 sm:px-10 lg:flex-row lg:items-center lg:justify-between lg:px-12 lg:py-4">
+            <Link href="/" className="inline-flex w-fit items-center">
+              <Image
+                src={headerLogoPath}
+                alt="Edussentials Consulting logo"
+                width={500}
+                height={500}
+                unoptimized
+                priority
+                className="h-16 w-48 object-contain sm:h-[4.5rem] sm:w-56"
+              />
+            </Link>
 
             <nav>
               <ul className="flex flex-wrap justify-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#002147] lg:justify-end lg:gap-4">

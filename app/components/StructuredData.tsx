@@ -5,7 +5,7 @@ export default function StructuredData() {
     name: "Edussentials Consulting",
     alternateName: "Edussentials",
     url: "https://www.edussentialsconsulting.com",
-    logo: "https://www.edussentialsconsulting.com/Edulogo-Light.png",
+    logo: "https://www.edussentialsconsulting.com/Edulogo-Wordmark.png",
     description:
       "Boutique admissions consultancy offering founder-led advisory for students applying to top universities globally.",
     founder: {
@@ -46,7 +46,7 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Edussentials Consulting",
-    image: "https://www.edussentialsconsulting.com/Edulogo-Light.png",
+    image: "https://www.edussentialsconsulting.com/Edulogo-Wordmark.png",
     url: "https://www.edussentialsconsulting.com",
     telephone: "+91-7990082246",
     email: "founder@edussentialsconsulting.com",

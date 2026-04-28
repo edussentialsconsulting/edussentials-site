@@ -25,7 +25,7 @@ const bodyFont = Libre_Franklin({
   weight: ["400", "600"],
 });
 
-const lightLogoPath = "/Edulogo-Light.png";
+const heroLogoPath = "/Edulogo-Wordmark.png";
 
 type ServiceIconKey = "compass" | "growth" | "writing" | "explore" | "direction" | "exam";
 
@@ -146,22 +146,16 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-md">
-              <div className="absolute -right-3 bottom-10 hidden h-36 w-36 rounded-full bg-[#C65D3A]/10 blur-3xl lg:block" />
-              <div className="rounded-[2.2rem] border border-white/10 bg-[linear-gradient(160deg,rgba(246,240,232,0.14),rgba(246,240,232,0.04))] p-3 shadow-[0_28px_90px_rgba(0,0,0,0.28)]">
-                <div className="rounded-[1.8rem] border border-[#d2b48c]/18 bg-[#0b2d57] p-6 sm:p-8">
-                  <div className="relative mx-auto flex h-[14.5rem] w-[14.5rem] items-center justify-center p-2 sm:h-[18.5rem] sm:w-[18.5rem]">
-                    <Image
-                      src={lightLogoPath}
-                      alt="Edussentials circular emblem"
-                      width={500}
-                      height={500}
-                      unoptimized
-                      className="h-full w-full object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
+            <div className="relative mx-auto flex w-full max-w-sm items-center justify-center lg:max-w-md">
+              <Image
+                src={heroLogoPath}
+                alt="Edussentials Consulting seal"
+                width={500}
+                height={500}
+                unoptimized
+                priority
+                className="h-auto w-full object-contain drop-shadow-[0_24px_60px_rgba(0,0,0,0.28)]"
+              />
             </div>
           </div>
         </div>
