@@ -153,6 +153,14 @@ export default function AboutPage() {
               <p className="mt-6 text-lg leading-8 text-[#f6f0e8]">
                 Edussentials is not trying to be everything to everyone. It is a small, focused practice built around doing this work properly. If that sounds like what you&apos;ve been looking for, we should talk.
               </p>
+              <a
+                href="https://cal.com/aniruddha-sapru-6kmawu/initial-call-with-founder"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232]"
+              >
+                Book a 45-minute call
+              </a>
             </div>
           </div>
         </div>

@@ -215,10 +215,12 @@ export default function CareerLabsPage() {
                 If a student is approaching the stage where subject choices, university preferences, and application narratives are beginning to take shape, Career Labs is worth considering. A conversation with us will help you understand which format fits and when to begin.
               </p>
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdN_Jao6i_T3LMrkW2-r6XYsAuL7PxdWbrt3OJVX4agcLlbYg/viewform?usp=header"
+                href="https://cal.com/aniruddha-sapru-6kmawu/initial-call-with-founder"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232]"
               >
-                Book a consultation
+                Book a 45-minute call
               </a>
             </div>
           </div>

@@ -130,6 +130,14 @@ export default function ServicesPage() {
                 any of this applies to your situation specifically, the best starting
                 point is a conversation.
               </p>
+              <a
+                href="https://cal.com/aniruddha-sapru-6kmawu/initial-call-with-founder"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232]"
+              >
+                Book a 45-minute call
+              </a>
             </div>
           </div>
         </div>
