@@ -1,0 +1,251 @@
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  background: #F6F0E6;
+  color: #2A2420;
+  font-family: 'Libre Franklin', system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.localHeader {
+  padding-bottom: 18px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #E6D8C5;
+}
+.brandName {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #002147;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+.brandTag {
+  font-size: 10.5px;
+  color: #6B6258;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.formCard {
+  background: #FFFFFF;
+  border: 1px solid #E6D8C5;
+  border-radius: 8px;
+  padding: 32px 28px;
+}
+
+.progress { margin-bottom: 28px; }
+.progressText {
+  font-size: 11px;
+  color: #6B6258;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.progressBar { height: 3px; background: #E6D8C5; border-radius: 2px; overflow: hidden; }
+.progressFill { height: 100%; background: #002147; transition: width 0.3s ease; }
+
+.sectionTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #002147;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+.sectionSub { color: #6B6258; font-size: 14px; margin: 0 0 24px 0; }
+.sectionBody { margin-bottom: 24px; }
+
+.basicsGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 600px) {
+  .basicsGrid { grid-template-columns: 1fr; }
+}
+.field { display: flex; flex-direction: column; gap: 6px; }
+.full { grid-column: 1 / -1; }
+.field label { font-size: 12px; color: #6B6258; font-weight: 500; letter-spacing: 0.3px; }
+.field input, .field select, .field textarea {
+  background: #F6F0E6;
+  border: 1px solid #E6D8C5;
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #2A2420;
+}
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: #002147; }
+.field textarea { resize: vertical; min-height: 80px; }
+
+.scaleHint {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #6B6258;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: #EDE0CC;
+  border-radius: 4px;
+}
+.ratingRow {
+  padding: 14px 4px;
+  border-top: 1px solid #E6D8C5;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.ratingRow:last-of-type { border-bottom: 1px solid #E6D8C5; }
+.ratingQ { flex: 1; min-width: 180px; font-size: 14.5px; color: #2A2420; }
+.ratingOptions { display: flex; gap: 6px; }
+.ratingBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid #E6D8C5;
+  background: #FFFFFF;
+  color: #6B6258;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.ratingBtn:hover { border-color: #002147; color: #002147; }
+.selected { background: #002147 !important; border-color: #002147 !important; color: #FFFFFF !important; }
+
+.checkboxGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.chkPill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid #E6D8C5;
+  border-radius: 6px;
+  background: #F6F0E6;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  font-size: 13.5px;
+}
+.chkPill:hover { border-color: #1E6F6D; }
+.chkPill input { width: 14px; height: 14px; accent-color: #002147; }
+.on { background: #EDE0CC; border-color: #002147; color: #002147; font-weight: 500; }
+
+.btnPrimary {
+  background: #002147;
+  color: #FFFFFF;
+  border: none;
+  padding: 11px 24px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.15s ease;
+}
+.btnPrimary:hover:not(:disabled) { background: #1E6F6D; }
+.btnPrimary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btnSecondary {
+  background: #FFFFFF;
+  color: #002147;
+  border: 1px solid #002147;
+  padding: 9px 18px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.btnSecondary:hover { background: #EDE0CC; }
+
+.navRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #E6D8C5;
+  gap: 12px;
+}
+
+.errorBanner {
+  background: #FDF2E9;
+  border: 1px solid #E8C5A0;
+  color: #8B4513;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  margin: 16px 0;
+}
+.retryBtn {
+  background: none;
+  border: none;
+  color: #8B4513;
+  text-decoration: underline;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 12px;
+}
+
+.warn {
+  color: #8B4513;
+  font-size: 13px;
+  padding: 12px;
+  background: #FDF2E9;
+  border-radius: 4px;
+}
+
+.thanksCard {
+  background: #FFFFFF;
+  border: 1px solid #E6D8C5;
+  border-radius: 8px;
+  padding: 48px 36px;
+  text-align: center;
+}
+.thanksH {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  color: #002147;
+  margin: 0 0 18px 0;
+  font-weight: 600;
+}
+.thanksP { color: #2A2420; margin: 12px 0; font-size: 15px; }
+.thanksMeta {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #E6D8C5;
+  font-size: 12px;
+  color: #6B6258;
+}
+
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-right: 8px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 640px) {
+  .page { padding: 20px 16px; }
+  .formCard { padding: 20px 18px; }
+  .sectionTitle { font-size: 24px; }
+  .brandName { font-size: 24px; }
+  .scaleHint { font-size: 10px; padding: 8px 10px; }
+  .ratingQ { font-size: 13.5px; }
+  .ratingBtn { width: 32px; height: 32px; font-size: 12px; }
+}
