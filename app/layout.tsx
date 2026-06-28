@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Image from "next/image";
 import Link from "next/link";
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
@@ -144,6 +145,7 @@ export default function RootLayout({
         </footer>
         <Analytics />
       </body>
+      <GoogleAnalytics gaId="G-YV7T51BJWY" />
     </html>
   );
 }
