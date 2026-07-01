@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import StructuredData from "./components/StructuredData";
 
 export const metadata: Metadata = {
@@ -192,7 +193,7 @@ const keyServiceAreas: Array<{
   },
 ];
 
-const serviceIcons = {
+const serviceIcons: Record<ServiceIconKey, ReactNode> = {
   compass: (
     <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="5.5" />
