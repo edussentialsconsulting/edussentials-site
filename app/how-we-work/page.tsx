@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
+import StructuredData from "../components/StructuredData";
 
 const displayFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -146,6 +147,25 @@ const stages: Stage[] = [
   },
 ];
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://www.edussentialsconsulting.com/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "How We Work",
+      item: "https://www.edussentialsconsulting.com/how-we-work",
+    },
+  ],
+};
+
 function StageCard({ eyebrow, items }: { eyebrow: string; items: CardItem[] }) {
   return (
     <div className="rounded-[1.5rem] border border-[#002147]/10 bg-[#f8f4ee] p-6 shadow-[0_14px_40px_rgba(0,33,71,0.06)] sm:p-7">
@@ -176,7 +196,9 @@ function StageCard({ eyebrow, items }: { eyebrow: string; items: CardItem[] }) {
 
 export default function HowWeWorkPage() {
   return (
-    <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
+    <>
+      <StructuredData data={breadcrumbSchema} />
+      <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
       <section className="relative overflow-hidden bg-[#002147] text-[#f6f0e8]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(210,180,140,0.18),_transparent_36%),radial-gradient(circle_at_bottom_left,_rgba(198,93,58,0.14),_transparent_28%)]" />
         <div className="relative mx-auto w-full max-w-7xl px-6 py-12 sm:px-10 lg:px-12 lg:py-20">
@@ -301,6 +323,7 @@ export default function HowWeWorkPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

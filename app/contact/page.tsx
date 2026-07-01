@@ -1,5 +1,6 @@
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
 import type { Metadata } from "next";
+import StructuredData from "../components/StructuredData";
 
 export const metadata: Metadata = {
   title: "Contact | Edussentials Consulting",
@@ -17,9 +18,30 @@ const bodyFont = Libre_Franklin({
   weight: ["400", "600"],
 });
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://www.edussentialsconsulting.com/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Contact",
+      item: "https://www.edussentialsconsulting.com/contact",
+    },
+  ],
+};
+
 export default function ContactPage() {
   return (
-    <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
+    <>
+      <StructuredData data={breadcrumbSchema} />
+      <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-[#002147] text-[#f6f0e8]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(210,180,140,0.18),_transparent_36%),radial-gradient(circle_at_bottom_left,_rgba(198,93,58,0.14),_transparent_28%)]" />
@@ -141,6 +163,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

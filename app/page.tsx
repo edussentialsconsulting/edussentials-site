@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
 import type { Metadata } from "next";
+import StructuredData from "./components/StructuredData";
 
 export const metadata: Metadata = {
   title: "Edussentials Consulting | Boutique Admissions Advisory",
@@ -26,6 +27,125 @@ const bodyFont = Libre_Franklin({
 });
 
 const heroLogoPath = "/Edulogo-Wordmark.png";
+
+const homepageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "EducationalOrganization",
+      "@id": "https://www.edussentialsconsulting.com/#organization",
+      name: "Edussentials Consulting",
+      url: "https://www.edussentialsconsulting.com/",
+      logo: "https://www.edussentialsconsulting.com/Edulogo-Wordmark.png",
+      description:
+        "Boutique, founder-led admissions advisory for students applying to top universities across the US, UK, Canada, Europe, Singapore, Australia, Ireland, New Zealand, and India.",
+      slogan: "Expertise. Execution. Excellence.",
+      email: "founder@edussentialsconsulting.com",
+      telephone: "+91-7990082246",
+      founder: { "@id": "https://www.edussentialsconsulting.com/#founder" },
+      areaServed: [
+        "United States",
+        "United Kingdom",
+        "Canada",
+        "Europe",
+        "Singapore",
+        "Australia",
+        "Ireland",
+        "New Zealand",
+        "India",
+      ],
+      knowsAbout: [
+        "University admissions counselling",
+        "Application essays",
+        "Profile building",
+        "Career counselling",
+        "Study abroad applications",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+91-7990082246",
+        email: "founder@edussentialsconsulting.com",
+        contactType: "customer service",
+        availableLanguage: ["English"],
+      },
+      review: [
+        {
+          "@type": "Review",
+          author: { "@type": "Person", name: "Sameer Sharangpani" },
+          reviewBody:
+            "When we began working with Edussentials Consulting, Ashoka University felt like a distant dream. With their consistent guidance, the entire process became structured and manageable. They supported us thoroughly throughout the financial aid application.",
+        },
+        {
+          "@type": "Review",
+          author: { "@type": "Person", name: "Pranav Mitra" },
+          reviewBody:
+            "Edussentials Consulting was extremely patient throughout my college essay process and always made it feel collaborative, never rushed or dismissive. They understood what different schools look for and how an admissions reviewer is likely to interpret an essay.",
+        },
+      ],
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.edussentialsconsulting.com/#founder",
+      name: "Aniruddha Sapru",
+      jobTitle: "Founder and Principal Counsellor",
+      worksFor: { "@id": "https://www.edussentialsconsulting.com/#organization" },
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Indian Institute of Management Indore",
+      },
+      description:
+        "IIM Indore alumnus with five years in admissions advisory across The Red Pen, Collegepond, The Right Coll, and Eduabroad before founding Edussentials Consulting.",
+      knowsAbout: [
+        "University admissions",
+        "Application essays",
+        "Profile building",
+        "Career counselling",
+      ],
+      sameAs: ["https://www.linkedin.com/in/aniruddha-sapru-27b272ba/"],
+    },
+  ],
+};
+
+const faqs = [
+  {
+    question: "How is Edussentials different from a large admissions agency?",
+    answer:
+      "Edussentials is a boutique, founder-led practice that works with a small number of students each cycle. Every engagement is handled directly by the founder, with no handoffs to junior associates and no recycled templates.",
+  },
+  {
+    question: "Who will I actually work with at Edussentials?",
+    answer:
+      "You work directly with Aniruddha Sapru, Founder and Principal Counsellor, an IIM Indore alumnus with five years of admissions advisory experience. He personally handles every application, essay and profile.",
+  },
+  {
+    question: "Which countries and universities do Edussentials students apply to?",
+    answer:
+      "Students apply across the US, UK, Canada, Europe, Singapore, Australia, Ireland, New Zealand and India. Past admits include Cornell, NYU, Boston University, Babson, ESCP, ESSEC, Durham, University of Southampton, Singapore Management University and Ashoka University.",
+  },
+  {
+    question: "When should a student start working with an admissions consultant?",
+    answer:
+      "Earlier is better. Career counselling and profile building benefit families who engage well before Grade 11, while admissions and essay support can begin closer to the application cycle.",
+  },
+  {
+    question: "What services does Edussentials offer?",
+    answer:
+      "Admissions counselling, profile building, essays and applications, Career Labs, career counselling, and entrance exam tutoring for SAT, ACT, IELTS and TOEFL. Edussentials does not handle JEE or NEET.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
 
 type ServiceIconKey = "compass" | "growth" | "writing" | "explore" | "direction" | "exam";
 
@@ -122,7 +242,9 @@ const serviceIcons = {
 
 export default function Home() {
   return (
-    <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
+    <>
+      <StructuredData data={[homepageSchema, faqSchema]} />
+      <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
       <section className="relative overflow-hidden bg-[#002147] text-[#f6f0e8]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(210,180,140,0.18),_transparent_36%),radial-gradient(circle_at_bottom_left,_rgba(198,93,58,0.16),_transparent_28%)]" />
         <div className="relative mx-auto w-full max-w-7xl px-6 py-10 sm:px-10 lg:px-12 lg:py-20">
@@ -361,6 +483,37 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="bg-white">
+        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
+              Common questions
+            </p>
+            <h2
+              className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
+            >
+              What families usually ask before we begin.
+            </h2>
+          </div>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            {faqs.map((faq) => (
+              <article
+                key={faq.question}
+                className="rounded-[1.75rem] border border-[#002147]/10 bg-[#f8f4ee] p-7 shadow-[0_14px_40px_rgba(0,33,71,0.06)]"
+              >
+                <h3 className={`${displayFont.className} text-2xl font-medium leading-tight text-[#002147]`}>
+                  {faq.question}
+                </h3>
+                <p className="mt-4 text-base leading-8 text-[#6B6258]">
+                  {faq.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#f6f0e8]">
         <div className="mx-auto w-full max-w-7xl px-6 py-12 sm:px-10 lg:px-12 lg:py-24">
           <div className="rounded-[2.25rem] border border-[#002147]/10 bg-white p-6 shadow-[0_18px_60px_rgba(42,36,32,0.08)] sm:p-8 lg:p-12">
@@ -396,6 +549,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }
