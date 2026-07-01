@@ -241,6 +241,23 @@ const serviceIcons: Record<ServiceIconKey, ReactNode> = {
   ),
 };
 
+function getServiceIcon(icon: ServiceIconKey) {
+  switch (icon) {
+    case "compass":
+      return serviceIcons.compass;
+    case "growth":
+      return serviceIcons.growth;
+    case "writing":
+      return serviceIcons.writing;
+    case "explore":
+      return serviceIcons.explore;
+    case "direction":
+      return serviceIcons.direction;
+    case "exam":
+      return serviceIcons.exam;
+  }
+}
+
 export default function Home() {
   return (
     <>
@@ -403,7 +420,7 @@ export default function Home() {
                 className="rounded-[1.75rem] border border-[#002147]/10 bg-[#f8f4ee] p-7 shadow-[0_14px_40px_rgba(0,33,71,0.06)]"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#002147] text-[#f6f0e8]">
-                  {serviceIcons[service.icon]}
+                  {getServiceIcon(service.icon)}
                 </div>
                 <h3 className={`${displayFont.className} mt-5 text-3xl font-medium text-[#002147]`}>
                   {service.title}
