@@ -2,6 +2,7 @@ import type { Article } from "../lib/content";
 
 export const ivyLeaguePersonalStatement: Article = {
   slug: "ivy-league-personal-statement",
+  basePath: "guides",
   category: "Essays & Applications",
   title: "The Ivy League Personal Statement: What It Actually Has to Do",
   shortTitle: "Ivy League Personal Statement",
@@ -173,7 +174,11 @@ export const ivyLeaguePersonalStatement: Article = {
         "Using AI to draft your essay is a serious mistake. The risk is not only policy-related, though Common App's fraud policy covers misrepresenting AI-generated content as your own. AI-written essays often sound generic, over-managed, and disconnected from the rest of the application. Feedback is acceptable, fabrication is not. The ideas, sentences, and voice must remain the student's.",
     },
   ],
-  related: [{ href: "/services", label: "Essays and Applications at Edussentials" }],
+  related: [
+    { href: "/guides/ivy-league-from-india", label: "How to Get Into the Ivy League from India" },
+    { href: "/guides/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
+    { href: "/blog/common-app-essays-that-worked-analysis", label: "Common App Essays That Worked: An Honest Analysis" },
+  ],
   cta: {
     heading: "Working on this essay?",
     body: "Every essay engagement at Edussentials is run directly by the founder, over multiple rounds, and the work stays yours. No pitch, no pressure. Just an honest conversation about where things stand.",

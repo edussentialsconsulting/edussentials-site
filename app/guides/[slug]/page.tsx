@@ -6,12 +6,12 @@ import { articles, getArticle } from "../../lib/content";
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return articles.map((a) => ({ slug: a.slug }));
+  return articles.filter((a) => a.basePath === "guides").map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticle(slug);
+  const article = getArticle("guides", slug);
   if (!article) return {};
   return {
     title: article.metaTitle,
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function GuidePage({ params }: Props) {
   const { slug } = await params;
-  const article = getArticle(slug);
+  const article = getArticle("guides", slug);
   if (!article) notFound();
   return <ArticleLayout article={article} />;
 }

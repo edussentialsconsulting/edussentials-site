@@ -25,8 +25,10 @@ export type ArticleFaq = {
 };
 
 export type Article = {
-  /** URL segment under /guides/ */
+  /** URL segment under /guides/ or /blog/ */
   slug: string;
+  /** Which section the article lives under */
+  basePath: "guides" | "blog";
   category: ArticleCategory;
   title: string;
   /** Short display title for index cards and breadcrumbs */
@@ -45,9 +47,17 @@ export type Article = {
 
 // ---- Registry ----
 import { ivyLeaguePersonalStatement } from "../content/ivy-league-personal-statement";
+import { ivyLeagueFromIndia } from "../content/ivy-league-from-india";
+import { supplementalEssays } from "../content/supplemental-essays";
+import { commonAppEssaysAnalysis } from "../content/common-app-essays-that-worked-analysis";
 
-export const articles: Article[] = [ivyLeaguePersonalStatement];
+export const articles: Article[] = [
+  ivyLeaguePersonalStatement,
+  ivyLeagueFromIndia,
+  supplementalEssays,
+  commonAppEssaysAnalysis,
+];
 
-export function getArticle(slug: string): Article | undefined {
-  return articles.find((a) => a.slug === slug);
+export function getArticle(basePath: "guides" | "blog", slug: string): Article | undefined {
+  return articles.find((a) => a.basePath === basePath && a.slug === slug);
 }

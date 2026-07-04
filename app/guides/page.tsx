@@ -22,7 +22,8 @@ const bodyFont = Libre_Franklin({
 });
 
 export default function GuidesIndexPage() {
-  const categories = [...new Set(articles.map((a) => a.category))] as ArticleCategory[];
+  const guides = articles.filter((a) => a.basePath === "guides");
+  const categories = [...new Set(guides.map((a) => a.category))] as ArticleCategory[];
 
   return (
     <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
@@ -54,7 +55,7 @@ export default function GuidesIndexPage() {
               {category}
             </h2>
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {articles
+              {guides
                 .filter((a) => a.category === category)
                 .map((a) => (
                   <Link
