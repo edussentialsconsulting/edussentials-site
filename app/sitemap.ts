@@ -7,19 +7,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const articleEntries: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}/guides`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/blog`,
       lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     },
     ...articles.map((a) => ({
-      url: `${baseUrl}/${a.basePath}/${a.slug}`,
+      url: `${baseUrl}/blog/${a.slug}`,
       lastModified: new Date(a.dateModified),
       changeFrequency: "monthly" as const,
       priority: 0.7,

@@ -2,7 +2,6 @@ import type { Article } from "../lib/content";
 
 export const commonAppEssaysAnalysis: Article = {
   slug: "common-app-essays-that-worked-analysis",
-  basePath: "blog",
   category: "Essays & Applications",
   title: "Common App Essays That Worked: What They Actually Have in Common",
   shortTitle: "Common App Essays That Worked",
@@ -119,7 +118,7 @@ export const commonAppEssaysAnalysis: Article = {
           text: "The better question is not \"What topic worked for someone else?\" The better question is \"Where in my own life is there thinking I have not yet written honestly?\"",
         },
         {
-          text: "Our Ivy League personal statement guide explains how to find that material before drafting. Our supplemental essays guide looks at the school-specific essays, where imitation is even more dangerous because each university is testing fit in a different way.",
+          text: "Our piece on the Ivy League personal statement explains how to find that material before drafting. Our piece on supplemental essays looks at the school-specific essays, where imitation is even more dangerous because each university is testing fit in a different way.",
         },
         {
           text: "And if you want a reader who will tell you whether the draft has a pulse, that is the work we do. One student. One file. One real voice.",
@@ -155,8 +154,9 @@ export const commonAppEssaysAnalysis: Article = {
     },
   ],
   related: [
-    { href: "/guides/ivy-league-personal-statement", label: "The Ivy League Personal Statement" },
-    { href: "/guides/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
+    { href: "/blog/ivy-league-personal-statement", label: "The Ivy League Personal Statement" },
+    { href: "/blog/ivy-league-from-india", label: "How to Get Into the Ivy League from India" },
+    { href: "/blog/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
   ],
   cta: {
     heading: "Want an honest read on your draft?",

@@ -2,13 +2,12 @@ import type { Article } from "../lib/content";
 
 export const supplementalEssays: Article = {
   slug: "supplemental-essays",
-  basePath: "guides",
   category: "Essays & Applications",
   title: "Supplemental Essays: Why Us, Why Major, and the Rest",
   shortTitle: "Supplemental Essays",
-  metaTitle: "Supplemental Essays Guide | Edussentials",
+  metaTitle: "Supplemental Essays | Edussentials",
   metaDescription:
-    "A clear guide to why us, why major, community and activity essays, with honest advice on research, structure and school-specific writing.",
+    "A clear breakdown of why us, why major, community and activity essays, with honest advice on research, structure and school-specific writing.",
   standfirst:
     "The personal statement gets the attention. The supplements often make the decision. They are also where applications quietly die, one interchangeable \"why us\" at a time.",
   datePublished: "2026-07-04",
@@ -187,8 +186,8 @@ export const supplementalEssays: Article = {
     },
   ],
   related: [
-    { href: "/guides/ivy-league-personal-statement", label: "The Ivy League Personal Statement" },
-    { href: "/guides/ivy-league-from-india", label: "How to Get Into the Ivy League from India" },
+    { href: "/blog/ivy-league-personal-statement", label: "The Ivy League Personal Statement" },
+    { href: "/blog/ivy-league-from-india", label: "How to Get Into the Ivy League from India" },
     { href: "/blog/common-app-essays-that-worked-analysis", label: "Common App Essays That Worked: An Honest Analysis" },
   ],
   cta: {

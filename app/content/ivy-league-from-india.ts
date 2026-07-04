@@ -2,13 +2,12 @@ import type { Article } from "../lib/content";
 
 export const ivyLeagueFromIndia: Article = {
   slug: "ivy-league-from-india",
-  basePath: "guides",
   category: "Admissions Data & Process",
   title: "How to Get Into the Ivy League from India",
   shortTitle: "Ivy League from India",
   metaTitle: "How to Get Into the Ivy League from India | Edussentials",
   metaDescription:
-    "An honest, India-specific guide to Ivy League admissions. What the odds really are, what the file must show, and a class-wise timeline that works.",
+    "An honest, India-specific look at Ivy League admissions. What the odds really are, what the file must show, and a class-wise timeline that works.",
   standfirst:
     "Getting into an Ivy League school from India is possible, and most advice about it is either dishonest or useless. This is the version we give families across the table.",
   datePublished: "2026-07-04",
@@ -276,8 +275,8 @@ export const ivyLeagueFromIndia: Article = {
     },
   ],
   related: [
-    { href: "/guides/ivy-league-personal-statement", label: "The Ivy League Personal Statement" },
-    { href: "/guides/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
+    { href: "/blog/ivy-league-personal-statement", label: "The Ivy League Personal Statement" },
+    { href: "/blog/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
     { href: "/blog/common-app-essays-that-worked-analysis", label: "Common App Essays That Worked: An Honest Analysis" },
   ],
   cta: {

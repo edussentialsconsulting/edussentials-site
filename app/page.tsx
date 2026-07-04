@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import StructuredData from "./components/StructuredData";
+import { articles } from "./lib/content";
 
 export const metadata: Metadata = {
   title: "Edussentials Consulting | Boutique Admissions Advisory",
@@ -258,6 +260,10 @@ function getServiceIcon(icon: ServiceIconKey) {
   }
 }
 
+const latestArticles = [...articles]
+  .sort((a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime())
+  .slice(0, 3);
+
 export default function Home() {
   return (
     <>
@@ -475,6 +481,54 @@ export default function Home() {
                 </p>
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f6f0e8]">
+        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
+                From the blog
+              </p>
+              <h2
+                className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
+              >
+                Essays and admissions, explained honestly.
+              </h2>
+            </div>
+            <div className="flex gap-6 text-sm font-semibold uppercase tracking-[0.18em] text-[#002147]">
+              <Link
+                href="/blog"
+                className="underline decoration-[#d2b48c] decoration-2 underline-offset-4 transition-colors duration-200 hover:text-[#C65D3A]"
+              >
+                All posts
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {latestArticles.map((a) => (
+              <Link
+                key={a.slug}
+                href={`/blog/${a.slug}`}
+                className="group rounded-[1.75rem] border border-[#002147]/10 bg-[#f8f4ee] p-7 shadow-[0_14px_40px_rgba(0,33,71,0.06)] transition hover:border-[#002147]/30 hover:bg-white"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d2b48c]">
+                  Blog
+                </p>
+                <h3
+                  className={`${displayFont.className} mt-3 text-2xl font-medium leading-tight text-[#002147]`}
+                >
+                  {a.shortTitle}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-[#6B6258]">{a.metaDescription}</p>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#002147]/60 group-hover:text-[#C65D3A]">
+                  Read more
+                </p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

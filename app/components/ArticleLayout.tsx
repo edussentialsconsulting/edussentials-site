@@ -17,20 +17,19 @@ const bodyFont = Libre_Franklin({
 const BASE_URL = "https://www.edussentialsconsulting.com";
 
 function buildSchema(article: Article) {
-  const sectionName = article.basePath === "guides" ? "Guides" : "Blog";
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Article",
-        "@id": `${BASE_URL}/${article.basePath}/${article.slug}#article`,
+        "@id": `${BASE_URL}/blog/${article.slug}#article`,
         headline: article.title,
         description: article.metaDescription,
         author: { "@id": `${BASE_URL}/#founder` },
         publisher: { "@id": `${BASE_URL}/#organization` },
         datePublished: article.datePublished,
         dateModified: article.dateModified,
-        mainEntityOfPage: `${BASE_URL}/${article.basePath}/${article.slug}`,
+        mainEntityOfPage: `${BASE_URL}/blog/${article.slug}`,
         articleSection: article.category,
         inLanguage: "en",
       },
@@ -46,12 +45,12 @@ function buildSchema(article: Article) {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: `${BASE_URL}/` },
-          { "@type": "ListItem", position: 2, name: sectionName, item: `${BASE_URL}/${article.basePath}` },
+          { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` },
           {
             "@type": "ListItem",
             position: 3,
             name: article.shortTitle,
-            item: `${BASE_URL}/${article.basePath}/${article.slug}`,
+            item: `${BASE_URL}/blog/${article.slug}`,
           },
         ],
       },

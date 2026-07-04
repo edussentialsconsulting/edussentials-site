@@ -6,7 +6,7 @@ import { articles, type ArticleCategory } from "../lib/content";
 export const metadata: Metadata = {
   title: "Blog | Edussentials Consulting",
   description:
-    "Analysis and honest commentary on essays, applications and admissions strategy from a founder-led boutique advisory.",
+    "In-depth pieces and honest commentary on essays, applications, profiles and admissions strategy from a founder-led boutique advisory.",
   alternates: { canonical: "https://www.edussentialsconsulting.com/blog" },
 };
 
@@ -22,7 +22,7 @@ const bodyFont = Libre_Franklin({
 });
 
 export default function BlogIndexPage() {
-  const posts = articles.filter((a) => a.basePath === "blog");
+  const posts = articles;
   const categories = [...new Set(posts.map((a) => a.category))] as ArticleCategory[];
 
   return (
@@ -39,8 +39,9 @@ export default function BlogIndexPage() {
             Analysis, not advice-shaped noise.
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-white/78">
-            Commentary and analysis on essays, applications and admissions strategy, written the
-            way we practise them.
+            In-depth pieces on essays, applications, profiles and admissions strategy, written the
+            way we practise them. Specific, current, and free of the advice that sounds good but
+            does nothing.
           </p>
         </div>
       </section>

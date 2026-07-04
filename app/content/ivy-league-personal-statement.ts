@@ -2,11 +2,10 @@ import type { Article } from "../lib/content";
 
 export const ivyLeaguePersonalStatement: Article = {
   slug: "ivy-league-personal-statement",
-  basePath: "guides",
   category: "Essays & Applications",
   title: "The Ivy League Personal Statement: What It Actually Has to Do",
   shortTitle: "Ivy League Personal Statement",
-  metaTitle: "Ivy League Personal Statement: An Honest Guide | Edussentials",
+  metaTitle: "The Ivy League Personal Statement, Explained Honestly | Edussentials",
   metaDescription:
     "What an Ivy League personal statement actually has to do, what Indian applicants get wrong, and how to write one that sounds like you. No templates.",
   standfirst:
@@ -20,7 +19,7 @@ export const ivyLeaguePersonalStatement: Article = {
           text: "At the selectivity level of the Ivy League, the personal statement is not a writing sample. An Ivy League personal statement has to do something more difficult. It has to let the reader meet the person behind the numbers. Most applicants use it to repeat their achievements in paragraph form. The ones who get in tend to use it for something harder. They let the reader see how they think.",
         },
         {
-          text: "We work on essays for a living, with a small number of students at a time, so this guide reflects what we have seen hold up in real applications. It will not give you a template. Templates are precisely what a selective admissions reader has learned to see through.",
+          text: "We work on essays for a living, with a small number of students at a time, so this piece reflects what we have seen hold up in real applications. It will not give you a template. Templates are precisely what a selective admissions reader has learned to see through.",
         },
       ],
     },
@@ -28,7 +27,7 @@ export const ivyLeaguePersonalStatement: Article = {
       heading: "What the personal statement is, and what it is not",
       paragraphs: [
         {
-          text: "The personal statement is the main essay in the Common Application, capped at 650 words, sent to every school on your list. The Ivies read it alongside your transcript, activities, recommendations, and their own supplemental essays. Each school asks its own supplements, and those do different work. We cover them separately in our guide to supplemental essays.",
+          text: "The personal statement is the main essay in the Common Application, capped at 650 words, sent to every school on your list. The Ivies read it alongside your transcript, activities, recommendations, and their own supplemental essays. Each school asks its own supplements, and those do different work. We cover them separately in our piece on supplemental essays.",
         },
         { text: "Two things follow from this setup." },
         {
@@ -102,7 +101,7 @@ export const ivyLeaguePersonalStatement: Article = {
           text: "Read your draft aloud. If a sentence embarrasses you slightly because it is so much your own way of speaking, keep it. That discomfort is usually the sound of a voice arriving.",
         },
         {
-          text: "A note on the examples in this section. They are illustrative sketches we wrote for this guide, not student essays. We do not publish or recycle our students' work, and you should be suspicious of any consultancy that does.",
+          text: "A note on the examples in this section. They are illustrative sketches we wrote for this piece, not student essays. We do not publish or recycle our students' work, and you should be suspicious of any consultancy that does.",
         },
       ],
     },
@@ -175,8 +174,8 @@ export const ivyLeaguePersonalStatement: Article = {
     },
   ],
   related: [
-    { href: "/guides/ivy-league-from-india", label: "How to Get Into the Ivy League from India" },
-    { href: "/guides/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
+    { href: "/blog/ivy-league-from-india", label: "How to Get Into the Ivy League from India" },
+    { href: "/blog/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
     { href: "/blog/common-app-essays-that-worked-analysis", label: "Common App Essays That Worked: An Honest Analysis" },
   ],
   cta: {

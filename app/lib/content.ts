@@ -1,4 +1,4 @@
-// Content registry for guides, blog posts and opinion pieces.
+// Content registry for blog posts and opinion pieces.
 // Agent 3 publishing contract: each article is one file in app/content/,
 // registered here. The template, schema, sitemap and index pages all
 // derive from this registry. Nothing else needs to change per article.
@@ -25,10 +25,8 @@ export type ArticleFaq = {
 };
 
 export type Article = {
-  /** URL segment under /guides/ or /blog/ */
+  /** URL segment under /blog/ */
   slug: string;
-  /** Which section the article lives under */
-  basePath: "guides" | "blog";
   category: ArticleCategory;
   title: string;
   /** Short display title for index cards and breadcrumbs */
@@ -58,6 +56,6 @@ export const articles: Article[] = [
   commonAppEssaysAnalysis,
 ];
 
-export function getArticle(basePath: "guides" | "blog", slug: string): Article | undefined {
-  return articles.find((a) => a.basePath === basePath && a.slug === slug);
+export function getArticle(slug: string): Article | undefined {
+  return articles.find((a) => a.slug === slug);
 }
