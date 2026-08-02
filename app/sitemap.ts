@@ -3,12 +3,17 @@ import { articles } from "./lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.edussentialsconsulting.com";
-  const lastModified = new Date();
+  const siteLastModified = new Date("2026-08-02");
+  const latestArticleModified = articles.reduce(
+    (latest, article) =>
+      new Date(article.dateModified) > latest ? new Date(article.dateModified) : latest,
+    siteLastModified,
+  );
 
   const articleEntries: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/blog`,
-      lastModified,
+      lastModified: latestArticleModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     },
@@ -24,37 +29,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...articleEntries,
     {
       url: baseUrl,
-      lastModified,
+      lastModified: siteLastModified,
       changeFrequency: "monthly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified,
+      lastModified: siteLastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/services`,
-      lastModified,
+      lastModified: siteLastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/how-we-work`,
-      lastModified,
+      lastModified: siteLastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/career-labs`,
-      lastModified,
+      lastModified: siteLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified,
+      lastModified: siteLastModified,
       changeFrequency: "yearly",
       priority: 0.6,
     },
