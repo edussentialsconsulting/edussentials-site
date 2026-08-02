@@ -16,7 +16,7 @@ export type ArticleSection = {
   /** Optional H2 for the section */
   heading?: string;
   /** Paragraphs. `lead` renders as a bold run-in at the start of the paragraph. */
-  paragraphs: { lead?: string; text: string }[];
+  paragraphs: { lead?: string; text: string; links?: { text: string; href: string }[] }[];
   table?: {
     headers: string[];
     rows: string[][];
@@ -53,9 +53,11 @@ import { ivyLeaguePersonalStatement } from "../content/ivy-league-personal-state
 import { ivyLeagueFromIndia } from "../content/ivy-league-from-india";
 import { supplementalEssays } from "../content/supplemental-essays";
 import { commonAppEssaysAnalysis } from "../content/common-app-essays-that-worked-analysis";
+import { studyAbroadAfter12th } from "../content/study-abroad-after-12th";
 import { ucasForIndianStudents } from "../content/ucas-for-indian-students";
 
 export const articles: Article[] = [
+  studyAbroadAfter12th,
   ucasForIndianStudents,
   ivyLeaguePersonalStatement,
   ivyLeagueFromIndia,

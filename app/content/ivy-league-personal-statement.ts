@@ -174,6 +174,7 @@ export const ivyLeaguePersonalStatement: Article = {
     },
   ],
   related: [
+    { href: "/blog/study-abroad-after-12th", label: "Study Abroad After 12th" },
     { href: "/blog/ivy-league-from-india", label: "How to Get Into the Ivy League from India" },
     { href: "/blog/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
     { href: "/blog/common-app-essays-that-worked-analysis", label: "Common App Essays That Worked: An Honest Analysis" },

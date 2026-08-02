@@ -352,6 +352,7 @@ export const ucasForIndianStudents: Article = {
     },
   ],
   related: [
+    { href: "/blog/study-abroad-after-12th", label: "Study Abroad After 12th" },
     { href: "/blog/ivy-league-from-india", label: "How to Get Into the Ivy League from India" },
     { href: "/blog/ivy-league-personal-statement", label: "The Ivy League Personal Statement" },
     { href: "/blog/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },

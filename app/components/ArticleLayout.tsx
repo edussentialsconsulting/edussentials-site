@@ -58,6 +58,38 @@ function buildSchema(article: Article) {
   };
 }
 
+function renderLinkedText(text: string, links?: { text: string; href: string }[]) {
+  if (!links?.length) return text;
+
+  const remainingLinks = [...links];
+  const parts: React.ReactNode[] = [];
+  let remainingText = text;
+
+  while (remainingLinks.length > 0) {
+    const link = remainingLinks.shift();
+    if (!link) break;
+
+    const index = remainingText.indexOf(link.text);
+    if (index === -1) continue;
+
+    const before = remainingText.slice(0, index);
+    if (before) parts.push(before);
+    parts.push(
+      <Link
+        key={`${link.href}-${parts.length}`}
+        href={link.href}
+        className="font-semibold text-[#002147] underline decoration-[#d2b48c] decoration-2 underline-offset-4 hover:decoration-[#002147]"
+      >
+        {link.text}
+      </Link>,
+    );
+    remainingText = remainingText.slice(index + link.text.length);
+  }
+
+  if (remainingText) parts.push(remainingText);
+  return parts.length > 0 ? parts : text;
+}
+
 export default function ArticleLayout({ article }: { article: Article }) {
   return (
     <>
@@ -93,7 +125,7 @@ export default function ArticleLayout({ article }: { article: Article }) {
               {section.paragraphs.map((p, pi) => (
                 <p key={pi} className="mt-5 text-base leading-8 text-[#2A2420]/85">
                   {p.lead ? <strong className="font-semibold text-[#2A2420]">{p.lead} </strong> : null}
-                  {p.text}
+                  {renderLinkedText(p.text, p.links)}
                 </p>
               ))}
               {section.table ? (
