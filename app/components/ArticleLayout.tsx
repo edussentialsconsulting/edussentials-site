@@ -96,6 +96,32 @@ export default function ArticleLayout({ article }: { article: Article }) {
                   {p.text}
                 </p>
               ))}
+              {section.table ? (
+                <div className="mt-7 overflow-x-auto border-y border-[#002147]/15">
+                  <table className="w-full min-w-[42rem] border-collapse text-left text-sm text-[#2A2420]/85">
+                    <thead>
+                      <tr className="bg-[#002147]/5 text-[#002147]">
+                        {section.table.headers.map((header) => (
+                          <th key={header} className="px-4 py-3 font-semibold">
+                            {header}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {section.table.rows.map((row, ri) => (
+                        <tr key={ri} className="border-t border-[#002147]/10">
+                          {row.map((cell, ci) => (
+                            <td key={`${ri}-${ci}`} className="px-4 py-3 align-top leading-6">
+                              {cell}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : null}
             </section>
           ))}
 

@@ -17,6 +17,10 @@ export type ArticleSection = {
   heading?: string;
   /** Paragraphs. `lead` renders as a bold run-in at the start of the paragraph. */
   paragraphs: { lead?: string; text: string }[];
+  table?: {
+    headers: string[];
+    rows: string[][];
+  };
 };
 
 export type ArticleFaq = {
@@ -33,6 +37,7 @@ export type Article = {
   shortTitle: string;
   metaTitle: string;
   metaDescription: string;
+  keywords?: string[];
   /** Hero standfirst under the H1 */
   standfirst: string;
   datePublished: string; // ISO date
@@ -48,8 +53,10 @@ import { ivyLeaguePersonalStatement } from "../content/ivy-league-personal-state
 import { ivyLeagueFromIndia } from "../content/ivy-league-from-india";
 import { supplementalEssays } from "../content/supplemental-essays";
 import { commonAppEssaysAnalysis } from "../content/common-app-essays-that-worked-analysis";
+import { ucasForIndianStudents } from "../content/ucas-for-indian-students";
 
 export const articles: Article[] = [
+  ucasForIndianStudents,
   ivyLeaguePersonalStatement,
   ivyLeagueFromIndia,
   supplementalEssays,

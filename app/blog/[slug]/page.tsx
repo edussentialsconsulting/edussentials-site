@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: article.metaTitle,
     description: article.metaDescription,
+    keywords: article.keywords,
     alternates: {
       canonical: `https://www.edussentialsconsulting.com/blog/${article.slug}`,
     },
