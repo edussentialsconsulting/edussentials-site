@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Edussentials Consulting — Website
 
-## Getting Started
+Marketing site and blog for Edussentials Consulting, a boutique admissions
+advisory. Built with Next.js (App Router), TypeScript, and Tailwind CSS 4.
 
-First, run the development server:
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command         | Purpose                                                        |
+| ---------------- | --------------------------------------------------------------- |
+| `npm run dev`     | Start the local dev server                                     |
+| `npm run build`   | Production build (also prerenders all static/blog routes)      |
+| `npm run start`   | Serve the production build                                     |
+| `npm run lint`    | ESLint (Next core-web-vitals config)                            |
+| `npm test`        | Smoke tests via Node's built-in test runner (see below)         |
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+  layout.tsx, page.tsx        Root layout and homepage
+  about/, services/,
+  how-we-work/, career-labs/,
+  contact/                    Marketing pages (one folder per route)
+  blog/                       Blog index + [slug] article route
+  career-explorer/            Multi-step career assessment form (client component)
+  components/                 Shared UI: ArticleLayout, CTABand, StructuredData
+  lib/
+    content.ts                 Blog article registry (see below)
+    site.ts                    Shared brand constants (URLs, contact, nav, schema IDs)
+    fonts.ts                   Shared next/font instances (Cormorant Garamond, Libre Franklin)
+  content/                    One file per blog article, registered in lib/content.ts
+  sitemap.ts, robots.txt      SEO plumbing
+tests/                        Node test runner smoke tests
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Shared brand constants
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`app/lib/site.ts` is the single source of truth for the production URL,
+contact details (email/phone/WhatsApp), the Cal.com booking link, nav links,
+and the schema.org `@id`s used across JSON-LD blocks. `app/lib/fonts.ts` holds
+the one shared instance of each `next/font/google` font. Import from these
+instead of re-declaring fonts or hardcoding brand details in a page.
 
-## Deploy on Vercel
+## Publishing a blog article
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Articles are typed data, not MDX/markdown files. The template, JSON-LD,
+sitemap entry, and index-page listing all derive from the registry, so
+publishing a new article only touches two files:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Add `app/content/<slug>.ts` exporting an `Article` object (see
+   `app/lib/content.ts` for the type).
+2. Import it and add it to the `articles` array in `app/lib/content.ts`.
+
+Nothing else needs to change — `app/blog/[slug]/page.tsx`, `app/blog/page.tsx`,
+and `app/sitemap.ts` all read from that array.
+
+## Career Explorer form
+
+`app/career-explorer/form.tsx` is a multi-step assessment that posts to
+Formspree client-side. It validates email format and required fields before
+advancing/submitting, and includes a hidden honeypot field for basic spam
+filtering (bot submissions are silently accepted client-side but never sent
+to Formspree).
+
+## Environment variables
+
+| Variable                          | Purpose                                      |
+| ----------------------------------- | ---------------------------------------------- |
+| `NEXT_PUBLIC_FORMSPREE_ENDPOINT`    | Formspree endpoint the Career Explorer form posts to |
+
+Set these in `.env.local` for local development (not committed).
+
+## Tests
+
+`npm test` runs `tests/*.test.ts` with Node's built-in test runner (via
+`tsx` for TypeScript). These are smoke tests, not a full suite — they check
+that:
+
+- every article in the content registry has required fields, valid dates,
+  and related links that resolve to real slugs (`tests/content.test.ts`)
+- the sitemap includes every static route and every published article, with
+  no duplicates (`tests/sitemap.test.ts`)
+- shared site constants and the breadcrumb schema builder behave as expected
+  (`tests/site.test.ts`)
+
+## Deployment
+
+Deploys as a standard Next.js app (SSR/ISR, not a static export) — see the
+[Next.js deployment docs](https://nextjs.org/docs/app/building-your-application/deploying).
+`next.config.ts` defines a couple of legacy `/guides` → `/blog` redirects.

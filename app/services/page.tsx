@@ -1,22 +1,13 @@
-import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
 import type { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
+import CTABand from "../components/CTABand";
+import { displayFont, bodyFont } from "../lib/fonts";
+import { buildBreadcrumbSchema, ORGANIZATION_ID, SERVICE_AREAS } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Services | Edussentials Consulting",
   description: "Admissions counselling, profile building, essays, Career Labs, career counselling, and entrance exam tutoring. Each service treated as the distinct problem it is.",
 };
-
-const displayFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["normal", "italic"],
-});
-
-const bodyFont = Libre_Franklin({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-});
 
 const services = [
   {
@@ -71,39 +62,12 @@ const serviceSchema = services.map((service) => ({
   "@context": "https://schema.org",
   "@type": "Service",
   serviceType: service.title,
-  provider: { "@id": "https://www.edussentialsconsulting.com/#organization" },
-  areaServed: [
-    "United States",
-    "United Kingdom",
-    "Canada",
-    "Europe",
-    "Singapore",
-    "Australia",
-    "Ireland",
-    "New Zealand",
-    "India",
-  ],
+  provider: { "@id": ORGANIZATION_ID },
+  areaServed: SERVICE_AREAS,
   description: service.paragraphs[0],
 }));
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: "https://www.edussentialsconsulting.com/",
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Services",
-      item: "https://www.edussentialsconsulting.com/services",
-    },
-  ],
-};
+const breadcrumbSchema = buildBreadcrumbSchema([{ name: "Services", path: "/services" }]);
 
 export default function ServicesPage() {
   return (
@@ -161,28 +125,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-[#002147] text-[#f6f0e8]">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="rounded-[2rem] border border-white/10 bg-white/6 p-8 sm:p-10">
-            <div className="max-w-4xl">
-              <p className="text-lg leading-8 text-[#f6f0e8]">
-                Every service we offer connects back to the same principle. Do the
-                thinking first. Then do the work well. If you want to understand how
-                any of this applies to your situation specifically, the best starting
-                point is a conversation.
-              </p>
-              <a
-                href="https://cal.com/aniruddha-sapru-6kmawu/initial-call-with-founder"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232]"
-              >
-                Book a 45-minute call
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CTABand body="Every service we offer connects back to the same principle. Do the thinking first. Then do the work well. If you want to understand how any of this applies to your situation specifically, the best starting point is a conversation." />
       </main>
     </>
   );

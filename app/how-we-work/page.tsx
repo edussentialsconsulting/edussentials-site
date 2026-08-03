@@ -1,17 +1,8 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
 import StructuredData from "../components/StructuredData";
-
-const displayFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["normal", "italic"],
-});
-
-const bodyFont = Libre_Franklin({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-});
+import CTABand from "../components/CTABand";
+import { displayFont, bodyFont } from "../lib/fonts";
+import { buildBreadcrumbSchema } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "How We Work | Edussentials Consulting",
@@ -147,24 +138,7 @@ const stages: Stage[] = [
   },
 ];
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: "https://www.edussentialsconsulting.com/",
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "How We Work",
-      item: "https://www.edussentialsconsulting.com/how-we-work",
-    },
-  ],
-};
+const breadcrumbSchema = buildBreadcrumbSchema([{ name: "How We Work", path: "/how-we-work" }]);
 
 function StageCard({ eyebrow, items }: { eyebrow: string; items: CardItem[] }) {
   return (
@@ -296,33 +270,11 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      <section className="bg-[#002147] text-[#f6f0e8]">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="rounded-[2rem] border border-white/10 bg-white/6 p-8 sm:p-10">
-            <div className="max-w-4xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
-                Where you are now
-              </p>
-              <h2
-                className={`${displayFont.className} mt-4 text-4xl font-medium leading-tight sm:text-5xl`}
-              >
-                The right starting point depends on where you are in the journey.
-              </h2>
-              <p className="mt-6 text-lg leading-8 text-[#f6f0e8]">
-                Some families come to us in Grade 9 because they want to start early. Others come in the middle of Grade 12 because something feels off. Both are useful starting points. The first conversation is where we figure out which kind of engagement makes sense for your situation.
-              </p>
-              <a
-                href="https://cal.com/aniruddha-sapru-6kmawu/initial-call-with-founder"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232]"
-              >
-                Book a 45-minute call
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CTABand
+        eyebrow="Where you are now"
+        heading="The right starting point depends on where you are in the journey."
+        body="Some families come to us in Grade 9 because they want to start early. Others come in the middle of Grade 12 because something feels off. Both are useful starting points. The first conversation is where we figure out which kind of engagement makes sense for your situation."
+      />
       </main>
     </>
   );

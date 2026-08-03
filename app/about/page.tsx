@@ -1,41 +1,14 @@
-import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
 import type { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
+import { displayFont, bodyFont } from "../lib/fonts";
+import { buildBreadcrumbSchema, CAL_LINK } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "About | Edussentials Consulting",
   description: "Edussentials Consulting was founded by Aniruddha Sapru after years of advisory work at The Red Pen, Collegepond, The Right Coll, and Eduabroad. Built to optimise for outcomes, one student at a time.",
 };
 
-const displayFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["normal", "italic"],
-});
-
-const bodyFont = Libre_Franklin({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-});
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: "https://www.edussentialsconsulting.com/",
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "About",
-      item: "https://www.edussentialsconsulting.com/about",
-    },
-  ],
-};
+const breadcrumbSchema = buildBreadcrumbSchema([{ name: "About", path: "/about" }]);
 
 export default function AboutPage() {
   return (
@@ -176,7 +149,7 @@ export default function AboutPage() {
                 Edussentials is not trying to be everything to everyone. It is a small, focused practice built around doing this work properly. If that sounds like what you&apos;ve been looking for, we should talk.
               </p>
               <a
-                href="https://cal.com/aniruddha-sapru-6kmawu/initial-call-with-founder"
+                href={CAL_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232]"

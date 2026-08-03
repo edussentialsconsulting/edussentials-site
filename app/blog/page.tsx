@@ -1,25 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
 import { articles, type ArticleCategory } from "../lib/content";
+import { displayFont, bodyFont } from "../lib/fonts";
+import { BASE_URL } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Blog | Edussentials Consulting",
   description:
     "In-depth pieces and honest commentary on essays, applications, profiles and admissions strategy from a founder-led boutique advisory.",
-  alternates: { canonical: "https://www.edussentialsconsulting.com/blog" },
+  alternates: { canonical: `${BASE_URL}/blog` },
 };
-
-const displayFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["normal", "italic"],
-});
-
-const bodyFont = Libre_Franklin({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-});
 
 export default function BlogIndexPage() {
   const posts = articles;

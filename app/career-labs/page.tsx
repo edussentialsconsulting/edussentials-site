@@ -1,41 +1,15 @@
-import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
 import type { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
+import CTABand from "../components/CTABand";
+import { displayFont, bodyFont } from "../lib/fonts";
+import { buildBreadcrumbSchema } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Career Labs | Edussentials Consulting",
   description: "Structured exploration sessions that help students examine their interests, understand how academic fields and industries connect, and make decisions that hold up beyond the application.",
 };
 
-const displayFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["normal", "italic"],
-});
-
-const bodyFont = Libre_Franklin({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-});
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: "https://www.edussentialsconsulting.com/",
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Career Labs",
-      item: "https://www.edussentialsconsulting.com/career-labs",
-    },
-  ],
-};
+const breadcrumbSchema = buildBreadcrumbSchema([{ name: "Career Labs", path: "/career-labs" }]);
 
 export default function CareerLabsPage() {
   return (
@@ -224,30 +198,10 @@ export default function CareerLabsPage() {
         </div>
       </section>
 
-      <section className="bg-[#002147] text-[#f6f0e8]">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="rounded-[2rem] border border-white/10 bg-white/6 p-8 sm:p-10">
-            <div className="max-w-4xl">
-              <h2
-                className={`${displayFont.className} text-4xl font-medium leading-tight sm:text-5xl`}
-              >
-                The best time to explore is before you have to decide.
-              </h2>
-              <p className="mt-6 text-lg leading-8 text-[#f6f0e8]">
-                If a student is approaching the stage where subject choices, university preferences, and application narratives are beginning to take shape, Career Labs is worth considering. A conversation with us will help you understand which format fits and when to begin.
-              </p>
-              <a
-                href="https://cal.com/aniruddha-sapru-6kmawu/initial-call-with-founder"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232]"
-              >
-                Book a 45-minute call
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CTABand
+        heading="The best time to explore is before you have to decide."
+        body="If a student is approaching the stage where subject choices, university preferences, and application narratives are beginning to take shape, Career Labs is worth considering. A conversation with us will help you understand which format fits and when to begin."
+      />
       </main>
     </>
   );

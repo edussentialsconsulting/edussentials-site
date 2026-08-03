@@ -1,20 +1,8 @@
 import Link from "next/link";
-import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
 import StructuredData from "./StructuredData";
 import type { Article } from "../lib/content";
-
-const displayFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["normal", "italic"],
-});
-
-const bodyFont = Libre_Franklin({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-});
-
-const BASE_URL = "https://www.edussentialsconsulting.com";
+import { displayFont, bodyFont } from "../lib/fonts";
+import { BASE_URL, CAL_LINK, FOUNDER_ID, ORGANIZATION_ID } from "../lib/site";
 
 function buildSchema(article: Article) {
   return {
@@ -25,8 +13,8 @@ function buildSchema(article: Article) {
         "@id": `${BASE_URL}/blog/${article.slug}#article`,
         headline: article.title,
         description: article.metaDescription,
-        author: { "@id": `${BASE_URL}/#founder` },
-        publisher: { "@id": `${BASE_URL}/#organization` },
+        author: { "@id": FOUNDER_ID },
+        publisher: { "@id": ORGANIZATION_ID },
         datePublished: article.datePublished,
         dateModified: article.dateModified,
         mainEntityOfPage: `${BASE_URL}/blog/${article.slug}`,
@@ -201,7 +189,7 @@ export default function ArticleLayout({ article }: { article: Article }) {
             <p className="mt-4 max-w-2xl text-base leading-8 text-white/78">{article.cta.body}</p>
             <div className="mt-7 flex flex-wrap items-center gap-5">
               <a
-                href="https://cal.com/aniruddha-sapru-6kmawu/initial-call-with-founder"
+                href={CAL_LINK}
                 className="inline-block rounded-full bg-[#d2b48c] px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-[#002147] transition hover:bg-[#f6f0e8]"
               >
                 Book a 45-minute call

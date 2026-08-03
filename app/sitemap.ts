@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { articles } from "./lib/content";
+import { BASE_URL } from "./lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.edussentialsconsulting.com";
+  const baseUrl = BASE_URL;
   const siteLastModified = new Date("2026-08-02");
   const latestArticleModified = articles.reduce(
     (latest, article) =>

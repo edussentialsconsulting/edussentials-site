@@ -129,6 +129,8 @@ type FormState = {
   meaningful: string;
   careerAware: number[];
   gradeSpecific: number[];
+  /** Honeypot field. Left blank by humans; filled by bots. Never sent to Formspree. */
+  hp: string;
 };
 
 const initialState = (): FormState => ({
@@ -142,7 +144,10 @@ const initialState = (): FormState => ({
   meaningful: '',
   careerAware: Array(QBANK.careerAware.length).fill(0),
   gradeSpecific: [],
+  hp: '',
 });
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function Likert({
   items, values, onChange, scaleLeft, scaleRight,
@@ -185,6 +190,7 @@ export default function CareerExplorerForm() {
   const [data, setData] = useState<FormState>(initialState);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [stepError, setStepError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
 
   const update = <K extends keyof FormState>(k: K, v: FormState[K]) => {
@@ -214,11 +220,27 @@ export default function CareerExplorerForm() {
     }));
   };
 
-  const canAdvance = () => {
-    if (step === 0) {
-      return data.name.trim() && data.grade && data.school.trim() && data.studentEmail.trim();
+  const stepZeroError = (): string | null => {
+    if (!data.name.trim() || !data.grade || !data.school.trim() || !data.studentEmail.trim()) {
+      return 'Please fill in name, grade, school, and your email before continuing.';
     }
-    return true;
+    if (!EMAIL_RE.test(data.studentEmail.trim())) {
+      return 'Please enter a valid email address for the student.';
+    }
+    if (data.parentEmail.trim() && !EMAIL_RE.test(data.parentEmail.trim())) {
+      return 'Please enter a valid email address for the parent, or leave it blank.';
+    }
+    return null;
+  };
+
+  const validateBeforeSubmit = (): string | null => {
+    const zeroError = stepZeroError();
+    if (zeroError) return zeroError;
+    const gq = QBANK.grade[data.grade] || [];
+    if (gq.length > 0 && data.gradeSpecific.some((v) => v === 0)) {
+      return 'Please go back to the "Your Grade" section and answer every statement before submitting.';
+    }
+    return null;
   };
 
   const buildPayload = () => {
@@ -249,6 +271,19 @@ export default function CareerExplorerForm() {
 
   const submit = async () => {
     if (submitting) return;
+
+    if (data.hp.trim()) {
+      // Honeypot tripped: silently treat as success without contacting Formspree.
+      setDone(true);
+      return;
+    }
+
+    const validationError = validateBeforeSubmit();
+    if (validationError) {
+      setSubmitError(validationError);
+      return;
+    }
+
     setSubmitting(true);
     setSubmitError(null);
     try {
@@ -267,10 +302,10 @@ export default function CareerExplorerForm() {
       }
       setSubmitting(false);
       setDone(true);
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error('Submit error:', e);
       setSubmitting(false);
-      setSubmitError(e?.message || 'Something went wrong. Please check your internet and try again.');
+      setSubmitError(e instanceof Error ? e.message : 'Something went wrong. Please check your internet and try again.');
     }
   };
 
@@ -360,6 +395,17 @@ export default function CareerExplorerForm() {
                 <label>Entrance exam prep (if any)</label>
                 <input type="text" value={data.entrance} onChange={(e) => update('entrance', e.target.value)} placeholder="JEE, NEET, SAT, CLAT, none, etc." />
               </div>
+              <div style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }} aria-hidden="true">
+                <label htmlFor="ce-company">Company</label>
+                <input
+                  id="ce-company"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={data.hp}
+                  onChange={(e) => update('hp', e.target.value)}
+                />
+              </div>
             </div>
           )}
 
@@ -395,6 +441,8 @@ export default function CareerExplorerForm() {
           )}
         </div>
 
+        {stepError && step === 0 && <p className={styles.warn}>{stepError}</p>}
+
         {submitError && (
           <div className={styles.errorBanner}>
             {submitError}
@@ -404,7 +452,7 @@ export default function CareerExplorerForm() {
 
         <div className={styles.navRow}>
           {step > 0 ? (
-            <button type="button" className={styles.btnSecondary} onClick={() => { setSubmitError(null); setStep(step - 1); }} disabled={submitting}>
+            <button type="button" className={styles.btnSecondary} onClick={() => { setSubmitError(null); setStepError(null); setStep(step - 1); }} disabled={submitting}>
               Back
             </button>
           ) : <span />}
@@ -413,8 +461,13 @@ export default function CareerExplorerForm() {
               type="button"
               className={styles.btnPrimary}
               onClick={() => {
-                if (canAdvance()) setStep(step + 1);
-                else alert('Please fill in name, grade, school, and your email before continuing.');
+                const error = step === 0 ? stepZeroError() : null;
+                if (!error) {
+                  setStepError(null);
+                  setStep(step + 1);
+                } else {
+                  setStepError(error);
+                }
               }}
             >
               Next

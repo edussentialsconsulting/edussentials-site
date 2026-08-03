@@ -2,32 +2,12 @@ import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Image from "next/image";
 import Link from "next/link";
-import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { displayFont, bodyFont } from "./lib/fonts";
+import { CONTACT, NAV_LINKS } from "./lib/site";
 import "./globals.css";
 
-const displayFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["normal", "italic"],
-});
-
-const bodyFont = Libre_Franklin({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-});
-
 const headerLogoPath = "/Edulogo-Wordmark-Alt.png";
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/how-we-work", label: "How We Work" },
-  { href: "/career-labs", label: "Career Labs" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
-];
 
 export const metadata: Metadata = {
   title: "Edussentials Consulting",
@@ -58,7 +38,7 @@ export default function RootLayout({
 
             <nav>
               <ul className="flex flex-wrap justify-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#002147] lg:justify-end lg:gap-4">
-                {navLinks.map((link) => (
+                {NAV_LINKS.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
@@ -96,18 +76,18 @@ export default function RootLayout({
                 </p>
                 <ul className="mt-4 space-y-2 text-sm text-[#002147]">
                   <li>
-                    <a href="mailto:founder@edussentialsconsulting.com" className="hover:text-[#C65D3A] transition-colors">
-                      founder@edussentialsconsulting.com
+                    <a href={`mailto:${CONTACT.email}`} className="hover:text-[#C65D3A] transition-colors">
+                      {CONTACT.email}
                     </a>
                   </li>
                   <li>
-                    <a href="tel:+917990082246" className="hover:text-[#C65D3A] transition-colors">
-                      +91 7990082246
+                    <a href={CONTACT.phoneHref} className="hover:text-[#C65D3A] transition-colors">
+                      {CONTACT.phoneDisplay}
                     </a>
                   </li>
                   <li>
                     <a
-                      href="https://wa.me/917990082246"
+                      href={CONTACT.whatsappHref}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-[#C65D3A] transition-colors"
@@ -123,7 +103,7 @@ export default function RootLayout({
                   Explore
                 </p>
                 <ul className="mt-4 flex flex-col gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-[#002147]">
-                  {navLinks.map((link) => (
+                  {NAV_LINKS.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}

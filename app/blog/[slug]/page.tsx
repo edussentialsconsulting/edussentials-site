@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ArticleLayout from "../../components/ArticleLayout";
 import { articles, getArticle } from "../../lib/content";
+import { BASE_URL } from "../../lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -18,13 +19,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: article.metaDescription,
     keywords: article.keywords,
     alternates: {
-      canonical: `https://www.edussentialsconsulting.com/blog/${article.slug}`,
+      canonical: `${BASE_URL}/blog/${article.slug}`,
     },
     openGraph: {
       title: article.metaTitle,
       description: article.metaDescription,
       type: "article",
-      url: `https://www.edussentialsconsulting.com/blog/${article.slug}`,
+      url: `${BASE_URL}/blog/${article.slug}`,
     },
   };
 }

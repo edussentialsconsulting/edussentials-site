@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Cormorant_Garamond, Libre_Franklin } from "next/font/google";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import StructuredData from "./components/StructuredData";
 import { articles } from "./lib/content";
+import { displayFont, bodyFont } from "./lib/fonts";
+import { BASE_URL, CAL_LINK, CONTACT, FOUNDER_ID, ORGANIZATION_ID, SERVICE_AREAS } from "./lib/site";
 
 export const metadata: Metadata = {
   title: "Edussentials Consulting | Boutique Admissions Advisory",
@@ -12,22 +13,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Edussentials Consulting",
     description: "Boutique admissions advisory. Founder-led. Five years and 500+ students. Zero left without an admit.",
-    url: "https://www.edussentialsconsulting.com",
+    url: BASE_URL,
     siteName: "Edussentials Consulting",
     type: "website",
   },
 };
-
-const displayFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["normal", "italic"],
-});
-
-const bodyFont = Libre_Franklin({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-});
 
 const heroLogoPath = "/Edulogo-Wordmark.png";
 
@@ -36,27 +26,17 @@ const homepageSchema = {
   "@graph": [
     {
       "@type": "EducationalOrganization",
-      "@id": "https://www.edussentialsconsulting.com/#organization",
+      "@id": ORGANIZATION_ID,
       name: "Edussentials Consulting",
-      url: "https://www.edussentialsconsulting.com/",
-      logo: "https://www.edussentialsconsulting.com/Edulogo-Wordmark.png",
+      url: `${BASE_URL}/`,
+      logo: `${BASE_URL}/Edulogo-Wordmark.png`,
       description:
         "Boutique, founder-led admissions advisory for students applying to top universities across the US, UK, Canada, Europe, Singapore, Australia, Ireland, New Zealand, and India.",
       slogan: "Expertise. Execution. Excellence.",
-      email: "founder@edussentialsconsulting.com",
-      telephone: "+91-7990082246",
-      founder: { "@id": "https://www.edussentialsconsulting.com/#founder" },
-      areaServed: [
-        "United States",
-        "United Kingdom",
-        "Canada",
-        "Europe",
-        "Singapore",
-        "Australia",
-        "Ireland",
-        "New Zealand",
-        "India",
-      ],
+      email: CONTACT.email,
+      telephone: CONTACT.phoneSchema,
+      founder: { "@id": FOUNDER_ID },
+      areaServed: SERVICE_AREAS,
       knowsAbout: [
         "University admissions counselling",
         "Application essays",
@@ -66,8 +46,8 @@ const homepageSchema = {
       ],
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+91-7990082246",
-        email: "founder@edussentialsconsulting.com",
+        telephone: CONTACT.phoneSchema,
+        email: CONTACT.email,
         contactType: "customer service",
         availableLanguage: ["English"],
       },
@@ -88,10 +68,10 @@ const homepageSchema = {
     },
     {
       "@type": "Person",
-      "@id": "https://www.edussentialsconsulting.com/#founder",
+      "@id": FOUNDER_ID,
       name: "Aniruddha Sapru",
       jobTitle: "Founder and Principal Counsellor",
-      worksFor: { "@id": "https://www.edussentialsconsulting.com/#organization" },
+      worksFor: { "@id": ORGANIZATION_ID },
       alumniOf: {
         "@type": "CollegeOrUniversity",
         name: "Indian Institute of Management Indore",
@@ -599,17 +579,17 @@ export default function Home() {
                 </p>
                 <p className="mt-4 text-base leading-7 text-[#002147] sm:mt-2 sm:leading-8">
                   <a
-                    href="mailto:founder@edussentialsconsulting.com"
+                    href={`mailto:${CONTACT.email}`}
                     className="underline decoration-[#C65D3A]/60 underline-offset-4 transition-colors duration-200 hover:text-[#C65D3A]"
                   >
-                    founder@edussentialsconsulting.com
+                    {CONTACT.email}
                   </a>
                 </p>
               </div>
 
               <div className="flex flex-col gap-4 lg:items-end">
                 <a
-                  href="https://cal.com/aniruddha-sapru-6kmawu/initial-call-with-founder"
+                  href={CAL_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex w-full items-center justify-center rounded-full bg-[#C65D3A] px-7 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#b65232] lg:w-auto"
