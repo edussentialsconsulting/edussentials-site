@@ -21,14 +21,16 @@ function buildSchema(article: Article) {
         articleSection: article.category,
         inLanguage: "en",
       },
-      {
-        "@type": "FAQPage",
-        mainEntity: article.faqs.map((faq) => ({
-          "@type": "Question",
-          name: faq.question,
-          acceptedAnswer: { "@type": "Answer", text: faq.answer },
-        })),
-      },
+      ...(article.faqs.length > 0
+        ? [{
+            "@type": "FAQPage",
+            mainEntity: article.faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          }]
+        : []),
       {
         "@type": "BreadcrumbList",
         itemListElement: [
@@ -110,7 +112,14 @@ export default function ArticleLayout({ article }: { article: Article }) {
                   {section.heading}
                 </h2>
               ) : null}
-              {section.paragraphs.map((p, pi) => (
+              {section.paragraphs.map((p, pi) => p.quote ? (
+                <div key={pi} className="mt-7">
+                  {p.lead ? <p className="font-semibold text-[#2A2420]">{p.lead}</p> : null}
+                  <blockquote className="mt-3 border-l-2 border-[#d2b48c] pl-5 text-base leading-8 text-[#2A2420]/85">
+                    <p>{renderLinkedText(p.text, p.links)}</p>
+                  </blockquote>
+                </div>
+              ) : (
                 <p key={pi} className="mt-5 text-base leading-8 text-[#2A2420]/85">
                   {p.lead ? <strong className="font-semibold text-[#2A2420]">{p.lead} </strong> : null}
                   {renderLinkedText(p.text, p.links)}
@@ -146,6 +155,7 @@ export default function ArticleLayout({ article }: { article: Article }) {
           ))}
 
           {/* FAQ */}
+          {article.faqs.length > 0 ? (
           <section className="mt-16 border-t border-[#002147]/10 pt-12">
             <h2 className={`${displayFont.className} text-3xl font-semibold leading-tight text-[#002147]`}>
               Common questions
@@ -159,6 +169,7 @@ export default function ArticleLayout({ article }: { article: Article }) {
               ))}
             </div>
           </section>
+          ) : null}
 
           {/* Related */}
           {article.related.length > 0 ? (

@@ -26,7 +26,7 @@ for (const article of articles) {
     assertNonEmpty(article.metaDescription, "metaDescription is empty");
     assertNonEmpty(article.standfirst, "standfirst is empty");
     assert.ok(article.sections.length > 0, "article has no sections");
-    assert.ok(article.faqs.length > 0, "article has no FAQs");
+    assert.ok(Array.isArray(article.faqs), "article FAQs must be an array");
   });
 
   test(`article "${article.slug}" has valid ISO dates in order`, () => {
