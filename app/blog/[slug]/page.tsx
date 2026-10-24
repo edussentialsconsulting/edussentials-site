@@ -6,7 +6,6 @@ import { BASE_URL } from "@/app/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export const dynamicParams = false;
 
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));

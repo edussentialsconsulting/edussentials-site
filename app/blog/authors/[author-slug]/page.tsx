@@ -8,7 +8,6 @@ import { displayFont, bodyFont } from "@/app/lib/fonts";
 import StructuredData from "@/app/components/StructuredData";
 
 type Props = { params: Promise<{ "author-slug": string }> };
-export const dynamicParams = false;
 
 export function generateStaticParams() {
   return getPublishedAuthors().map(author => ({ "author-slug": author.slug }));
