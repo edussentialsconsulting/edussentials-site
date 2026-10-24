@@ -39,8 +39,8 @@ function importsFrom(path: string, visited = new Set<string>()): Set<string> {
   return visited;
 }
 
-test("client and share-image graphs never import the content registry or build validator", () => {
-  const entries = sources("app").filter(path => /opengraph-image|blog-share-image/.test(path) || /^["']use client["']/.test(readFileSync(path, "utf8")));
+test("client graphs never import the content registry or build validator", () => {
+  const entries = sources("app").filter(path => /^["']use client["']/.test(readFileSync(path, "utf8")));
   for (const entry of entries) {
     const graph = importsFrom(entry);
     assert.ok(!graph.has(resolve("app/lib/content.ts")), entry);
@@ -59,6 +59,7 @@ test("share-image routes explicitly use Node and the common noindex template", (
   for (const file of sources("app/blog").filter(path => /opengraph-image/.test(path))) {
     assert.match(readFileSync(file, "utf8"), /runtime = "nodejs"/);
     assert.ok(importsFrom(file).has(resolve("app/lib/blog-share-image.tsx")));
+    assert.ok(!importsFrom(file).has(resolve("app/lib/blog-validation.ts")));
   }
   assert.match(readFileSync("app/lib/blog-share-image.tsx", "utf8"), /"X-Robots-Tag": "noindex, nofollow"/);
 });

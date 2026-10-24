@@ -42,8 +42,8 @@ export const BLOG_STAGES = [
     description: "[FOUNDER DRAFT] Read about the applications you are preparing and the decisions still ahead.",
     featured: ["ucas-for-indian-students", "ivy-league-personal-statement", "how-to-ask-for-a-strong-letter-of-recommendation"],
     cta: {
-      heading: "[FOUNDER DRAFT] Working on your applications?",
-      body: "[FOUNDER DRAFT] Book a call to discuss where you are in the process and the support you need.",
+      heading: "Want an honest read on where your applications stand?",
+      body: "We look at your shortlist and your drafts, then tell you plainly what needs work before the deadlines close in. The work is led by the founder and stays in your own voice. No pitch, no pressure.",
       label: "Book a 45-minute call",
       href: CAL_LINK,
     },
@@ -66,9 +66,9 @@ export const BLOG_STAGES = [
     description: "[FOUNDER DRAFT] Consider how your academic or professional work can support a postgraduate application.",
     featured: ["how-to-ask-for-a-strong-letter-of-recommendation"],
     cta: {
-      heading: "[FOUNDER DRAFT] Preparing a postgraduate application?",
-      body: "[FOUNDER DRAFT] Book a consultation to discuss your intended programmes and the support you need with applying.",
-      label: "[FOUNDER DRAFT] Book a PG consultation",
+      heading: "Preparing a postgraduate application?",
+      body: "We help you match programmes to your academic or professional record and plan recommendations that describe your work in detail. No pitch, no pressure.",
+      label: "Book a PG consultation",
       href: CAL_LINK,
     },
   },
