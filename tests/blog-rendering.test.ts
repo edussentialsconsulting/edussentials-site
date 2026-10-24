@@ -31,8 +31,8 @@ function importsFrom(path: string, visited = new Set<string>()): Set<string> {
   if (visited.has(path)) return visited;
   visited.add(path);
   const source = readFileSync(path, "utf8");
-  for (const match of source.matchAll(/(?:from\s+|import\s*)["'](\.[^"']+)["']/g)) {
-    const base = resolve(dirname(path), match[1]);
+  for (const match of source.matchAll(/(?:from\s+|import\s*)["']((?:\.|@\/)[^"']+)["']/g)) {
+    const base = match[1].startsWith("@/") ? resolve(match[1].slice(2)) : resolve(dirname(path), match[1]);
     const dependency = [base, `${base}.ts`, `${base}.tsx`, join(base, "index.ts")].find(candidate => existsSync(candidate) && /\.tsx?$/.test(candidate));
     if (dependency) importsFrom(dependency, visited);
   }

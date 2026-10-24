@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { articles, getPublishedAuthors } from "../../../lib/content";
-import { BASE_URL, CAL_LINK } from "../../../lib/site";
-import { displayFont, bodyFont } from "../../../lib/fonts";
-import StructuredData from "../../../components/StructuredData";
+import { articles, getPublishedAuthors } from "@/app/lib/content";
+import { BASE_URL, CAL_LINK } from "@/app/lib/site";
+import { displayFont, bodyFont } from "@/app/lib/fonts";
+import StructuredData from "@/app/components/StructuredData";
 
 type Props = { params: Promise<{ "author-slug": string }> };
 export const dynamicParams = false;

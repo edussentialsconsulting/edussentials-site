@@ -1,4 +1,4 @@
-import { blogShareImage, shareSize } from "../lib/blog-share-image";
+import { blogShareImage, shareSize } from "@/app/lib/blog-share-image";
 export const runtime = "nodejs";
 export const alt = "Edussentials Consulting Blog";
 export const size = shareSize;

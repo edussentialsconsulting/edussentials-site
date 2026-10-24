@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import ArticleLayout from "../../components/ArticleLayout";
-import { articles, getArticle } from "../../lib/content";
-import { BASE_URL } from "../../lib/site";
+import ArticleLayout from "@/app/components/ArticleLayout";
+import { articles, getArticle } from "@/app/lib/content";
+import { BASE_URL } from "@/app/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 

@@ -1,9 +1,9 @@
-import { BLOG_TOPICS } from "../lib/blog-taxonomy";
+import { BLOG_TOPICS } from "@/app/lib/blog-taxonomy";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { articles } from "../lib/content";
-import { displayFont, bodyFont } from "../lib/fonts";
-import { BASE_URL, CAL_LINK } from "../lib/site";
+import { articles } from "@/app/lib/content";
+import { displayFont, bodyFont } from "@/app/lib/fonts";
+import { BASE_URL, CAL_LINK } from "@/app/lib/site";
 
 export const metadata: Metadata = {
 

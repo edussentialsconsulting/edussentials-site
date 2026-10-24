@@ -1,5 +1,5 @@
-import share from "../../../.blog-build/share.json";
-import { blogShareImage, shareSize } from "../../lib/blog-share-image";
+import share from "@/.blog-build/share.json";
+import { blogShareImage, shareSize } from "@/app/lib/blog-share-image";
 export const runtime = "nodejs";
 export const alt = "Edussentials Consulting article";
 export const size = shareSize;
