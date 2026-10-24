@@ -226,7 +226,20 @@ export const strongLetterOfRecommendation: Article = {
       ]
     }
   ],
-  "faqs": [],
   "related": [],
+  faqs: [
+    {
+      question: "[FOUNDER DRAFT] Should I choose the most senior person as my referee?",
+      answer: "[FOUNDER DRAFT] Choose someone who meets the programme’s requirements and knows your work closely. Seniority helps when the person can support their assessment with work they observed.",
+    },
+    {
+      question: "[FOUNDER DRAFT] What should I send after a referee agrees?",
+      answer: "[FOUNDER DRAFT] Send a short brief with your application context and clear submission instructions. Reconstruct relevant work you completed with that person, including an assignment or revision where it helps them recall your contribution.",
+    },
+    {
+      question: "[FOUNDER DRAFT] Should I add a referee to the application portal before asking?",
+      answer: "[FOUNDER DRAFT] Ask first and explain when the earliest recommendation is needed. The portal invitation should follow an agreed request, giving the person room to decide whether they know you well enough and have time.",
+    },
+  ],
   cta: "postgraduate",
 };

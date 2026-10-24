@@ -1,8 +1,10 @@
+import { authors, type Author } from "../content/authors";
+import { BLOG_LEVELS, BLOG_TOPICS } from "../lib/blog-taxonomy";
 import Link from "next/link";
 import StructuredData from "./StructuredData";
-import { getArticleCta, type Article } from "../lib/content";
+import { getArticleCta, getArticleCtaStage, getRelatedArticles, type Article } from "../lib/content";
 import { displayFont, bodyFont } from "../lib/fonts";
-import { BASE_URL, FOUNDER_ID, ORGANIZATION_ID } from "../lib/site";
+import { BASE_URL, CAL_LINK } from "../lib/site";
 
 function buildSchema(article: Article) {
   const faqs = article.faqs ?? [];
@@ -14,10 +16,10 @@ function buildSchema(article: Article) {
         "@id": `${BASE_URL}/blog/${article.slug}#article`,
         headline: article.title,
         description: article.metaDescription,
-        author: { "@id": FOUNDER_ID },
-        publisher: { "@id": ORGANIZATION_ID },
+        author: { "@type": "Person", name: authors[article.author].name, url: `${BASE_URL}/blog/authors/${article.author}` },
+        publisher: { "@type": "Organization", name: "Edussentials Consulting", url: BASE_URL },
         datePublished: article.publishedAt,
-        dateModified: article.updatedAt,
+        ...(article.updatedAt > article.publishedAt ? { dateModified: article.updatedAt } : {}),
         mainEntityOfPage: `${BASE_URL}/blog/${article.slug}`,
         articleSection: article.topic,
         inLanguage: "en",
@@ -35,8 +37,8 @@ function buildSchema(article: Article) {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `${BASE_URL}/` },
-          { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` },
+          { "@type": "ListItem", position: 1, name: "Blog", item: `${BASE_URL}/blog` },
+          { "@type": "ListItem", position: 2, name: article.topic, item: `${BASE_URL}/blog#${BLOG_TOPICS.find(topic => topic.label === article.topic)!.slug}` },
           {
             "@type": "ListItem",
             position: 3,
@@ -83,30 +85,49 @@ function renderLinkedText(text: string, links?: { text: string; href: string }[]
 
 export default function ArticleLayout({ article }: { article: Article }) {
   const faqs = article.faqs ?? [];
-  const related = article.related ?? [];
+  const related = getRelatedArticles(article);
+  const author: Author = authors[article.author];
+  const levelLabel = article.levels.map(slug => BLOG_LEVELS.find(level => level.slug === slug)!.label).join(" and ");
+  const formatDate = (date: string) => new Date(date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
   const cta = getArticleCta(article);
   return (
     <>
       <StructuredData data={buildSchema(article)} />
-      <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
+
+      <main data-blog-context data-post-slug={article.slug} data-topic={article.topic} data-stage={getArticleCtaStage(article) ?? "not_applicable"} data-author={author.slug} data-booking-url={CAL_LINK} className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420] [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-4`}>
         {/* Hero */}
         <section className="relative overflow-hidden bg-[#002147] text-[#f6f0e8]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(210,180,140,0.18),_transparent_36%),radial-gradient(circle_at_bottom_left,_rgba(198,93,58,0.14),_transparent_28%)]" />
           <div className="relative mx-auto w-full max-w-4xl px-6 py-16 sm:px-10 lg:py-24">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
-              {article.topic}
-            </p>
+            <nav aria-label="Breadcrumb" data-article-section="breadcrumb" className="mb-7 text-sm leading-6 text-[#f6f0e8]">
+              <ol className="flex flex-wrap gap-x-2 gap-y-1">
+                <li><Link href="/blog" className="underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">Blog</Link></li>
+                <li><span aria-hidden="true" className="mr-2">/</span>{article.topic}</li>
+                <li aria-current="page"><span aria-hidden="true" className="mr-2">/</span>{article.shortTitle}</li>
+              </ol>
+            </nav>
             <h1
               className={`${displayFont.className} text-4xl font-semibold leading-[1.05] text-[#f6f0e8] sm:text-5xl lg:text-6xl`}
             >
               {article.title}
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-white/78">{article.standfirst}</p>
+            <div data-article-section="meta" className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm leading-6 text-[#f6f0e8]">
+              <span>{article.topic}</span><span>{levelLabel}</span>
+              <span>By <Link href={`/blog/authors/${author.slug}`} className="underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">{author.name}</Link>{author.type === "guest" ? " · Guest contributor" : ""}</span>
+              <span>Published <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time></span>
+              {article.updatedAt > article.publishedAt ? <span>Updated <time dateTime={article.updatedAt}>{formatDate(article.updatedAt)}</time></span> : null}
+            </div>
           </div>
         </section>
 
         {/* Body */}
         <article className="mx-auto w-full max-w-3xl px-6 py-14 sm:px-10 lg:py-20">
+          <section data-article-section="short-answer" aria-labelledby="short-answer-heading" className="mb-12 rounded-2xl border border-[#002147]/20 bg-white p-6 sm:p-8">
+            <h2 id="short-answer-heading" className={`${displayFont.className} text-2xl font-semibold text-[#002147]`}>Short answer</h2>
+            <p className="mt-4 text-base leading-8">{article.shortAnswer}</p>
+          </section>
+          <div data-article-section="body">
+          <p className="mb-10 text-lg leading-8">{article.standfirst}</p>
           {article.sections.map((section, si) => (
             <section key={si} className={si > 0 ? "mt-12" : undefined}>
               {section.heading ? (
@@ -158,9 +179,11 @@ export default function ArticleLayout({ article }: { article: Article }) {
             </section>
           ))}
 
+          </div>
+
           {/* FAQ */}
           {faqs.length > 0 ? (
-          <section className="mt-16 border-t border-[#002147]/10 pt-12">
+          <section data-article-section="faq" className="mt-16 border-t border-[#002147]/10 pt-12">
             <h2 className={`${displayFont.className} text-3xl font-semibold leading-tight text-[#002147]`}>
               Common questions
             </h2>
@@ -175,37 +198,25 @@ export default function ArticleLayout({ article }: { article: Article }) {
           </section>
           ) : null}
 
-          {/* Related */}
-          {related.length > 0 ? (
-            <section className="mt-14">
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#002147]/60">
-                Related
-              </p>
-              <ul className="mt-3 space-y-2">
-                {related.map((r) => (
-                  <li key={r.href}>
-                    <Link
-                      href={r.href}
-                      className="text-base font-semibold text-[#002147] underline decoration-[#d2b48c] decoration-2 underline-offset-4 hover:decoration-[#002147]"
-                    >
-                      {r.label}
-                    </Link>
-                  </li>
-                ))}
+          {article.sources?.length ? (
+            <section data-article-section="sources" className="mt-14">
+              <h2 className={`${displayFont.className} text-3xl font-semibold text-[#002147]`}>Sources</h2>
+              <ul className="mt-5 space-y-4 text-base leading-7">
+                {article.sources.map(source => <li key={source.url}><a href={source.url} className="underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">{source.title}</a><span className="block text-sm">Accessed <time dateTime={source.accessedAt}>{formatDate(source.accessedAt)}</time></span></li>)}
               </ul>
             </section>
           ) : null}
-
           {/* CTA */}
-          <section className="mt-16 rounded-[2rem] bg-[#002147] p-10 text-[#f6f0e8]">
+          <section data-article-section="cta" data-cta-placement="article_end" className="mt-16 rounded-[2rem] bg-[#002147] p-6 sm:p-10 text-[#f6f0e8]">
             <h2 className={`${displayFont.className} text-3xl font-semibold leading-tight`}>
               {cta.heading}
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-white/78">{cta.body}</p>
             <div className="mt-7 flex flex-wrap items-center gap-5">
               <a
+                data-blog-cta
                 href={cta.href}
-                className="inline-block rounded-full bg-[#d2b48c] px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-[#002147] transition hover:bg-[#f6f0e8]"
+                className="inline-block rounded-full bg-[#d2b48c] px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-[#002147] transition hover:bg-[#f6f0e8] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 {cta.label}
               </a>
@@ -217,6 +228,28 @@ export default function ArticleLayout({ article }: { article: Article }) {
               </Link>
             </div>
           </section>
+          {/* Related */}
+          {related.length > 0 ? (
+            <section data-article-section="related" className="mt-14">
+              <h2 className={`${displayFont.className} text-3xl font-semibold text-[#002147]`}>
+                Related reading
+              </h2>
+              <ul className="mt-3 space-y-2">
+                {related.map((r) => (
+                  <li key={`/blog/${r.slug}`}>
+                    <Link
+                      href={`/blog/${r.slug}`}
+                      className="text-base font-semibold text-[#002147] underline decoration-[#d2b48c] decoration-2 underline-offset-4 hover:decoration-[#002147]"
+                    >
+                      {r.shortTitle}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          <p data-article-section="back" className="mt-12"><Link href="/blog" className="font-semibold text-[#002147] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">Back to Blog</Link></p>
         </article>
       </main>
     </>

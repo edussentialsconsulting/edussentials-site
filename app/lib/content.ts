@@ -1,4 +1,4 @@
-import { type AuthorSlug } from "../content/authors";
+import { authors, type Author, type AuthorSlug } from "../content/authors";
 import {
   BLOG_STAGES, CTA_STAGE_PRECEDENCE,
   type ArticleLevel, type ArticleStage, type ArticleTopic,
@@ -71,4 +71,22 @@ export function getArticleCta(article: Article) {
   const stage = BLOG_STAGES.find(entry => entry.slug === getArticleCtaStage(article));
   if (!stage) throw new Error(`Blog: no CTA stage for ${article.slug}`);
   return stage.cta;
+}
+
+export function getPublishedAuthors(): Author[] {
+  return Object.values(authors).filter(author => articles.some(post => post.author === author.slug));
+}
+
+export function getRelatedArticles(article: Article): Article[] {
+  const candidates = [
+    ...(article.related ?? []).map(link => getArticle(link.href.replace("/blog/", ""))),
+    ...articles.filter(post => post.topic === article.topic),
+    ...articles.filter(post => post.stage.some(stage => article.stage.includes(stage))),
+  ];
+  const seen = new Set([article.slug]);
+  return candidates.filter((post): post is Article => {
+    if (!post || seen.has(post.slug)) return false;
+    seen.add(post.slug);
+    return true;
+  }).slice(0, 2);
 }
