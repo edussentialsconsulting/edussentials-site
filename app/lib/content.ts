@@ -118,9 +118,10 @@ export function getPostsCtaStage(posts: readonly Article[]) {
 }
 
 export function getFilterControls(posts: readonly Article[] = articles) {
+  const levels = BLOG_LEVELS.filter(level => posts.some(post => post.levels.includes(level.slug)));
   const destinations = [...new Set(posts.flatMap(post => post.destinations ?? []))].sort();
   return {
-    levels: BLOG_LEVELS.every(level => posts.filter(post => post.levels.includes(level.slug)).length >= 3),
+    levels: levels.every(level => posts.filter(post => post.levels.includes(level.slug)).length >= 3) ? levels : [],
     destinations: destinations.length > 0 && destinations.every(destination => posts.filter(post => post.destinations?.includes(destination)).length >= 3) ? destinations : [],
   };
 }

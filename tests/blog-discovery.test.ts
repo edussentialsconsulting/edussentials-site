@@ -25,15 +25,15 @@ for (const query of [{ stage: "unknown" }, { level: "phd" }, { stage: ["applying
 test("destination filtering works without exposing a below-threshold control", () => {
   const result = filterBlogPosts({ destination: "uk" });
   assert.deepEqual(slugs(result.posts), ["ucas-for-indian-students"]);
-  assert.deepEqual(getFilterControls(), { levels: false, destinations: [] });
+  assert.deepEqual(getFilterControls(), { levels: [], destinations: [] });
 });
 
 test("each filter control appears only when every option has at least three posts", () => {
   const posts = articles.slice(0, 3).map(post => ({ ...post, levels: ["undergraduate", "postgraduate"], destinations: ["uk", "us"] } as Article));
-  assert.deepEqual(getFilterControls(posts.slice(0, 2)), { levels: false, destinations: [] });
-  assert.deepEqual(getFilterControls(posts), { levels: true, destinations: ["uk", "us"] });
-  assert.deepEqual(getFilterControls([...posts, { ...posts[0], destinations: ["ca"] }]), { levels: true, destinations: [] });
-  assert.deepEqual(getFilterControls([]), { levels: false, destinations: [] });
+  assert.deepEqual(getFilterControls(posts.slice(0, 2)), { levels: [], destinations: [] });
+  assert.deepEqual(getFilterControls(posts), { levels: [{ slug: "undergraduate", label: "Undergraduate" }, { slug: "postgraduate", label: "Postgraduate" }], destinations: ["uk", "us"] });
+  assert.deepEqual(getFilterControls([...posts, { ...posts[0], destinations: ["ca"] }]), { levels: [{ slug: "undergraduate", label: "Undergraduate" }, { slug: "postgraduate", label: "Postgraduate" }], destinations: [] });
+  assert.deepEqual(getFilterControls([]), { levels: [], destinations: [] });
 });
 
 test("featured panel posts come first and newest matching posts fill remaining slots", () => {
@@ -69,4 +69,22 @@ test("empty form options preserve other selected filters", () => {
   assert.equal(result.active, true);
   assert.deepEqual(slugs(result.posts), ["how-to-ask-for-a-strong-letter-of-recommendation"]);
   assert.equal(filterBlogPosts({ stage: "", level: "", destination: "" }).active, false);
+});
+
+test("one UK post hides the whole destination control even with four US posts", () => {
+  const base = articles[0];
+  const posts: Article[] = [
+    { ...base, slug: "uk-only", destinations: ["uk"] },
+    ...Array.from({ length: 4 }, (_, index) => ({ ...base, slug: `us-${index}`, destinations: ["us"] })),
+  ];
+  assert.deepEqual(getFilterControls(posts).destinations, []);
+  assert.equal(articles.filter(post => post.destinations?.includes("uk")).length, 1);
+  assert.equal(articles.filter(post => post.destinations?.includes("us")).length, 4);
+  assert.deepEqual(getFilterControls(), { levels: [], destinations: [] });
+});
+
+test("zero-post levels are omitted, while populated options must all reach three", () => {
+  const posts = articles.slice(0, 3).map(post => ({ ...post, levels: ["undergraduate"] } as Article));
+  assert.deepEqual(getFilterControls(posts).levels, [{ slug: "undergraduate", label: "Undergraduate" }]);
+  assert.deepEqual(getFilterControls([...posts, { ...posts[0], levels: ["postgraduate"] }]).levels, []);
 });
