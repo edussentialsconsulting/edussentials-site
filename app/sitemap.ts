@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const siteLastModified = new Date("2026-08-02");
   const latestArticleModified = articles.reduce(
     (latest, article) =>
-      new Date(article.dateModified) > latest ? new Date(article.dateModified) : latest,
+      new Date(article.updatedAt) > latest ? new Date(article.updatedAt) : latest,
     siteLastModified,
   );
 
@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...articles.map((a) => ({
       url: `${baseUrl}/blog/${a.slug}`,
-      lastModified: new Date(a.dateModified),
+      lastModified: new Date(a.updatedAt),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

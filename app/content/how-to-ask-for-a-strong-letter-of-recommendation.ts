@@ -1,8 +1,14 @@
 import type { Article } from "../lib/content";
+import { DEFAULT_AUTHOR } from "./authors";
 
 export const strongLetterOfRecommendation: Article = {
   "slug": "how-to-ask-for-a-strong-letter-of-recommendation",
-  "category": "Essays & Applications",
+  topic: "Essays & Applications",
+  levels: ["undergraduate","postgraduate"],
+  stage: ["applying-now","postgraduate"],
+  shortAnswer: "[FOUNDER DRAFT] Ask someone who knows your work well enough to describe it in detail, and give them time to consider the request. Provide relevant work and clear application instructions so they can write an assessment grounded in what they have observed.",
+  summary: "Choose the right recommender, prepare a useful brief and understand what makes a strong LOR, with a concrete before-and-after example.",
+  author: DEFAULT_AUTHOR,
   "title": "How to Ask for a Strong Letter of Recommendation",
   "shortTitle": "How to Ask for a Strong LOR",
   "metaTitle": "How to Ask for a Strong Letter of Recommendation | Edussentials",
@@ -13,8 +19,8 @@ export const strongLetterOfRecommendation: Article = {
     "LOR for university applications"
   ],
   "standfirst": "A strong recommendation gives an admissions reader a clear sense of what you did and what someone who worked with you noticed. Getting that level of detail starts before the letter is written.",
-  "datePublished": "2026-10-23",
-  "dateModified": "2026-10-23",
+  publishedAt: "2026-10-23",
+  updatedAt: "2026-10-23",
   "sections": [
     {
       "paragraphs": [

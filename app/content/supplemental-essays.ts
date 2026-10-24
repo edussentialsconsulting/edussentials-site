@@ -1,8 +1,15 @@
 import type { Article } from "../lib/content";
+import { DEFAULT_AUTHOR } from "./authors";
 
 export const supplementalEssays: Article = {
   slug: "supplemental-essays",
-  category: "Essays & Applications",
+  topic: "Essays & Applications",
+  levels: ["undergraduate"],
+  stage: ["applying-now"],
+  destinations: ["us"],
+  shortAnswer: "[FOUNDER DRAFT] Supplemental essays answer the particular questions a university asks beyond the main application essay. Each response should address its prompt and, where relevant, connect your interests to research about that university rather than rely on interchangeable praise.",
+  summary: "A clear breakdown of why us, why major, community and activity essays, with honest advice on research, structure and school-specific writing.",
+  author: DEFAULT_AUTHOR,
   title: "Supplemental Essays: Why Us, Why Major, and the Rest",
   shortTitle: "Supplemental Essays",
   metaTitle: "Supplemental Essays | Edussentials",
@@ -10,8 +17,8 @@ export const supplementalEssays: Article = {
     "A clear breakdown of why us, why major, community and activity essays, with honest advice on research, structure and school-specific writing.",
   standfirst:
     "The personal statement gets the attention. The supplements often make the decision. They are also where applications quietly die, one interchangeable \"why us\" at a time.",
-  datePublished: "2026-07-04",
-  dateModified: "2026-07-04",
+  publishedAt: "2026-07-04",
+  updatedAt: "2026-07-04",
   sections: [
     {
       heading: "What supplements are, and why they carry so much weight",

@@ -1,8 +1,14 @@
 import type { Article } from "../lib/content";
+import { DEFAULT_AUTHOR } from "./authors";
 
 export const studyAbroadAfter12th: Article = {
   slug: "study-abroad-after-12th",
-  category: "Courses & Careers",
+  topic: "Courses & Careers",
+  levels: ["undergraduate"],
+  stage: ["planning-early","applying-now"],
+  shortAnswer: "[FOUNDER DRAFT] Begin with the course you want to study and what your family can fund across the degree. Compare destinations against those constraints and consider whether the degree would still be worthwhile if your plans for working abroad changed.",
+  summary: "Deciding where to study abroad after 12th? A clear look at how the choice has changed, what actually decides it, and how each country's system works.",
+  author: DEFAULT_AUTHOR,
   title: "Study Abroad After 12th: How Indian Families Should Actually Decide",
   shortTitle: "Study Abroad After 12th",
   metaTitle: "Study Abroad After 12th | An Honest Guide for Indian Families",
@@ -17,8 +23,8 @@ export const studyAbroadAfter12th: Article = {
   ],
   standfirst:
     "The right country is not a country in the abstract. It is the place where the subject, cost, academic record and post-degree plan can all survive contact with reality.",
-  datePublished: "2026-08-02",
-  dateModified: "2026-08-02",
+  publishedAt: "2026-08-02",
+  updatedAt: "2026-08-02",
   sections: [
     {
       heading: "The question behind the question",

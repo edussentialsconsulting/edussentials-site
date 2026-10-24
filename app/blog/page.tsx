@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { articles, type ArticleCategory } from "../lib/content";
+import { articles } from "../lib/content";
 import { displayFont, bodyFont } from "../lib/fonts";
 import { BASE_URL } from "../lib/site";
 
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function BlogIndexPage() {
   const posts = articles;
-  const categories = [...new Set(posts.map((a) => a.category))] as ArticleCategory[];
+  const categories = [...new Set(posts.map((a) => a.topic))];
 
   return (
     <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
@@ -46,7 +46,7 @@ export default function BlogIndexPage() {
             </h2>
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {posts
-                .filter((a) => a.category === category)
+                .filter((a) => a.topic === category)
                 .map((a) => (
                   <Link
                     key={a.slug}
@@ -59,7 +59,7 @@ export default function BlogIndexPage() {
                       {a.shortTitle}
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-[#2A2420]/75">
-                      {a.metaDescription}
+                      {a.summary}
                     </p>
                     <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#d2b48c] group-hover:text-[#002147]">
                       Read the post

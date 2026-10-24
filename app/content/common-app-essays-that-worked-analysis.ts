@@ -1,8 +1,15 @@
 import type { Article } from "../lib/content";
+import { DEFAULT_AUTHOR } from "./authors";
 
 export const commonAppEssaysAnalysis: Article = {
   slug: "common-app-essays-that-worked-analysis",
-  category: "Essays & Applications",
+  topic: "Essays & Applications",
+  levels: ["undergraduate"],
+  stage: ["applying-now"],
+  destinations: ["us"],
+  shortAnswer: "[FOUNDER DRAFT] Strong Common App essays reveal the writer through specific observations and the way they make sense of an experience. Read examples to understand those qualities, then return to your own material instead of copying a subject or structure.",
+  summary: "A clear analysis of what strong Common App essays share, why examples can weaken your draft, and how to learn from them without copying.",
+  author: DEFAULT_AUTHOR,
   title: "Common App Essays That Worked: What They Actually Have in Common",
   shortTitle: "Common App Essays That Worked",
   metaTitle: "Common App Essays That Worked | Edussentials",
@@ -10,8 +17,8 @@ export const commonAppEssaysAnalysis: Article = {
     "A clear analysis of what strong Common App essays share, why examples can weaken your draft, and how to learn from them without copying.",
   standfirst:
     "Every applicant reads collections of essays that worked. Many leave with weaker instincts.",
-  datePublished: "2026-07-04",
-  dateModified: "2026-07-04",
+  publishedAt: "2026-07-04",
+  updatedAt: "2026-07-04",
   sections: [
     {
       paragraphs: [

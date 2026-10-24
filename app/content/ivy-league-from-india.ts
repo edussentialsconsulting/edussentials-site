@@ -1,8 +1,15 @@
 import type { Article } from "../lib/content";
+import { DEFAULT_AUTHOR } from "./authors";
 
 export const ivyLeagueFromIndia: Article = {
   slug: "ivy-league-from-india",
-  category: "Admissions Data & Process",
+  topic: "Admissions & Process",
+  levels: ["undergraduate"],
+  stage: ["applying-now"],
+  destinations: ["us"],
+  shortAnswer: "[FOUNDER DRAFT] Applying to the Ivy League from India requires strong academic preparation and an application that gives clear evidence of your interests and contribution. Treat these universities as part of a balanced list rather than assuming that strong marks make admission predictable.",
+  summary: "An honest, India-specific look at Ivy League admissions. What the odds really are, what the file must show, and a class-wise timeline that works.",
+  author: DEFAULT_AUTHOR,
   title: "How to Get Into the Ivy League from India",
   shortTitle: "Ivy League from India",
   metaTitle: "How to Get Into the Ivy League from India | Edussentials",
@@ -10,8 +17,8 @@ export const ivyLeagueFromIndia: Article = {
     "An honest, India-specific look at Ivy League admissions. What the odds really are, what the file must show, and a class-wise timeline that works.",
   standfirst:
     "Getting into an Ivy League school from India is possible, and most advice about it is either dishonest or useless. This is the version we give families across the table.",
-  datePublished: "2026-07-04",
-  dateModified: "2026-07-04",
+  publishedAt: "2026-07-04",
+  updatedAt: "2026-07-04",
   sections: [
     {
       paragraphs: [

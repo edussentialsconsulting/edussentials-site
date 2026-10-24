@@ -1,8 +1,15 @@
 import type { Article } from "../lib/content";
+import { DEFAULT_AUTHOR } from "./authors";
 
 export const ivyLeaguePersonalStatement: Article = {
   slug: "ivy-league-personal-statement",
-  category: "Essays & Applications",
+  topic: "Essays & Applications",
+  levels: ["undergraduate"],
+  stage: ["applying-now"],
+  destinations: ["us"],
+  shortAnswer: "[FOUNDER DRAFT] The personal statement should help an admissions reader understand how you think, rather than repeat achievements already listed elsewhere. Focus on a specific experience or question and explain it in a voice that remains your own.",
+  summary: "What an Ivy League personal statement actually has to do, what Indian applicants get wrong, and how to write one that sounds like you. No templates.",
+  author: DEFAULT_AUTHOR,
   title: "The Ivy League Personal Statement: What It Actually Has to Do",
   shortTitle: "Ivy League Personal Statement",
   metaTitle: "The Ivy League Personal Statement, Explained Honestly | Edussentials",
@@ -10,8 +17,8 @@ export const ivyLeaguePersonalStatement: Article = {
     "What an Ivy League personal statement actually has to do, what Indian applicants get wrong, and how to write one that sounds like you. No templates.",
   standfirst:
     "Every year, thousands of students with near-perfect grades and strong test scores are rejected by every Ivy League school they apply to. Their essays were, in most cases, fine. Fine is the problem.",
-  datePublished: "2026-07-02",
-  dateModified: "2026-07-02",
+  publishedAt: "2026-07-02",
+  updatedAt: "2026-07-02",
   sections: [
     {
       paragraphs: [

@@ -1,10 +1,11 @@
 import Link from "next/link";
 import StructuredData from "./StructuredData";
-import type { Article } from "../lib/content";
+import { getArticleCta, type Article } from "../lib/content";
 import { displayFont, bodyFont } from "../lib/fonts";
-import { BASE_URL, CAL_LINK, FOUNDER_ID, ORGANIZATION_ID } from "../lib/site";
+import { BASE_URL, FOUNDER_ID, ORGANIZATION_ID } from "../lib/site";
 
 function buildSchema(article: Article) {
+  const faqs = article.faqs ?? [];
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -15,16 +16,16 @@ function buildSchema(article: Article) {
         description: article.metaDescription,
         author: { "@id": FOUNDER_ID },
         publisher: { "@id": ORGANIZATION_ID },
-        datePublished: article.datePublished,
-        dateModified: article.dateModified,
+        datePublished: article.publishedAt,
+        dateModified: article.updatedAt,
         mainEntityOfPage: `${BASE_URL}/blog/${article.slug}`,
-        articleSection: article.category,
+        articleSection: article.topic,
         inLanguage: "en",
       },
-      ...(article.faqs.length > 0
+      ...(faqs.length > 0
         ? [{
             "@type": "FAQPage",
-            mainEntity: article.faqs.map((faq) => ({
+            mainEntity: faqs.map((faq) => ({
               "@type": "Question",
               name: faq.question,
               acceptedAnswer: { "@type": "Answer", text: faq.answer },
@@ -81,6 +82,9 @@ function renderLinkedText(text: string, links?: { text: string; href: string }[]
 }
 
 export default function ArticleLayout({ article }: { article: Article }) {
+  const faqs = article.faqs ?? [];
+  const related = article.related ?? [];
+  const cta = getArticleCta(article);
   return (
     <>
       <StructuredData data={buildSchema(article)} />
@@ -90,7 +94,7 @@ export default function ArticleLayout({ article }: { article: Article }) {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(210,180,140,0.18),_transparent_36%),radial-gradient(circle_at_bottom_left,_rgba(198,93,58,0.14),_transparent_28%)]" />
           <div className="relative mx-auto w-full max-w-4xl px-6 py-16 sm:px-10 lg:py-24">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-[#d2b48c]">
-              {article.category}
+              {article.topic}
             </p>
             <h1
               className={`${displayFont.className} text-4xl font-semibold leading-[1.05] text-[#f6f0e8] sm:text-5xl lg:text-6xl`}
@@ -155,13 +159,13 @@ export default function ArticleLayout({ article }: { article: Article }) {
           ))}
 
           {/* FAQ */}
-          {article.faqs.length > 0 ? (
+          {faqs.length > 0 ? (
           <section className="mt-16 border-t border-[#002147]/10 pt-12">
             <h2 className={`${displayFont.className} text-3xl font-semibold leading-tight text-[#002147]`}>
               Common questions
             </h2>
             <div className="mt-6 space-y-8">
-              {article.faqs.map((faq, i) => (
+              {faqs.map((faq, i) => (
                 <div key={i}>
                   <h3 className="text-lg font-semibold text-[#2A2420]">{faq.question}</h3>
                   <p className="mt-2 text-base leading-8 text-[#2A2420]/85">{faq.answer}</p>
@@ -172,13 +176,13 @@ export default function ArticleLayout({ article }: { article: Article }) {
           ) : null}
 
           {/* Related */}
-          {article.related.length > 0 ? (
+          {related.length > 0 ? (
             <section className="mt-14">
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#002147]/60">
                 Related
               </p>
               <ul className="mt-3 space-y-2">
-                {article.related.map((r) => (
+                {related.map((r) => (
                   <li key={r.href}>
                     <Link
                       href={r.href}
@@ -195,15 +199,15 @@ export default function ArticleLayout({ article }: { article: Article }) {
           {/* CTA */}
           <section className="mt-16 rounded-[2rem] bg-[#002147] p-10 text-[#f6f0e8]">
             <h2 className={`${displayFont.className} text-3xl font-semibold leading-tight`}>
-              {article.cta.heading}
+              {cta.heading}
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-8 text-white/78">{article.cta.body}</p>
+            <p className="mt-4 max-w-2xl text-base leading-8 text-white/78">{cta.body}</p>
             <div className="mt-7 flex flex-wrap items-center gap-5">
               <a
-                href={CAL_LINK}
+                href={cta.href}
                 className="inline-block rounded-full bg-[#d2b48c] px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-[#002147] transition hover:bg-[#f6f0e8]"
               >
-                Book a 45-minute call
+                {cta.label}
               </a>
               <Link
                 href="/services"

@@ -1,8 +1,15 @@
 import type { Article } from "../lib/content";
+import { DEFAULT_AUTHOR } from "./authors";
 
 export const ucasForIndianStudents: Article = {
   slug: "ucas-for-indian-students",
-  category: "Admissions Data & Process",
+  topic: "Admissions & Process",
+  levels: ["undergraduate"],
+  stage: ["applying-now"],
+  destinations: ["uk"],
+  shortAnswer: "[FOUNDER DRAFT] UCAS provides a shared application process for UK undergraduate courses, but choosing suitable courses comes first. Indian applicants should understand how each course assesses their qualifications and check the instructions for their application year before submitting.",
+  summary: "UCAS is one application for up to five UK courses. Learn how Indian students should choose courses, write the statement, meet deadlines and handle offers.",
+  author: DEFAULT_AUTHOR,
   title: "UCAS for Indian Students and How the UK Application Actually Works",
   shortTitle: "UCAS for Indian Students",
   metaTitle: "UCAS for Indian Students | How UK Applications Work",
@@ -17,8 +24,8 @@ export const ucasForIndianStudents: Article = {
   ],
   standfirst:
     "UCAS looks simpler than it is. The form is efficient, but it gives Indian students very little room for careless course choices, weak academic fit or a personal statement that tries to serve too many subjects.",
-  datePublished: "2026-08-02",
-  dateModified: "2026-08-02",
+  publishedAt: "2026-08-02",
+  updatedAt: "2026-08-02",
   sections: [
     {
       paragraphs: [
