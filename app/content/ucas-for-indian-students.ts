@@ -1,8 +1,14 @@
 import type { Article } from "../lib/content";
+import { DEFAULT_AUTHOR } from "./authors";
 
 export const ucasForIndianStudents: Article = {
   slug: "ucas-for-indian-students",
-  category: "Admissions Data & Process",
+  topic: "Admissions & Process",
+  levels: ["undergraduate"],
+  stage: ["applying-now"],
+  destinations: ["uk"],
+  shortAnswer: "[FOUNDER DRAFT] UCAS lets an Indian student apply to up to five UK course choices through one application. Every choice receives the same personal statement, so the courses need to support a coherent academic argument.",
+  author: DEFAULT_AUTHOR,
   title: "UCAS for Indian Students and How the UK Application Actually Works",
   shortTitle: "UCAS for Indian Students",
   metaTitle: "UCAS for Indian Students | How UK Applications Work",
@@ -17,8 +23,8 @@ export const ucasForIndianStudents: Article = {
   ],
   standfirst:
     "UCAS looks simpler than it is. The form is efficient, but it gives Indian students very little room for careless course choices, weak academic fit or a personal statement that tries to serve too many subjects.",
-  datePublished: "2026-08-02",
-  dateModified: "2026-08-02",
+  publishedAt: "2026-08-02",
+  updatedAt: "2026-08-02",
   sections: [
     {
       paragraphs: [
@@ -357,8 +363,4 @@ export const ucasForIndianStudents: Article = {
     { href: "/blog/ivy-league-personal-statement", label: "The Ivy League Personal Statement" },
     { href: "/blog/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
   ],
-  cta: {
-    heading: "Planning UK applications from India?",
-    body: "We help families test course direction, shortlist fit, academic requirements, costs and timelines before the UCAS form starts driving the decision. No pitch, no pressure.",
-  },
 };

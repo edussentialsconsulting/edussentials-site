@@ -1,8 +1,14 @@
 import type { Article } from "../lib/content";
+import { DEFAULT_AUTHOR } from "./authors";
 
 export const supplementalEssays: Article = {
   slug: "supplemental-essays",
-  category: "Essays & Applications",
+  topic: "Essays & Applications",
+  levels: ["undergraduate"],
+  stage: ["applying-now"],
+  destinations: ["us"],
+  shortAnswer: "[FOUNDER DRAFT] A strong supplement connects something specific about the university to the applicant’s own academic direction. If replacing the university’s name leaves the essay equally convincing, the research and connection need more work.",
+  author: DEFAULT_AUTHOR,
   title: "Supplemental Essays: Why Us, Why Major, and the Rest",
   shortTitle: "Supplemental Essays",
   metaTitle: "Supplemental Essays | Edussentials",
@@ -10,8 +16,8 @@ export const supplementalEssays: Article = {
     "A clear breakdown of why us, why major, community and activity essays, with honest advice on research, structure and school-specific writing.",
   standfirst:
     "The personal statement gets the attention. The supplements often make the decision. They are also where applications quietly die, one interchangeable \"why us\" at a time.",
-  datePublished: "2026-07-04",
-  dateModified: "2026-07-04",
+  publishedAt: "2026-07-04",
+  updatedAt: "2026-07-04",
   sections: [
     {
       heading: "What supplements are, and why they carry so much weight",
@@ -190,8 +196,4 @@ export const supplementalEssays: Article = {
     { href: "/blog/ivy-league-from-india", label: "How to Get Into the Ivy League from India" },
     { href: "/blog/common-app-essays-that-worked-analysis", label: "Common App Essays That Worked: An Honest Analysis" },
   ],
-  cta: {
-    heading: "Managing a long supplement list?",
-    body: "We help students decide what each essay must add, test whether the research is real, and hold the standard when the fifteenth essay is due. No pitch, no pressure.",
-  },
 };

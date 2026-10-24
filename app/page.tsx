@@ -241,7 +241,7 @@ function getServiceIcon(icon: ServiceIconKey) {
 }
 
 const latestArticles = [...articles]
-  .sort((a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime())
+  .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
   .slice(0, 3);
 
 export default function Home() {

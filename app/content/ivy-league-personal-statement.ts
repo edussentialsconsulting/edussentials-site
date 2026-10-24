@@ -1,8 +1,14 @@
 import type { Article } from "../lib/content";
+import { DEFAULT_AUTHOR } from "./authors";
 
 export const ivyLeaguePersonalStatement: Article = {
   slug: "ivy-league-personal-statement",
-  category: "Essays & Applications",
+  topic: "Essays & Applications",
+  levels: ["undergraduate"],
+  stage: ["applying-now"],
+  destinations: ["us"],
+  shortAnswer: "[FOUNDER DRAFT] The Common App personal statement gives you up to 650 words to show how you think through one focused subject. It goes to every university on your list, so reasons for choosing a particular school belong in the supplements.",
+  author: DEFAULT_AUTHOR,
   title: "The Ivy League Personal Statement: What It Actually Has to Do",
   shortTitle: "Ivy League Personal Statement",
   metaTitle: "The Ivy League Personal Statement, Explained Honestly | Edussentials",
@@ -10,8 +16,8 @@ export const ivyLeaguePersonalStatement: Article = {
     "What an Ivy League personal statement actually has to do, what Indian applicants get wrong, and how to write one that sounds like you. No templates.",
   standfirst:
     "Every year, thousands of students with near-perfect grades and strong test scores are rejected by every Ivy League school they apply to. Their essays were, in most cases, fine. Fine is the problem.",
-  datePublished: "2026-07-02",
-  dateModified: "2026-07-02",
+  publishedAt: "2026-07-02",
+  updatedAt: "2026-07-02",
   sections: [
     {
       paragraphs: [
@@ -179,8 +185,4 @@ export const ivyLeaguePersonalStatement: Article = {
     { href: "/blog/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
     { href: "/blog/common-app-essays-that-worked-analysis", label: "Common App Essays That Worked: An Honest Analysis" },
   ],
-  cta: {
-    heading: "Working on this essay?",
-    body: "Every essay engagement at Edussentials is run directly by the founder, over multiple rounds, and the work stays yours. No pitch, no pressure. Just an honest conversation about where things stand.",
-  },
 };

@@ -1,8 +1,13 @@
 import type { Article } from "../lib/content";
+import { DEFAULT_AUTHOR } from "./authors";
 
 export const studyAbroadAfter12th: Article = {
   slug: "study-abroad-after-12th",
-  category: "Courses & Careers",
+  topic: "Courses & Careers",
+  levels: ["undergraduate"],
+  stage: ["planning-early","applying-now"],
+  shortAnswer: "[FOUNDER DRAFT] Choose the course before the country, checking the subject requirements against the student’s school record. Set a budget for the full degree before building a shortlist.",
+  author: DEFAULT_AUTHOR,
   title: "Study Abroad After 12th: How Indian Families Should Actually Decide",
   shortTitle: "Study Abroad After 12th",
   metaTitle: "Study Abroad After 12th | An Honest Guide for Indian Families",
@@ -17,8 +22,8 @@ export const studyAbroadAfter12th: Article = {
   ],
   standfirst:
     "The right country is not a country in the abstract. It is the place where the subject, cost, academic record and post-degree plan can all survive contact with reality.",
-  datePublished: "2026-08-02",
-  dateModified: "2026-08-02",
+  publishedAt: "2026-08-02",
+  updatedAt: "2026-08-02",
   sections: [
     {
       heading: "The question behind the question",
@@ -298,8 +303,4 @@ export const studyAbroadAfter12th: Article = {
     { href: "/blog/ivy-league-from-india", label: "How to Get Into the Ivy League from India" },
     { href: "/blog/ivy-league-personal-statement", label: "The Ivy League Personal Statement" },
   ],
-  cta: {
-    heading: "Deciding where your child should apply?",
-    body: "We help families test subject direction, country fit, costs, timelines and post-degree assumptions before a shortlist becomes an application. No pitch, no pressure.",
-  },
 };
