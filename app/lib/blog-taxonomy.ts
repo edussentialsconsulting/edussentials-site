@@ -4,11 +4,15 @@ export const BLOG_TOPICS = [
   {
     slug: "essays-applications",
     label: "Essays & Applications",
+    metaTitle: "[FOUNDER DRAFT] Essays & Applications | Edussentials",
+    metaDescription: "[FOUNDER DRAFT] Read about personal statements and university supplements, with a guide to requesting recommendations grounded in observed work.",
     intro: "[FOUNDER DRAFT] An application should help a reader understand the person behind the record. These articles examine how written work can do that without repeating achievements or borrowing someone else's voice. They cover the main personal statement and the different demands of university supplements, alongside the evidence that makes a recommendation useful. You can start with the part of the application you are working on and use the related reading to consider how it fits with the rest. The emphasis is on making thoughtful choices about what to include and giving each piece a clear purpose.",
   },
   {
     slug: "admissions-process",
     label: "Admissions & Process",
+    metaTitle: "[FOUNDER DRAFT] Admissions & Process | Edussentials",
+    metaDescription: "[FOUNDER DRAFT] Understand the UCAS application process and the choices involved in applying to Ivy League universities from India.",
     intro: "[FOUNDER DRAFT] Understanding an application process begins with knowing what the institution is asking you to submit and how it will consider that information. These articles look at particular admissions systems from the perspective of students applying from India. They help you distinguish a decision about academic fit from a decision about how to complete an application. Use them to organise your questions before checking the requirements for your own courses and application year. Where a deadline or policy matters to your next step, confirm it with the relevant institution or application service before acting.",
   },
   {

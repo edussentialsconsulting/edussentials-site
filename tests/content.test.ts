@@ -184,7 +184,7 @@ test("new metadata copy follows the requested writing constraints", () => {
     ...articles.map(post => post.shortAnswer),
     ...articles.flatMap(post => (post.faqs ?? []).flatMap(faq => [faq.question, faq.answer]).filter(text => text.includes("[FOUNDER DRAFT]"))),
     ...Object.values(authors).map(author => author.bio),
-    ...BLOG_TOPICS.flatMap(topic => "intro" in topic ? [topic.intro] : []),
+    ...BLOG_TOPICS.flatMap(topic => "intro" in topic ? [topic.intro, topic.metaTitle, topic.metaDescription] : []),
     ...BLOG_STAGES.flatMap(stage => [stage.description, stage.cta.heading, stage.cta.body]),
   ];
   for (const draft of drafts) {

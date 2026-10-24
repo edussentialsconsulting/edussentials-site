@@ -1,8 +1,9 @@
+import BlogCta from "./BlogCta";
 import { authors, type Author } from "../content/authors";
-import { BLOG_LEVELS, BLOG_TOPICS } from "../lib/blog-taxonomy";
+import { BLOG_LEVELS } from "../lib/blog-taxonomy";
 import Link from "next/link";
 import StructuredData from "./StructuredData";
-import { getArticleCta, getArticleCtaStage, getRelatedArticles, type Article } from "../lib/content";
+import { getArticleCta, getArticleCtaStage, getRelatedArticles, getTopicHref, type Article } from "../lib/content";
 import { displayFont, bodyFont } from "../lib/fonts";
 import { BASE_URL, CAL_LINK } from "../lib/site";
 
@@ -38,7 +39,7 @@ function buildSchema(article: Article) {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Blog", item: `${BASE_URL}/blog` },
-          { "@type": "ListItem", position: 2, name: article.topic, item: `${BASE_URL}/blog#${BLOG_TOPICS.find(topic => topic.label === article.topic)!.slug}` },
+          { "@type": "ListItem", position: 2, name: article.topic, item: `${BASE_URL}${getTopicHref(article.topic)}` },
           {
             "@type": "ListItem",
             position: 3,
@@ -102,7 +103,7 @@ export default function ArticleLayout({ article }: { article: Article }) {
             <nav aria-label="Breadcrumb" data-article-section="breadcrumb" className="mb-7 text-sm leading-6 text-[#f6f0e8]">
               <ol className="flex flex-wrap gap-x-2 gap-y-1">
                 <li><Link href="/blog" className="underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">Blog</Link></li>
-                <li><span aria-hidden="true" className="mr-2">/</span>{article.topic}</li>
+                <li><span aria-hidden="true" className="mr-2">/</span><Link href={getTopicHref(article.topic)} className="underline underline-offset-4">{article.topic}</Link></li>
                 <li aria-current="page"><span aria-hidden="true" className="mr-2">/</span>{article.shortTitle}</li>
               </ol>
             </nav>
@@ -206,28 +207,7 @@ export default function ArticleLayout({ article }: { article: Article }) {
               </ul>
             </section>
           ) : null}
-          {/* CTA */}
-          <section data-article-section="cta" data-cta-placement="article_end" className="mt-16 rounded-[2rem] bg-[#002147] p-6 sm:p-10 text-[#f6f0e8]">
-            <h2 className={`${displayFont.className} text-3xl font-semibold leading-tight`}>
-              {cta.heading}
-            </h2>
-            <p className="mt-4 max-w-2xl text-base leading-8 text-white/78">{cta.body}</p>
-            <div className="mt-7 flex flex-wrap items-center gap-5">
-              <a
-                data-blog-cta
-                href={cta.href}
-                className="inline-block rounded-full bg-[#d2b48c] px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-[#002147] transition hover:bg-[#f6f0e8] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-              >
-                {cta.label}
-              </a>
-              <Link
-                href="/services"
-                className="text-sm font-semibold uppercase tracking-[0.15em] text-[#f6f0e8] underline decoration-[#d2b48c] decoration-2 underline-offset-4 hover:decoration-[#f6f0e8]"
-              >
-                Explore services
-              </Link>
-            </div>
-          </section>
+          <BlogCta cta={cta} stage={getArticleCtaStage(article)} placement="article_end" />
           {/* Related */}
           {related.length > 0 ? (
             <section data-article-section="related" className="mt-14">
@@ -249,7 +229,7 @@ export default function ArticleLayout({ article }: { article: Article }) {
             </section>
           ) : null}
 
-          <p data-article-section="back" className="mt-12"><Link href="/blog" className="font-semibold text-[#002147] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">Back to Blog</Link></p>
+          <p data-article-section="back" className="mt-12"><Link href={getTopicHref(article.topic)} className="font-semibold text-[#002147] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">Back to {article.topic}</Link></p>
         </article>
       </main>
     </>

@@ -1,6 +1,6 @@
 import { authors, type Author, type AuthorSlug } from "../content/authors";
 import {
-  BLOG_STAGES, CTA_STAGE_PRECEDENCE,
+  BLOG_STAGES, BLOG_LEVELS, BLOG_TOPICS, CTA_STAGE_PRECEDENCE,
   type ArticleLevel, type ArticleStage, type ArticleTopic,
 } from "./blog-taxonomy";
 
@@ -89,4 +89,52 @@ export function getRelatedArticles(article: Article): Article[] {
     seen.add(post.slug);
     return true;
   }).slice(0, 2);
+}
+
+export function newestPosts(posts: readonly Article[]) {
+  return [...posts].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt) || a.slug.localeCompare(b.slug));
+}
+
+export function getStagePosts(stage: ArticleStage, posts: readonly Article[] = articles) {
+  const matching = newestPosts(posts.filter(post => post.stage.includes(stage)));
+  const featured = BLOG_STAGES.find(entry => entry.slug === stage)!.featured as readonly string[];
+  return [...featured.flatMap(slug => matching.filter(post => post.slug === slug)),
+    ...matching.filter(post => !featured.includes(post.slug))].slice(0, 3);
+}
+
+type TopicHub = (typeof BLOG_TOPICS)[number] & { intro: string; metaTitle: string; metaDescription: string };
+export function getTopicHubs(posts: readonly Article[] = articles): TopicHub[] {
+  return BLOG_TOPICS.filter((topic): topic is TopicHub => posts.filter(post => post.topic === topic.label).length >= 2);
+}
+
+export function getTopicHref(label: ArticleTopic) {
+  const topic = BLOG_TOPICS.find(topic => topic.label === label)!;
+  return getTopicHubs().some(hub => hub.slug === topic.slug) ? `/blog/topics/${topic.slug}` : `/blog#${topic.slug}`;
+}
+
+export function getPostsCtaStage(posts: readonly Article[]) {
+  const slug = CTA_STAGE_PRECEDENCE.find(stage => posts.some(post => post.stage.includes(stage)));
+  return BLOG_STAGES.find(stage => stage.slug === slug);
+}
+
+export function getFilterControls(posts: readonly Article[] = articles) {
+  const destinations = [...new Set(posts.flatMap(post => post.destinations ?? []))].sort();
+  return {
+    levels: BLOG_LEVELS.every(level => posts.filter(post => post.levels.includes(level.slug)).length >= 3),
+    destinations: destinations.length > 0 && destinations.every(destination => posts.filter(post => post.destinations?.includes(destination)).length >= 3) ? destinations : [],
+  };
+}
+
+export function filterBlogPosts(query: Record<string, string | string[] | undefined>, posts: readonly Article[] = articles) {
+  const stage = BLOG_STAGES.find(stage => stage.slug === query.stage)?.slug;
+  const level = BLOG_LEVELS.find(level => level.slug === query.level)?.slug;
+  const destination = typeof query.destination === "string" && posts.some(post => post.destinations?.includes(query.destination as string)) ? query.destination : undefined;
+  const invalid = (query.stage && !stage) || (query.level && !level) || (query.destination && !destination);
+  const filters = invalid ? {} : { stage, level, destination };
+  return {
+    filters,
+    active: Boolean(filters.stage || filters.level || filters.destination),
+    posts: newestPosts(posts.filter(post => (!filters.stage || post.stage.includes(filters.stage)) &&
+      (!filters.level || post.levels.includes(filters.level)) && (!filters.destination || post.destinations?.includes(filters.destination)))),
+  };
 }

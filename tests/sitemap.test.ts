@@ -42,3 +42,8 @@ test("every sitemap entry is a well-formed absolute URL under the base domain", 
     assert.doesNotThrow(() => new URL(url), `${url} is not a valid URL`);
   }
 });
+
+test("sitemap includes exactly eligible hubs and no share-image URLs", () => {
+  assert.deepEqual(urls.filter(url => url.includes("/blog/topics/")).map(url => url.split("/").at(-1)), ["essays-applications", "admissions-process"]);
+  assert.ok(urls.every(url => !/opengraph-image|twitter-image|\/share/.test(url)));
+});

@@ -111,10 +111,14 @@ export function validateArticles(posts: readonly Article[], reserved: ReadonlySe
 }
 
 
-export function validateTopicIntros(posts: readonly Article[], topics: readonly { label: string; intro?: string }[] = BLOG_TOPICS) {
+export function validateTopicIntros(posts: readonly Article[], topics: readonly { label: string; intro?: string; metaTitle?: string; metaDescription?: string }[] = BLOG_TOPICS) {
   for (const topic of topics) {
     if (posts.filter(post => post.topic === topic.label).length >= 2 && !topic.intro?.trim()) {
       throw new Error(`Blog: write an intro for ${topic.label} before publishing its second post`);
+    }
+    if (posts.filter(post => post.topic === topic.label).length >= 2) {
+      requireText(topic.metaTitle, `${topic.label} hub metaTitle`);
+      requireText(topic.metaDescription, `${topic.label} hub metaDescription`);
     }
   }
 }

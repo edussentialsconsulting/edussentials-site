@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { articles, getPublishedAuthors } from "./lib/content";
+import { articles, getPublishedAuthors, getTopicHubs } from "./lib/content";
 import { BASE_URL } from "./lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.8,
     },
+    ...getTopicHubs().map(topic => ({ url: `${baseUrl}/blog/topics/${topic.slug}`, changeFrequency: "monthly" as const, priority: 0.7 })),
     ...getPublishedAuthors().map(author => ({ url: `${baseUrl}/blog/authors/${author.slug}`, changeFrequency: "monthly" as const, priority: 0.5 })),
     ...articles.map((a) => ({
       url: `${baseUrl}/blog/${a.slug}`,

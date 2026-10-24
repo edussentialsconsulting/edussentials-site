@@ -15,7 +15,7 @@ export default function BlogCtaListener() {
       const isBooking = target.origin === booking.origin && target.pathname === booking.pathname;
       const isContact = ["mailto:", "tel:"].includes(target.protocol) || target.hostname === "wa.me" ||
         (target.origin === location.origin && target.pathname === "/contact");
-      if (!isBooking && !isContact) return;
+      if (!isBooking && !isContact && !link.hasAttribute("data-blog-cta")) return;
       const placement = link.closest<HTMLElement>("[data-cta-placement]")?.dataset.ctaPlacement ??
         (link.closest("header") ? "header" : link.closest("footer") ? "footer" : undefined);
       if (!placement) return;
@@ -31,7 +31,7 @@ export default function BlogCtaListener() {
       sendGAEvent("event", "cta_click", {
         post_slug: context.dataset.postSlug ?? "not_applicable",
         topic: context.dataset.topic ?? "not_applicable",
-        stage: context.dataset.stage ?? "not_applicable",
+        stage: link.closest<HTMLElement>("[data-cta-stage]")?.dataset.ctaStage ?? context.dataset.stage ?? "not_applicable",
         author: context.dataset.author ?? "not_applicable",
         placement,
       });
