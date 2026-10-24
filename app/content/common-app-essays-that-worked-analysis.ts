@@ -7,8 +7,7 @@ export const commonAppEssaysAnalysis: Article = {
   levels: ["undergraduate"],
   stage: ["applying-now"],
   destinations: ["us"],
-  shortAnswer: "[FOUNDER DRAFT] Strong Common App essays reveal the writer through specific observations and the way they make sense of an experience. Read examples to understand those qualities, then return to your own material instead of copying a subject or structure.",
-  summary: "A clear analysis of what strong Common App essays share, why examples can weaken your draft, and how to learn from them without copying.",
+  shortAnswer: "[FOUNDER DRAFT] Read a few admitted essays early, then put them away before drafting your own. Study the writer’s private thinking and the movement within the essay instead of borrowing its topic or shape.",
   author: DEFAULT_AUTHOR,
   title: "Common App Essays That Worked: What They Actually Have in Common",
   shortTitle: "Common App Essays That Worked",
@@ -165,8 +164,4 @@ export const commonAppEssaysAnalysis: Article = {
     { href: "/blog/ivy-league-from-india", label: "How to Get Into the Ivy League from India" },
     { href: "/blog/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
   ],
-  cta: {
-    heading: "Want an honest read on your draft?",
-    body: "We will tell you whether the draft has a pulse, and what only you can add. One student. One file. One real voice. No pitch, no pressure.",
-  },
 };

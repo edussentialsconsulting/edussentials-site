@@ -6,8 +6,7 @@ export const studyAbroadAfter12th: Article = {
   topic: "Courses & Careers",
   levels: ["undergraduate"],
   stage: ["planning-early","applying-now"],
-  shortAnswer: "[FOUNDER DRAFT] Begin with the course you want to study and what your family can fund across the degree. Compare destinations against those constraints and consider whether the degree would still be worthwhile if your plans for working abroad changed.",
-  summary: "Deciding where to study abroad after 12th? A clear look at how the choice has changed, what actually decides it, and how each country's system works.",
+  shortAnswer: "[FOUNDER DRAFT] Choose the course before the country, checking the subject requirements against the student’s school record. Set a budget for the full degree before building a shortlist.",
   author: DEFAULT_AUTHOR,
   title: "Study Abroad After 12th: How Indian Families Should Actually Decide",
   shortTitle: "Study Abroad After 12th",
@@ -304,8 +303,4 @@ export const studyAbroadAfter12th: Article = {
     { href: "/blog/ivy-league-from-india", label: "How to Get Into the Ivy League from India" },
     { href: "/blog/ivy-league-personal-statement", label: "The Ivy League Personal Statement" },
   ],
-  cta: {
-    heading: "Deciding where your child should apply?",
-    body: "We help families test subject direction, country fit, costs, timelines and post-degree assumptions before a shortlist becomes an application. No pitch, no pressure.",
-  },
 };

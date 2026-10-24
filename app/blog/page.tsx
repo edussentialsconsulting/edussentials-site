@@ -59,7 +59,7 @@ export default function BlogIndexPage() {
                       {a.shortTitle}
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-[#2A2420]/75">
-                      {a.summary}
+                      {a.summary ?? a.metaDescription}
                     </p>
                     <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#d2b48c] group-hover:text-[#002147]">
                       Read the post

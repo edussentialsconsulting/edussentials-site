@@ -7,8 +7,7 @@ export const ivyLeagueFromIndia: Article = {
   levels: ["undergraduate"],
   stage: ["applying-now"],
   destinations: ["us"],
-  shortAnswer: "[FOUNDER DRAFT] Applying to the Ivy League from India requires strong academic preparation and an application that gives clear evidence of your interests and contribution. Treat these universities as part of a balanced list rather than assuming that strong marks make admission predictable.",
-  summary: "An honest, India-specific look at Ivy League admissions. What the odds really are, what the file must show, and a class-wise timeline that works.",
+  shortAnswer: "[FOUNDER DRAFT] An Ivy League application list needs reasons for choosing each university beyond its name. Balance highly selective choices with universities where admission and affordability are more secure.",
   author: DEFAULT_AUTHOR,
   title: "How to Get Into the Ivy League from India",
   shortTitle: "Ivy League from India",
@@ -287,8 +286,4 @@ export const ivyLeagueFromIndia: Article = {
     { href: "/blog/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
     { href: "/blog/common-app-essays-that-worked-analysis", label: "Common App Essays That Worked: An Honest Analysis" },
   ],
-  cta: {
-    heading: "Thinking about the Ivy League for your child?",
-    body: "We start with evidence, not branding. Academics, interests, activities, finances and timeline, then an honest answer about whether an Ivy strategy fits. No pitch, no pressure.",
-  },
 };

@@ -7,8 +7,7 @@ export const ucasForIndianStudents: Article = {
   levels: ["undergraduate"],
   stage: ["applying-now"],
   destinations: ["uk"],
-  shortAnswer: "[FOUNDER DRAFT] UCAS provides a shared application process for UK undergraduate courses, but choosing suitable courses comes first. Indian applicants should understand how each course assesses their qualifications and check the instructions for their application year before submitting.",
-  summary: "UCAS is one application for up to five UK courses. Learn how Indian students should choose courses, write the statement, meet deadlines and handle offers.",
+  shortAnswer: "[FOUNDER DRAFT] UCAS lets an Indian student apply to up to five UK course choices through one application. Every choice receives the same personal statement, so the courses need to support a coherent academic argument.",
   author: DEFAULT_AUTHOR,
   title: "UCAS for Indian Students and How the UK Application Actually Works",
   shortTitle: "UCAS for Indian Students",
@@ -364,8 +363,4 @@ export const ucasForIndianStudents: Article = {
     { href: "/blog/ivy-league-personal-statement", label: "The Ivy League Personal Statement" },
     { href: "/blog/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
   ],
-  cta: {
-    heading: "Planning UK applications from India?",
-    body: "We help families test course direction, shortlist fit, academic requirements, costs and timelines before the UCAS form starts driving the decision. No pitch, no pressure.",
-  },
 };

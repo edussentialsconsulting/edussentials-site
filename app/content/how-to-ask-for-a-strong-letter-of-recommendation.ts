@@ -6,8 +6,7 @@ export const strongLetterOfRecommendation: Article = {
   topic: "Essays & Applications",
   levels: ["undergraduate","postgraduate"],
   stage: ["applying-now","postgraduate"],
-  shortAnswer: "[FOUNDER DRAFT] Ask someone who knows your work well enough to describe it in detail, and give them time to consider the request. Provide relevant work and clear application instructions so they can write an assessment grounded in what they have observed.",
-  summary: "Choose the right recommender, prepare a useful brief and understand what makes a strong LOR, with a concrete before-and-after example.",
+  shortAnswer: "[FOUNDER DRAFT] Choose a referee who meets the programme’s requirements and can describe work they observed closely. Give them a short brief that reconstructs that work, alongside the application context and submission instructions.",
   author: DEFAULT_AUTHOR,
   "title": "How to Ask for a Strong Letter of Recommendation",
   "shortTitle": "How to Ask for a Strong LOR",
@@ -229,8 +228,5 @@ export const strongLetterOfRecommendation: Article = {
   ],
   "faqs": [],
   "related": [],
-  "cta": {
-    "heading": "Planning your recommendations?",
-    "body": "At Edussentials, we can help you think through recommender selection and organise the material that supports the request, with attention to the requirements of your applications."
-  }
+  cta: "postgraduate",
 };

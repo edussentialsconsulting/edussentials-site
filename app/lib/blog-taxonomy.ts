@@ -14,22 +14,18 @@ export const BLOG_TOPICS = [
   {
     slug: "profile-planning",
     label: "Profile & Planning",
-    intro: "[FOUNDER DRAFT] Planning ahead is useful when it gives you room to explore an interest and make choices you understand. This topic is a place to consider how academic work and experiences outside the classroom can inform those choices. The aim is to help you ask what an activity means to you before deciding how it might appear in an application. Read with your own circumstances in mind, including the time and support available to you. A plan should remain open to what you learn rather than requiring every interest to become an admissions claim.",
   },
   {
     slug: "courses-careers",
     label: "Courses & Careers",
-    intro: "[FOUNDER DRAFT] Choosing a course involves thinking about what you want to study and what studying it will ask of you. This topic connects that decision with the practical questions around where to study and how the choice fits your circumstances. Start with the subject and your reasons for pursuing it, then examine the options against what your family can support. An attractive destination does not settle whether a particular course is suitable. Use the articles to identify questions that need closer investigation before you turn an initial interest into a university list.",
   },
   {
     slug: "scholarships-aid",
     label: "Scholarships & Aid",
-    intro: "[FOUNDER DRAFT] Funding needs to be considered alongside a university choice, before an application list becomes difficult to change. This topic is a place to examine how financial support relates to the cost your family would still need to meet. Read each opportunity in the context of your own eligibility and the institution's current instructions. A possible award should not be treated as confirmed funding, and an attractive headline amount does not explain the full cost of attendance. Use the articles to prepare specific questions for the university and to make the assumptions in your financial plan visible.",
   },
   {
     slug: "choosing-an-advisor",
     label: "Choosing an Advisor",
-    intro: "[FOUNDER DRAFT] Choosing an advisor starts with understanding what help you need and who will provide it. This topic is a place to consider the working relationship as well as the service being offered. Before making a decision, ask how the advisor will involve you in the work and what responsibility remains yours. Clear expectations make it easier to assess whether the support fits your circumstances. Use the articles to prepare questions about the engagement and to examine claims carefully, without treating a promised outcome as a substitute for understanding how the work will be done.",
   },
 ] as const;
 
@@ -55,11 +51,11 @@ export const BLOG_STAGES = [
   {
     slug: "planning-early",
     label: "Planning early",
-    description: "[FOUNDER DRAFT] Explore your study choices before committing to an application list.",
+    description: "[FOUNDER DRAFT] Explore fields of study before making subject choices.",
     featured: ["study-abroad-after-12th"],
     cta: {
-      heading: "[FOUNDER DRAFT] Still exploring what to study?",
-      body: "[FOUNDER DRAFT] Read about Career Labs as you consider your interests and possible directions for further study.",
+      heading: "[FOUNDER DRAFT] Considering your subject choices?",
+      body: "[FOUNDER DRAFT] Career Labs lets students test an interest through activities tied to real fields of work. Explore the formats before deciding what to study.",
       label: "[FOUNDER DRAFT] Explore Career Labs",
       href: "/career-labs",
     },

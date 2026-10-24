@@ -1,6 +1,7 @@
+import { getReservedBlogSlugs, validateArticles, validateTopicIntros, validateProductionDrafts } from "../app/lib/blog-validation.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { articles, getArticle, getArticleCta, getReservedBlogSlugs, validateArticles, type Article } from "../app/lib/content.ts";
+import { articles, getArticle, getArticleCta, getArticleCtaStage, type Article } from "../app/lib/content.ts";
 
 import { mkdtempSync, mkdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -174,7 +175,7 @@ test("original posts reference the default founder and retain their card summari
   for (const slug of ["study-abroad-after-12th", "ucas-for-indian-students", "ivy-league-from-india", "how-to-ask-for-a-strong-letter-of-recommendation", "ivy-league-personal-statement", "supplemental-essays", "common-app-essays-that-worked-analysis"]) {
     const post = getArticle(slug)!;
     assert.equal(post.author, DEFAULT_AUTHOR);
-    assert.equal(post.summary, post.metaDescription);
+    assert.equal(post.summary ?? post.metaDescription, post.metaDescription);
   }
 });
 
@@ -182,14 +183,53 @@ test("new metadata copy follows the requested writing constraints", () => {
   const drafts = [
     ...articles.map(post => post.shortAnswer),
     ...Object.values(authors).map(author => author.bio),
-    ...BLOG_TOPICS.map(topic => topic.intro),
+    ...BLOG_TOPICS.flatMap(topic => "intro" in topic ? [topic.intro] : []),
     ...BLOG_STAGES.flatMap(stage => [stage.description, stage.cta.heading, stage.cta.body]),
   ];
   for (const draft of drafts) {
-    assert.doesNotMatch(draft, /[—;]|unlock your potential|dream university|\bjourney\b|\bdelve\b|\bfoster\b|\bleverage\b|\bholistic\b|world-class|\bseamless\b|\p{Extended_Pictographic}/iu);
+    assert.doesNotMatch(draft, /[—;:]|not just\b|with the right\b|unlock your potential|dream university|\bjourney\b|\bdelve\b|\bfoster\b|\bleverage\b|\bholistic\b|world-class|\bseamless\b|\p{Extended_Pictographic}/iu);
   }
   for (const topic of BLOG_TOPICS) {
+    if (!("intro" in topic)) continue;
     const words = topic.intro.replace("[FOUNDER DRAFT]", "").trim().split(/\s+/).length;
     assert.ok(words >= 80 && words <= 150, `${topic.label}: ${words} words`);
   }
 });
+
+test("CTA stage overrides select the complete box and must belong to the post", () => {
+  const lor = articles.find(post => post.slug.startsWith("how-to-ask"))!;
+  assert.equal(getArticleCtaStage(lor), "postgraduate");
+  assert.deepEqual(getArticleCta(lor), BLOG_STAGES.find(stage => stage.slug === "postgraduate")!.cta);
+  const posts = structuredClone(articles);
+  posts[0].cta = "postgraduate";
+  assert.throws(() => validateArticles(posts), /CTA stage must belong/);
+});
+
+test("a custom CTA requires all four fields without stage defaults", () => {
+  const cta = { heading: "Talk", body: "Talk about applications.", label: "Contact", href: "/contact" };
+  assert.equal(getArticleCtaStage({ ...articles[0], cta }), undefined);
+  for (const field of Object.keys(cta)) {
+    const posts = structuredClone(articles);
+    posts[0].cta = { ...cta };
+    delete (posts[0].cta as unknown as Record<string, string>)[field];
+    assert.throws(() => validateArticles(posts), /CTA .* must contain text/);
+  }
+});
+
+test("a second post requires a hub intro but a single post does not", () => {
+  assert.doesNotThrow(() => validateTopicIntros(articles));
+  assert.throws(() => validateTopicIntros(articles, [{ label: "Essays & Applications" }]), /write an intro.*second post/);
+  assert.doesNotThrow(() => validateTopicIntros(articles, [{ label: "Courses & Careers" }]));
+});
+
+for (const marker of ["[FOUNDER DRAFT]", "[FOUNDER INPUT: details]", "[VERIFY: official source]"]) {
+  test(`draft gate blocks production and allows preview and local for ${marker}`, () => {
+    for (const field of ["posts", "authors", "topics", "stages"]) {
+      const content = { [field]: [{ text: marker }] };
+      assert.throws(() => validateProductionDrafts(content, "production"), /unresolved draft/);
+      assert.doesNotThrow(() => validateProductionDrafts(content, "preview"));
+      assert.doesNotThrow(() => validateProductionDrafts(content, undefined));
+    }
+    assert.doesNotThrow(() => validateProductionDrafts({ text: "Approved copy" }, "production"));
+  });
+}

@@ -7,8 +7,7 @@ export const supplementalEssays: Article = {
   levels: ["undergraduate"],
   stage: ["applying-now"],
   destinations: ["us"],
-  shortAnswer: "[FOUNDER DRAFT] Supplemental essays answer the particular questions a university asks beyond the main application essay. Each response should address its prompt and, where relevant, connect your interests to research about that university rather than rely on interchangeable praise.",
-  summary: "A clear breakdown of why us, why major, community and activity essays, with honest advice on research, structure and school-specific writing.",
+  shortAnswer: "[FOUNDER DRAFT] A strong supplement connects something specific about the university to the applicant’s own academic direction. If replacing the university’s name leaves the essay equally convincing, the research and connection need more work.",
   author: DEFAULT_AUTHOR,
   title: "Supplemental Essays: Why Us, Why Major, and the Rest",
   shortTitle: "Supplemental Essays",
@@ -197,8 +196,4 @@ export const supplementalEssays: Article = {
     { href: "/blog/ivy-league-from-india", label: "How to Get Into the Ivy League from India" },
     { href: "/blog/common-app-essays-that-worked-analysis", label: "Common App Essays That Worked: An Honest Analysis" },
   ],
-  cta: {
-    heading: "Managing a long supplement list?",
-    body: "We help students decide what each essay must add, test whether the research is real, and hold the standard when the fifteenth essay is due. No pitch, no pressure.",
-  },
 };
