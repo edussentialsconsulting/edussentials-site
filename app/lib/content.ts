@@ -4,13 +4,13 @@ import {
   type ArticleLevel, type ArticleStage, type ArticleTopic,
 } from "./blog-taxonomy";
 
-export type ArticleSection = {
+type ArticleSection = {
   heading?: string;
   paragraphs: { lead?: string; quote?: boolean; text: string; links?: { text: string; href: string }[] }[];
   table?: { headers: string[]; rows: string[][] };
 };
 
-export type ArticleFaq = { question: string; answer: string };
+type ArticleFaq = { question: string; answer: string };
 
 export type Article = {
   slug: string;

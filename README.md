@@ -50,18 +50,19 @@ and the schema.org `@id`s used across JSON-LD blocks. `app/lib/fonts.ts` holds
 the one shared instance of each `next/font/google` font. Import from these
 instead of re-declaring fonts or hardcoding brand details in a page.
 
-## Publishing a blog article
+## Adding a blog post
 
-Articles are typed data, not MDX/markdown files. The template, JSON-LD,
-sitemap entry, and index-page listing all derive from the registry, so
-publishing a new article only touches two files:
+Create `app/content/<slug>.ts` exporting an `Article`, then import it into the `articles` array in `app/lib/content.ts`.
 
-1. Add `app/content/<slug>.ts` exporting an `Article` object (see
-   `app/lib/content.ts` for the type).
-2. Import it and add it to the `articles` array in `app/lib/content.ts`.
+Supply `slug`, `title`, `shortTitle`, `metaTitle`, `metaDescription`, `standfirst`, `publishedAt`, `updatedAt`, `author`, `topic`, `levels`, `stage`, `shortAnswer` and body `sections`. Choose one topic label and at least one level and stage slug from `app/lib/blog-taxonomy.ts`. Use a unique, unreserved slug and ISO dates. Keep `updatedAt` equal to `publishedAt` until a genuine content edit. Optional `summary` falls back to `metaDescription`.
 
-Nothing else needs to change — `app/blog/[slug]/page.tsx`, `app/blog/page.tsx`,
-and `app/sitemap.ts` all read from that array.
+Write a two-to-four-sentence short answer from the article. Optional FAQs must answer questions covered in it. Optional sources need a title, cited URL and honest `accessedAt` date. Omit sources when none exist. Mark unapproved copy `[FOUNDER DRAFT]`.
+
+For a guest author, add an entry in `app/content/authors.ts` with name, slug, role, a 40–80-word bio and `type: "guest"`, then use its slug as the post’s author. Photo and LinkedIn URL are optional.
+
+Hubs appear automatically at two posts once the taxonomy intro, title and meta description exist. Filters appear when every populated option reaches three posts.
+
+Run `npm test` and `npm run build`. Production builds reject draft/input/verification markers.
 
 ## Career Explorer form
 
