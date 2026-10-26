@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BLOG_TOPICS, BLOG_STAGES, BLOG_LEVELS } from "@/app/lib/blog-taxonomy";
-import { filterBlogPosts, getFilterControls, getStagePosts, getTopicHubs, getPostsCtaStage } from "@/app/lib/content";
+import { articles, filterBlogPosts, getFilterControls, getStagePosts, getTopicHubs, getPostsCtaStage } from "@/app/lib/content";
 import BlogPostCard from "@/app/components/BlogPostCard";
 import { displayFont, bodyFont } from "@/app/lib/fonts";
 import { BASE_URL, CAL_LINK } from "@/app/lib/site";
@@ -54,6 +54,7 @@ export default async function BlogIndexPage({ searchParams }: Props) {
       {!active ? <section aria-label="Reader entry points" className="mx-auto grid max-w-7xl gap-6 px-6 pt-14 sm:px-10 lg:grid-cols-3 lg:px-12">
         {BLOG_STAGES.map(stage => {
           const featured = getStagePosts(stage.slug);
+          const count = articles.filter(post => post.stage.includes(stage.slug)).length;
           if (!featured.length) return null;
           return <div key={stage.slug} data-reader-panel={stage.slug} className="flex flex-col rounded-3xl border border-[#002147]/20 bg-white p-7">
             <h2 className={`${displayFont.className} text-3xl font-semibold text-[#002147]`}>{stage.label}</h2>
@@ -61,9 +62,9 @@ export default async function BlogIndexPage({ searchParams }: Props) {
             <ul className="mt-5 space-y-4 text-base font-semibold leading-6 text-[#002147]">
               {featured.map(post => <li key={post.slug}><Link href={`/blog/${post.slug}`} className="underline decoration-[#d2b48c] underline-offset-4">{post.shortTitle}</Link></li>)}
             </ul>
-            <div className="mt-auto pt-7 text-sm leading-6">
-              <Link href={`/blog?stage=${stage.slug}`} className="font-semibold text-[#002147] underline underline-offset-4">See all for {stage.label.toLowerCase()}</Link>
-              <a data-blog-cta data-cta-placement="landing_panel" data-cta-stage={stage.slug} href={stage.cta.href} className="mt-4 block font-semibold text-[#002147] underline underline-offset-4">{stage.cta.label}</a>
+            <div className="mt-auto flex flex-col items-start gap-4 pt-7 text-sm leading-6">
+              {count > featured.length ? <Link href={`/blog?stage=${stage.slug}`} className="font-semibold text-[#002147] underline underline-offset-4">See all {count} articles</Link> : null}
+              <a data-blog-cta data-cta-placement="landing_panel" data-cta-stage={stage.slug} href={stage.cta.href} className="inline-block rounded-full bg-[#d2b48c] px-7 py-3 text-center text-sm font-semibold uppercase tracking-[0.15em] text-[#002147] transition hover:bg-[#f6f0e8] focus-visible:outline-2 focus-visible:outline-offset-4">{stage.cta.label}</a>
             </div>
           </div>;
         })}
@@ -88,10 +89,11 @@ export default async function BlogIndexPage({ searchParams }: Props) {
           const matching = posts.filter(post => post.topic === topic.label);
           if (!matching.length) return null;
           const hub = hubs.find(hub => hub.slug === topic.slug);
+          const count = articles.filter(post => post.topic === topic.label).length;
           return <section key={topic.slug} id={topic.slug} className="mb-14 scroll-mt-8" aria-labelledby={`${topic.slug}-heading`}>
             <div className="flex flex-wrap items-baseline justify-between gap-4">
-              <h2 id={`${topic.slug}-heading`} className={`${displayFont.className} text-3xl font-semibold text-[#002147]`}>{hub ? <Link href={`/blog/topics/${hub.slug}`} className="underline decoration-[#d2b48c] underline-offset-4">{topic.label}</Link> : topic.label}</h2>
-              {hub ? <Link href={`/blog/topics/${hub.slug}`} aria-label={`See all ${topic.label} articles`} className="text-sm font-semibold text-[#002147] underline underline-offset-4">See all</Link> : null}
+              <h2 id={`${topic.slug}-heading`} className={`${displayFont.className} text-3xl font-semibold text-[#002147]`}>{topic.label}</h2>
+              {hub ? <Link href={`/blog/topics/${hub.slug}`} aria-label={`See all ${count} articles in ${topic.label}`} className="text-sm font-semibold text-[#002147] underline underline-offset-4">See all {count} articles</Link> : null}
             </div>
             <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{matching.map(post => <BlogPostCard key={post.slug} post={post} />)}</ul>
           </section>;

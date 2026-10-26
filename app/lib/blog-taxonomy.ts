@@ -55,7 +55,7 @@ export const BLOG_STAGES = [
   {
     slug: "planning-early",
     label: "Planning early",
-    description: "For students in Grades 9 to 11. The best time to think about subjects and streams is before the choice is made for you.",
+    description: "For students still deciding what to study, whether that means a stream in school or a course after Class 12. Start before the choice is made for you.",
     featured: ["study-abroad-after-12th"],
     cta: {
       heading: "Choosing a stream or subjects soon?",
