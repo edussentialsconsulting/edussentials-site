@@ -4,16 +4,16 @@ export const BLOG_TOPICS = [
   {
     slug: "essays-applications",
     label: "Essays & Applications",
-    metaTitle: "[FOUNDER DRAFT] Essays & Applications | Edussentials",
-    metaDescription: "[FOUNDER DRAFT] Read about personal statements and university supplements, with a guide to requesting recommendations grounded in observed work.",
-    intro: "[FOUNDER DRAFT] An application should help a reader understand the person behind the record. These articles examine how written work can do that without repeating achievements or borrowing someone else's voice. They cover the main personal statement and the different demands of university supplements, alongside the evidence that makes a recommendation useful. You can start with the part of the application you are working on and use the related reading to consider how it fits with the rest. The emphasis is on making thoughtful choices about what to include and giving each piece a clear purpose.",
+    metaTitle: "Essays & Applications | Edussentials Consulting Blog",
+    metaDescription: "What admissions readers look for in application essays and recommendation letters, written for students applying from India. No templates.",
+    intro: "Most first drafts we see are not badly written. They are unrevealing. They restate the activity list and say very little about how the student actually thinks. The pieces here take each written part of an application on its own terms, from the Common App personal statement to the supplements individual universities set. Recommendation letters sit here too, because a reader weighs them as evidence alongside your own writing. You will not find templates. You will find what an admissions reader is looking for in each document, and where applicants from India most often miss it. Start with whatever you are drafting this week, and keep your own voice in it.",
   },
   {
     slug: "admissions-process",
     label: "Admissions & Process",
-    metaTitle: "[FOUNDER DRAFT] Admissions & Process | Edussentials",
-    metaDescription: "[FOUNDER DRAFT] Understand the UCAS application process and the choices involved in applying to Ivy League universities from India.",
-    intro: "[FOUNDER DRAFT] Understanding an application process begins with knowing what the institution is asking you to submit and how it will consider that information. These articles look at particular admissions systems from the perspective of students applying from India. They help you distinguish a decision about academic fit from a decision about how to complete an application. Use them to organise your questions before checking the requirements for your own courses and application year. Where a deadline or policy matters to your next step, confirm it with the relevant institution or application service before acting.",
+    metaTitle: "Admissions & Process | Edussentials Consulting Blog",
+    metaDescription: "How UCAS and Ivy League admissions actually work for students applying from India, and what to check with each university before you apply.",
+    intro: "Indian families often arrive with two different questions tangled together. Which universities are right for this student? And how does the application to them actually work? The second question gets most of the attention, usually too early. The pieces here keep them apart. They explain how UCAS works for UK courses and why Ivy League admissions follow a very different logic, with attention to what each system asks of an applicant from India. They are written to make the process legible, not to make it sound easier than it is. Deadlines and policies change every cycle, so treat any date or figure as a starting point and check it with the university before you act.",
   },
   {
     slug: "profile-planning",
@@ -43,7 +43,7 @@ export const BLOG_STAGES = [
   {
     slug: "applying-now",
     label: "Applying this year",
-    description: "[FOUNDER DRAFT] Read about the applications you are preparing and the decisions still ahead.",
+    description: "Your deadlines fall this cycle. Start here for the essays and decisions in front of you now.",
     featured: ["ucas-for-indian-students", "ivy-league-personal-statement", "how-to-ask-for-a-strong-letter-of-recommendation"],
     cta: {
       heading: "Want an honest read on where your applications stand?",
@@ -55,19 +55,19 @@ export const BLOG_STAGES = [
   {
     slug: "planning-early",
     label: "Planning early",
-    description: "[FOUNDER DRAFT] Explore fields of study before making subject choices.",
+    description: "For students in Grades 9 to 11. The best time to think about subjects and streams is before the choice is made for you.",
     featured: ["study-abroad-after-12th"],
     cta: {
-      heading: "[FOUNDER DRAFT] Considering your subject choices?",
-      body: "[FOUNDER DRAFT] Career Labs lets students test an interest through activities tied to real fields of work. Explore the formats before deciding what to study.",
-      label: "[FOUNDER DRAFT] Explore Career Labs",
+      heading: "Choosing a stream or subjects soon?",
+      body: "Career Labs gives students hands-on work in a field before they commit to it. A subject choice made after trying the work is easier to stand behind.",
+      label: "Explore Career Labs",
       href: "/career-labs",
     },
   },
   {
     slug: "postgraduate",
     label: "Postgraduate",
-    description: "[FOUNDER DRAFT] Consider how your academic or professional work can support a postgraduate application.",
+    description: "For graduates and working professionals. A postgraduate application rests on evidence of what you have already done, so start with the people who can describe it.",
     featured: ["how-to-ask-for-a-strong-letter-of-recommendation"],
     cta: {
       heading: "Preparing a postgraduate application?",

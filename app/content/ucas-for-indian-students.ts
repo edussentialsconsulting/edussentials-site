@@ -7,7 +7,7 @@ export const ucasForIndianStudents: Article = {
   levels: ["undergraduate"],
   stage: ["applying-now"],
   destinations: ["uk"],
-  shortAnswer: "[FOUNDER DRAFT] UCAS lets an Indian student apply to up to five UK course choices through one application. Every choice receives the same personal statement, so the courses need to support a coherent academic argument.",
+  shortAnswer: "UCAS lets you apply to up to five UK courses through one application, with one personal statement for all of them. That single statement only works if the courses share a clear academic direction, so choose them before you start writing.",
   author: DEFAULT_AUTHOR,
   title: "UCAS for Indian Students and How the UK Application Actually Works",
   shortTitle: "UCAS for Indian Students",

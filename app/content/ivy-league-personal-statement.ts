@@ -7,7 +7,7 @@ export const ivyLeaguePersonalStatement: Article = {
   levels: ["undergraduate"],
   stage: ["applying-now"],
   destinations: ["us"],
-  shortAnswer: "[FOUNDER DRAFT] The Common App personal statement gives you up to 650 words to show how you think through one focused subject. It goes to every university on your list, so reasons for choosing a particular school belong in the supplements.",
+  shortAnswer: "The Common App personal statement gives you up to 650 words, and it goes to every university on your list. Use it to show how you think about one focused subject. Reasons for choosing a particular university belong in the supplements.",
   author: DEFAULT_AUTHOR,
   title: "The Ivy League Personal Statement: What It Actually Has to Do",
   shortTitle: "Ivy League Personal Statement",

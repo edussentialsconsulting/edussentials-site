@@ -7,7 +7,7 @@ export const ivyLeagueFromIndia: Article = {
   levels: ["undergraduate"],
   stage: ["applying-now"],
   destinations: ["us"],
-  shortAnswer: "[FOUNDER DRAFT] An Ivy League application list needs reasons for choosing each university beyond its name. Balance highly selective choices with universities where admission and affordability are more secure.",
+  shortAnswer: "Every university on an Ivy League list needs a reason beyond its name. Pair the most selective choices with universities where both admission and affordability are more secure.",
   author: DEFAULT_AUTHOR,
   title: "How to Get Into the Ivy League from India",
   shortTitle: "Ivy League from India",

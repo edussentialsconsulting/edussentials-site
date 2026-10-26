@@ -7,7 +7,7 @@ export const supplementalEssays: Article = {
   levels: ["undergraduate"],
   stage: ["applying-now"],
   destinations: ["us"],
-  shortAnswer: "[FOUNDER DRAFT] A strong supplement connects something specific about the university to the applicant’s own academic direction. If replacing the university’s name leaves the essay equally convincing, the research and connection need more work.",
+  shortAnswer: "A strong supplement ties something specific about the university to the direction you actually want to take. If the essay would read just as well with another university's name in it, the research is not done yet.",
   author: DEFAULT_AUTHOR,
   title: "Supplemental Essays: Why Us, Why Major, and the Rest",
   shortTitle: "Supplemental Essays",

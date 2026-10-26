@@ -6,7 +6,7 @@ export const studyAbroadAfter12th: Article = {
   topic: "Courses & Careers",
   levels: ["undergraduate"],
   stage: ["planning-early","applying-now"],
-  shortAnswer: "[FOUNDER DRAFT] Choose the course before the country, checking the subject requirements against the student’s school record. Set a budget for the full degree before building a shortlist.",
+  shortAnswer: "Choose the course before the country. Check its subject requirements against the student's school record, and agree a budget for the whole degree before anyone builds a shortlist.",
   author: DEFAULT_AUTHOR,
   title: "Study Abroad After 12th: How Indian Families Should Actually Decide",
   shortTitle: "Study Abroad After 12th",

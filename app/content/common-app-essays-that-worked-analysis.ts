@@ -7,7 +7,7 @@ export const commonAppEssaysAnalysis: Article = {
   levels: ["undergraduate"],
   stage: ["applying-now"],
   destinations: ["us"],
-  shortAnswer: "[FOUNDER DRAFT] Read a few admitted essays early, then put them away before drafting your own. Study the writer’s private thinking and the movement within the essay instead of borrowing its topic or shape.",
+  shortAnswer: "Read a few admitted essays early, then put them away before you write. Learn from how the writer thinks and how the essay moves, not from its topic or its shape.",
   author: DEFAULT_AUTHOR,
   title: "Common App Essays That Worked: What They Actually Have in Common",
   shortTitle: "Common App Essays That Worked",
