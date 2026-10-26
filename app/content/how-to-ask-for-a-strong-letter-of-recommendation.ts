@@ -1,8 +1,13 @@
 import type { Article } from "../lib/content";
+import { DEFAULT_AUTHOR } from "./authors";
 
 export const strongLetterOfRecommendation: Article = {
   "slug": "how-to-ask-for-a-strong-letter-of-recommendation",
-  "category": "Essays & Applications",
+  topic: "Essays & Applications",
+  levels: ["undergraduate","postgraduate"],
+  stage: ["applying-now","postgraduate"],
+  shortAnswer: "Ask someone who has watched your work closely and meets the programme's requirements. Then give them a short brief that reminds them of that work, along with the application details, so their praise has evidence behind it.",
+  author: DEFAULT_AUTHOR,
   "title": "How to Ask for a Strong Letter of Recommendation",
   "shortTitle": "How to Ask for a Strong LOR",
   "metaTitle": "How to Ask for a Strong Letter of Recommendation | Edussentials",
@@ -13,8 +18,8 @@ export const strongLetterOfRecommendation: Article = {
     "LOR for university applications"
   ],
   "standfirst": "A strong recommendation gives an admissions reader a clear sense of what you did and what someone who worked with you noticed. Getting that level of detail starts before the letter is written.",
-  "datePublished": "2026-10-23",
-  "dateModified": "2026-10-23",
+  publishedAt: "2026-10-23",
+  updatedAt: "2026-10-23",
   "sections": [
     {
       "paragraphs": [
@@ -221,10 +226,20 @@ export const strongLetterOfRecommendation: Article = {
       ]
     }
   ],
-  "faqs": [],
   "related": [],
-  "cta": {
-    "heading": "Planning your recommendations?",
-    "body": "At Edussentials, we can help you think through recommender selection and organise the material that supports the request, with attention to the requirements of your applications."
-  }
+  faqs: [
+    {
+      question: "Should I choose the most senior person as my referee?",
+      answer: "Choose someone who meets the programme's requirements and knows your work closely. Seniority helps when the person can support their assessment with work they observed.",
+    },
+    {
+      question: "What should I send after a referee agrees?",
+      answer: "Send a short brief with your application context and clear submission instructions. Remind them of specific work you did together, such as an assignment or a revision, so they can describe your contribution accurately.",
+    },
+    {
+      question: "Should I add a referee to the application portal before asking?",
+      answer: "Ask first, and tell them when the earliest recommendation is due. Send the portal invitation only after they agree, so they have room to decline if they do not know your work well enough or do not have the time.",
+    },
+  ],
+  cta: "postgraduate",
 };

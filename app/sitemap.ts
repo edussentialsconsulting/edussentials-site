@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { articles } from "./lib/content";
+import { articles, getPublishedAuthors, getTopicHubs } from "./lib/content";
 import { BASE_URL } from "./lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const siteLastModified = new Date("2026-08-02");
   const latestArticleModified = articles.reduce(
     (latest, article) =>
-      new Date(article.dateModified) > latest ? new Date(article.dateModified) : latest,
+      new Date(article.updatedAt) > latest ? new Date(article.updatedAt) : latest,
     siteLastModified,
   );
 
@@ -18,9 +18,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.8,
     },
+    ...getTopicHubs().map(topic => ({ url: `${baseUrl}/blog/topics/${topic.slug}`, changeFrequency: "monthly" as const, priority: 0.7 })),
+    ...getPublishedAuthors().map(author => ({ url: `${baseUrl}/blog/authors/${author.slug}`, changeFrequency: "monthly" as const, priority: 0.5 })),
     ...articles.map((a) => ({
       url: `${baseUrl}/blog/${a.slug}`,
-      lastModified: new Date(a.dateModified),
+      lastModified: new Date(a.updatedAt),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

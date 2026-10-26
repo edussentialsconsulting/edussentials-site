@@ -1,8 +1,14 @@
 import type { Article } from "../lib/content";
+import { DEFAULT_AUTHOR } from "./authors";
 
 export const ivyLeagueFromIndia: Article = {
   slug: "ivy-league-from-india",
-  category: "Admissions Data & Process",
+  topic: "Admissions & Process",
+  levels: ["undergraduate"],
+  stage: ["applying-now"],
+  destinations: ["us"],
+  shortAnswer: "Every university on an Ivy League list needs a reason beyond its name. Pair the most selective choices with universities where both admission and affordability are more secure.",
+  author: DEFAULT_AUTHOR,
   title: "How to Get Into the Ivy League from India",
   shortTitle: "Ivy League from India",
   metaTitle: "How to Get Into the Ivy League from India | Edussentials",
@@ -10,8 +16,8 @@ export const ivyLeagueFromIndia: Article = {
     "An honest, India-specific look at Ivy League admissions. What the odds really are, what the file must show, and a class-wise timeline that works.",
   standfirst:
     "Getting into an Ivy League school from India is possible, and most advice about it is either dishonest or useless. This is the version we give families across the table.",
-  datePublished: "2026-07-04",
-  dateModified: "2026-07-04",
+  publishedAt: "2026-07-04",
+  updatedAt: "2026-07-04",
   sections: [
     {
       paragraphs: [
@@ -280,8 +286,4 @@ export const ivyLeagueFromIndia: Article = {
     { href: "/blog/supplemental-essays", label: "Supplemental Essays: Why Us, Why Major, and the Rest" },
     { href: "/blog/common-app-essays-that-worked-analysis", label: "Common App Essays That Worked: An Honest Analysis" },
   ],
-  cta: {
-    heading: "Thinking about the Ivy League for your child?",
-    body: "We start with evidence, not branding. Academics, interests, activities, finances and timeline, then an honest answer about whether an Ivy strategy fits. No pitch, no pressure.",
-  },
 };
