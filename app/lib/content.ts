@@ -13,6 +13,7 @@ export type ArticleCategory =
   | "Opinions";
 
 export type ArticleSection = {
+  id?: string;
   /** Optional H2 for the section */
   heading?: string;
   /** Paragraphs. `lead` renders as a bold run-in at the start of the paragraph. */
@@ -42,10 +43,12 @@ export type Article = {
   standfirst: string;
   datePublished: string; // ISO date
   dateModified: string; // ISO date
+  author?: { name: string; url: string };
+  showContents?: boolean;
   sections: ArticleSection[];
   faqs: ArticleFaq[];
   related: { href: string; label: string }[];
-  cta: { heading: string; body: string };
+  cta?: { heading: string; body: string };
 };
 
 // ---- Registry ----
@@ -56,8 +59,10 @@ import { commonAppEssaysAnalysis } from "../content/common-app-essays-that-worke
 import { studyAbroadAfter12th } from "../content/study-abroad-after-12th";
 import { ucasForIndianStudents } from "../content/ucas-for-indian-students";
 import { strongLetterOfRecommendation } from "../content/how-to-ask-for-a-strong-letter-of-recommendation";
+import { universityShortlist } from "../content/how-to-assess-a-university-shortlist";
 
 export const articles: Article[] = [
+  universityShortlist,
   studyAbroadAfter12th,
   ucasForIndianStudents,
   strongLetterOfRecommendation,

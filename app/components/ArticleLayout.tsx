@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import StructuredData from "./StructuredData";
 import type { Article } from "../lib/content";
 import { displayFont, bodyFont } from "../lib/fonts";
@@ -13,8 +14,12 @@ function buildSchema(article: Article) {
         "@id": `${BASE_URL}/blog/${article.slug}#article`,
         headline: article.title,
         description: article.metaDescription,
-        author: { "@id": FOUNDER_ID },
-        publisher: { "@id": ORGANIZATION_ID },
+        author: article.author
+          ? { "@type": "Person", "@id": FOUNDER_ID, ...article.author }
+          : { "@id": FOUNDER_ID },
+        publisher: article.author
+          ? { "@type": "Organization", "@id": ORGANIZATION_ID, name: "Edussentials Consulting", url: BASE_URL }
+          : { "@id": ORGANIZATION_ID },
         datePublished: article.datePublished,
         dateModified: article.dateModified,
         mainEntityOfPage: `${BASE_URL}/blog/${article.slug}`,
@@ -98,16 +103,38 @@ export default function ArticleLayout({ article }: { article: Article }) {
               {article.title}
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-white/78">{article.standfirst}</p>
+            {article.author ? (
+              <p className="mt-6 text-sm leading-7 text-white/80">
+                By <Link href={article.author.url} className="underline underline-offset-4">{article.author.name}</Link>
+                <span aria-hidden="true"> · </span>
+                <time dateTime={article.datePublished}>{new Date(`${article.datePublished}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })}</time>
+              </p>
+            ) : null}
           </div>
         </section>
 
         {/* Body */}
         <article className="mx-auto w-full max-w-3xl px-6 py-14 sm:px-10 lg:py-20">
           {article.sections.map((section, si) => (
-            <section key={si} className={si > 0 ? "mt-12" : undefined}>
+            <Fragment key={si}>
+            {article.showContents && si === 1 ? (
+              <nav aria-label="On this page" className="mt-10 rounded-2xl border border-[#002147]/15 bg-white/60 p-6 sm:p-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.15em] text-[#002147]">On this page</p>
+                <ol className="mt-4 list-decimal space-y-3 pl-5 text-base leading-7 marker:text-[#6B6258]">
+                  {article.sections.filter((item) => item.heading && item.id).map((item) => (
+                    <li key={item.id} className="pl-1">
+                      <a href={`#${item.id}`} className="rounded-sm text-[#002147] underline decoration-[#d2b48c] underline-offset-4 hover:decoration-[#002147] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#002147]">{item.heading}</a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            ) : null}
+            <section className={si > 0 ? "mt-12" : undefined}>
               {section.heading ? (
                 <h2
-                  className={`${displayFont.className} text-3xl font-semibold leading-tight text-[#002147]`}
+                  id={section.id}
+                  tabIndex={section.id ? -1 : undefined}
+                  className={`${displayFont.className} scroll-mt-8 text-3xl font-semibold leading-tight text-[#002147]`}
                 >
                   {section.heading}
                 </h2>
@@ -152,6 +179,7 @@ export default function ArticleLayout({ article }: { article: Article }) {
                 </div>
               ) : null}
             </section>
+            </Fragment>
           ))}
 
           {/* FAQ */}
@@ -193,6 +221,7 @@ export default function ArticleLayout({ article }: { article: Article }) {
           ) : null}
 
           {/* CTA */}
+          {article.cta ? (
           <section className="mt-16 rounded-[2rem] bg-[#002147] p-10 text-[#f6f0e8]">
             <h2 className={`${displayFont.className} text-3xl font-semibold leading-tight`}>
               {article.cta.heading}
@@ -213,6 +242,7 @@ export default function ArticleLayout({ article }: { article: Article }) {
               </Link>
             </div>
           </section>
+          ) : null}
         </article>
       </main>
     </>
