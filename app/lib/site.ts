@@ -3,6 +3,11 @@
 
 export const BASE_URL = "https://www.edussentialsconsulting.com";
 
+export const ARTICLE_AUTHOR = {
+  name: "Aniruddha Sapru",
+  url: `${BASE_URL}/about`,
+} as const;
+
 export const CONTACT = {
   email: "founder@edussentialsconsulting.com",
   phoneDisplay: "+91 7990082246",

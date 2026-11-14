@@ -3,55 +3,8 @@ import { Fragment } from "react";
 import StructuredData from "./StructuredData";
 import type { Article } from "../lib/content";
 import { displayFont, bodyFont } from "../lib/fonts";
-import { BASE_URL, CAL_LINK, FOUNDER_ID, ORGANIZATION_ID } from "../lib/site";
-
-function buildSchema(article: Article) {
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Article",
-        "@id": `${BASE_URL}/blog/${article.slug}#article`,
-        headline: article.title,
-        description: article.metaDescription,
-        author: article.author
-          ? { "@type": "Person", "@id": FOUNDER_ID, ...article.author }
-          : { "@id": FOUNDER_ID },
-        publisher: article.author
-          ? { "@type": "Organization", "@id": ORGANIZATION_ID, name: "Edussentials Consulting", url: BASE_URL }
-          : { "@id": ORGANIZATION_ID },
-        datePublished: article.datePublished,
-        dateModified: article.dateModified,
-        mainEntityOfPage: `${BASE_URL}/blog/${article.slug}`,
-        articleSection: article.category,
-        inLanguage: "en",
-      },
-      ...(article.faqs.length > 0
-        ? [{
-            "@type": "FAQPage",
-            mainEntity: article.faqs.map((faq) => ({
-              "@type": "Question",
-              name: faq.question,
-              acceptedAnswer: { "@type": "Answer", text: faq.answer },
-            })),
-          }]
-        : []),
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: `${BASE_URL}/` },
-          { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: article.shortTitle,
-            item: `${BASE_URL}/blog/${article.slug}`,
-          },
-        ],
-      },
-    ],
-  };
-}
+import { CAL_LINK } from "../lib/site";
+import { buildArticleSchema, formatArticleDate } from "../lib/article-presentation";
 
 function renderLinkedText(text: string, links?: { text: string; href: string }[]) {
   if (!links?.length) return text;
@@ -88,7 +41,7 @@ function renderLinkedText(text: string, links?: { text: string; href: string }[]
 export default function ArticleLayout({ article }: { article: Article }) {
   return (
     <>
-      <StructuredData data={buildSchema(article)} />
+      <StructuredData data={buildArticleSchema(article)} />
       <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
         {/* Hero */}
         <section className="relative overflow-hidden bg-[#002147] text-[#f6f0e8]">
@@ -103,13 +56,13 @@ export default function ArticleLayout({ article }: { article: Article }) {
               {article.title}
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-white/78">{article.standfirst}</p>
-            {article.author ? (
-              <p className="mt-6 text-sm leading-7 text-white/80">
-                By <Link href={article.author.url} className="underline underline-offset-4">{article.author.name}</Link>
-                <span aria-hidden="true"> · </span>
-                <time dateTime={article.datePublished}>{new Date(`${article.datePublished}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })}</time>
-              </p>
-            ) : null}
+            <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm leading-7 text-white/80">
+              <span>By <Link href={article.author.url} className="underline underline-offset-4">{article.author.name}</Link></span>
+              <span>Published <time dateTime={article.datePublished}>{formatArticleDate(article.datePublished)}</time></span>
+              {article.dateModified !== article.datePublished ? (
+                <span>Updated <time dateTime={article.dateModified}>{formatArticleDate(article.dateModified)}</time></span>
+              ) : null}
+            </div>
           </div>
         </section>
 

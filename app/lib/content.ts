@@ -43,7 +43,7 @@ export type Article = {
   standfirst: string;
   datePublished: string; // ISO date
   dateModified: string; // ISO date
-  author?: { name: string; url: string };
+  author: { name: string; url: string };
   showContents?: boolean;
   sections: ArticleSection[];
   faqs: ArticleFaq[];

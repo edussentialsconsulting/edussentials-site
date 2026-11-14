@@ -1,11 +1,13 @@
 import type { Article } from "../lib/content";
+import { ARTICLE_AUTHOR } from "../lib/site";
 
 export const studyAbroadAfter12th: Article = {
+  author: ARTICLE_AUTHOR,
   slug: "study-abroad-after-12th",
   category: "Courses & Careers",
   title: "Study Abroad After 12th: How Indian Families Should Actually Decide",
   shortTitle: "Study Abroad After 12th",
-  metaTitle: "Study Abroad After 12th | An Honest Guide for Indian Families",
+  metaTitle: "Study Abroad After 12th | Edussentials",
   metaDescription:
     "Deciding where to study abroad after 12th? A clear look at how the choice has changed, what actually decides it, and how each country's system works.",
   keywords: [

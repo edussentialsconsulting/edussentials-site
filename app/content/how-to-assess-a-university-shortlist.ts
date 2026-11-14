@@ -1,19 +1,17 @@
 import type { Article } from "../lib/content";
+import { ARTICLE_AUTHOR } from "../lib/site";
 
 export const universityShortlist: Article = {
   "slug": "how-to-assess-a-university-shortlist",
   "category": "Courses & Careers",
-  "title": "How to assess a university shortlist beyond rankings",
-  "shortTitle": "Assessing your university shortlist",
+  "title": "How to Assess a University Shortlist Beyond Rankings",
+  "shortTitle": "Assessing Your University Shortlist",
   "metaTitle": "How to Assess a University Shortlist | Edussentials",
   "metaDescription": "Assess your university shortlist beyond rankings. Examine the curriculum, elective access, learning experience and practical compromises before deciding.",
   "standfirst": "Look beyond the university name and examine what your degree would involve, from elective access to the life you would build around it.",
   "datePublished": "2026-11-14",
   "dateModified": "2026-11-14",
-  "author": {
-    "name": "Aniruddha Sapru",
-    "url": "https://www.edussentialsconsulting.com/about"
-  },
+  author: ARTICLE_AUTHOR,
   "showContents": true,
   "sections": [
     {

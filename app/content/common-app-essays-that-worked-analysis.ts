@@ -1,6 +1,8 @@
 import type { Article } from "../lib/content";
+import { ARTICLE_AUTHOR } from "../lib/site";
 
 export const commonAppEssaysAnalysis: Article = {
+  author: ARTICLE_AUTHOR,
   slug: "common-app-essays-that-worked-analysis",
   category: "Essays & Applications",
   title: "Common App Essays That Worked: What They Actually Have in Common",

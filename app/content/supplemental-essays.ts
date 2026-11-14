@@ -1,6 +1,8 @@
 import type { Article } from "../lib/content";
+import { ARTICLE_AUTHOR } from "../lib/site";
 
 export const supplementalEssays: Article = {
+  author: ARTICLE_AUTHOR,
   slug: "supplemental-essays",
   category: "Essays & Applications",
   title: "Supplemental Essays: Why Us, Why Major, and the Rest",

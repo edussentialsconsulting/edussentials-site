@@ -1,6 +1,8 @@
 import type { Article } from "../lib/content";
+import { ARTICLE_AUTHOR } from "../lib/site";
 
 export const ivyLeagueFromIndia: Article = {
+  author: ARTICLE_AUTHOR,
   slug: "ivy-league-from-india",
   category: "Admissions Data & Process",
   title: "How to Get Into the Ivy League from India",

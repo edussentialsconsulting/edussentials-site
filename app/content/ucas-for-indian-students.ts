@@ -1,11 +1,13 @@
 import type { Article } from "../lib/content";
+import { ARTICLE_AUTHOR } from "../lib/site";
 
 export const ucasForIndianStudents: Article = {
+  author: ARTICLE_AUTHOR,
   slug: "ucas-for-indian-students",
   category: "Admissions Data & Process",
   title: "UCAS for Indian Students and How the UK Application Actually Works",
   shortTitle: "UCAS for Indian Students",
-  metaTitle: "UCAS for Indian Students | How UK Applications Work",
+  metaTitle: "UCAS for Indian Students | Edussentials",
   metaDescription:
     "UCAS is one application for up to five UK courses. Learn how Indian students should choose courses, write the statement, meet deadlines and handle offers.",
   keywords: [

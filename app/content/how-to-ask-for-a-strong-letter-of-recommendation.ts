@@ -1,6 +1,8 @@
 import type { Article } from "../lib/content";
+import { ARTICLE_AUTHOR } from "../lib/site";
 
 export const strongLetterOfRecommendation: Article = {
+  author: ARTICLE_AUTHOR,
   "slug": "how-to-ask-for-a-strong-letter-of-recommendation",
   "category": "Essays & Applications",
   "title": "How to Ask for a Strong Letter of Recommendation",
