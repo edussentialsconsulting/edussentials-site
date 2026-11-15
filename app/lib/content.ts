@@ -52,6 +52,7 @@ export type Article = {
 };
 
 // ---- Registry ----
+import { aiCollaboration } from "../content/using-ai-without-outsourcing-your-thinking";
 import { ivyLeaguePersonalStatement } from "../content/ivy-league-personal-statement";
 import { ivyLeagueFromIndia } from "../content/ivy-league-from-india";
 import { supplementalEssays } from "../content/supplemental-essays";
@@ -62,6 +63,7 @@ import { strongLetterOfRecommendation } from "../content/how-to-ask-for-a-strong
 import { universityShortlist } from "../content/how-to-assess-a-university-shortlist";
 
 export const articles: Article[] = [
+  aiCollaboration,
   universityShortlist,
   studyAbroadAfter12th,
   ucasForIndianStudents,
