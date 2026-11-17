@@ -52,6 +52,7 @@ export type Article = {
 };
 
 // ---- Registry ----
+import { anotherDegreeAfterMba } from "../content/another-degree-abroad-after-mba";
 import { mastersCareerChange } from "../content/masters-for-a-career-change";
 import { aiCollaboration } from "../content/using-ai-without-outsourcing-your-thinking";
 import { ivyLeaguePersonalStatement } from "../content/ivy-league-personal-statement";
@@ -64,6 +65,7 @@ import { strongLetterOfRecommendation } from "../content/how-to-ask-for-a-strong
 import { universityShortlist } from "../content/how-to-assess-a-university-shortlist";
 
 export const articles: Article[] = [
+  anotherDegreeAfterMba,
   mastersCareerChange,
   aiCollaboration,
   universityShortlist,
