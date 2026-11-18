@@ -1,208 +1,78 @@
 import type { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
-import CTABand from "../components/CTABand";
 import { displayFont, bodyFont } from "../lib/fonts";
-import { buildBreadcrumbSchema } from "../lib/site";
+import { buildBreadcrumbSchema, BASE_URL } from "../lib/site";
 
 export const metadata: Metadata = {
-  title: "Career Labs | Edussentials Consulting",
-  description: "Structured exploration sessions that help students examine their interests, understand how academic fields and industries connect, and make decisions that hold up beyond the application.",
+  title: "Career Labs Explore | Free subject exploration | Edussentials",
+  description: "Explore academic disciplines through structured investigations. Begin with a free Economics and Finance Lab on pricing, cash flow and financial viability.",
+  alternates: { canonical: `${BASE_URL}/career-labs` },
 };
-
-const breadcrumbSchema = buildBreadcrumbSchema([{ name: "Career Labs", path: "/career-labs" }]);
+const workbook = "/career-labs/explore/economics";
+const button = "inline-flex items-center justify-center rounded-lg bg-[#002147] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#16416a] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1E6F6D]";
 
 export default function CareerLabsPage() {
-  return (
-    <>
-      <StructuredData data={breadcrumbSchema} />
-      <main className={`${bodyFont.className} min-h-screen bg-[#f6f0e8] text-[#2A2420]`}>
-      <section className="relative overflow-hidden bg-[#002147] text-[#f6f0e8]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(210,180,140,0.18),_transparent_36%),radial-gradient(circle_at_bottom_left,_rgba(198,93,58,0.14),_transparent_28%)]" />
-        <div className="relative mx-auto w-full max-w-7xl px-6 py-12 sm:px-10 lg:px-12 lg:py-20">
-          <div className="py-16 lg:py-24">
-            <div className="max-w-4xl">
-              <h1
-                className={`${displayFont.className} max-w-4xl text-4xl font-semibold leading-[0.95] text-[#f6f0e8] sm:text-5xl lg:text-6xl xl:text-7xl`}
-              >
-                Career Labs
-              </h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-white/78 sm:text-xl">
-                Before the university list, before the essays, before the application even takes shape, there is a question most students skip over too quickly. What am I actually interested in, and what does that look like as a field of study or a career?
-              </p>
-            </div>
+  return <>
+    <StructuredData data={buildBreadcrumbSchema([{ name: "Career Labs Explore", path: "/career-labs" }])} />
+    <main className={`${bodyFont.className} bg-[#f6f0e8] text-[#2A2420]`}>
+      <section className="bg-[#002147] text-[#f6f0e8]">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 sm:px-10 lg:grid-cols-[1.4fr_1fr] lg:px-12 lg:py-24">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#d2b48c]">Career Labs Explore</p>
+            <h1 className={`${displayFont.className} mt-6 max-w-3xl text-5xl font-semibold leading-[1.05] sm:text-6xl`}>Understand a discipline<br />before choosing a direction.</h1>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-white/80">An interest in a subject is a starting point. Career Labs Explore offers the opportunity to examine it more closely, through the questions it investigates and the methods it uses. Each Lab combines an introduction to the discipline with a guided case, helping you make academic choices with a clearer understanding of what the work involves.</p>
+            <a href="#available-lab" className="mt-8 inline-flex rounded-lg bg-[#d2b48c] px-6 py-3.5 text-sm font-semibold text-[#002147] hover:bg-[#e1c9a9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Explore the available Lab ↓</a>
+            <p className="mt-5 text-sm text-white/70">Free access. No account or payment required.</p>
+          </div>
+          <aside className="self-center border-l-2 border-[#d2b48c] pl-7">
+            <p className={`${displayFont.className} text-3xl leading-snug`}>An introduction to academic enquiry</p>
+            <p className="mt-5 max-w-sm leading-7 text-white/75">Engaging with a subject means examining evidence and explaining your reasoning. Career Labs creates space for that experience, so you can consider both the appeal of a discipline and the intellectual effort it requires.</p>
+          </aside>
+        </div>
+      </section>
+      <section id="available-lab" className="scroll-mt-6 mx-auto max-w-7xl px-6 py-16 sm:px-10 lg:px-12">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#1E6F6D]">Available subject</p>
+        <div className="mt-5 grid overflow-hidden rounded-2xl border border-[#002147]/15 bg-[#fffdf8] lg:grid-cols-[1.35fr_1fr]">
+          <div className="p-7 sm:p-10">
+            <h2 className={`${displayFont.className} text-4xl leading-tight text-[#002147] sm:text-5xl`}>Economics &amp; Finance</h2>
+            <p className="mt-5 max-w-xl leading-8 text-[#6B6258]">Examine how economic choices interact with financial constraints. This Lab introduces the discipline before asking you to assess a community workshop proposal, weighing participation against financial viability and distinguishing an operating surplus from the cash needed to deliver it.</p>
+            <div className="mt-5 flex flex-wrap gap-2 text-xs text-[#002147]">{["Free access", "Guided case investigation", "Self-paced"].map(label => <span key={label} className="rounded-full border border-[#d2b48c] px-3 py-1.5">{label}</span>)}</div>
+            {/* Full navigation loads the standalone workbook and its browser saving. */}
+            <a className={`${button} mt-8`} href={workbook}>Begin the Economics & Finance Lab →</a>
+            <p className="mt-4 text-sm leading-6 text-[#6B6258]">Begin with an introduction to the subject, then proceed through the investigation. Your progress is retained in this browser.</p>
+          </div>
+          <div className="border-t border-[#002147]/10 bg-[#ede0cc]/55 p-7 sm:p-10 lg:border-l lg:border-t-0">
+            <h3 className={`${displayFont.className} text-2xl text-[#002147]`}>About this Lab</h3>
+            <dl className="mt-5 space-y-5 text-sm leading-7">
+              <div><dt className="font-semibold text-[#002147]">Prior knowledge</dt><dd>No prior study of economics or finance is required. You should be comfortable with percentages and basic arithmetic. The workbook introduces the concepts needed for the case; a calculator is welcome.</dd></div>
+              <div><dt className="font-semibold text-[#002147]">Suggested commitment</dt><dd>Allow approximately 3–5 hours for the reading, analysis and written response. Work across several sessions if that gives you more time to consider the material.</dd></div>
+              <div><dt className="font-semibold text-[#002147]">Your completed work</dt><dd>A financial comparison and a reasoned recommendation, accompanied by your reflection on the investigation. You can export the complete record.</dd></div>
+              <div><dt className="font-semibold text-[#002147]">Feedback</dt><dd>Numerical and fixed-choice answers receive immediate checks. A separate checklist supports review of your written reasoning. Individual mentor feedback is not included.</dd></div>
+            </dl>
           </div>
         </div>
       </section>
-
-      <section className="border-b border-[#002147]/10 bg-[#f6f0e8]">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="max-w-3xl space-y-6 text-left text-lg leading-8 text-[#6B6258]">
-            <p>
-              Some students have a vague answer. Others have none at all. Both need a better way to figure it out than guesswork and Google searches.
-            </p>
-            <p>
-              Career Labs is where that question gets taken seriously. It is designed for students who want more than surface-level guidance and need a clearer way to understand what a field actually asks of them.
-            </p>
-          </div>
+      <section className="border-y border-[#002147]/10 bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-14 sm:px-10 lg:px-12">
+          <h2 className={`${displayFont.className} text-4xl text-[#002147]`}>How the investigation develops</h2>
+          <ol className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">{[
+            ["Establish the context", "Begin with an introduction to the discipline, then examine the brief and the conditions governing the case."],
+            ["Analyse the evidence", "Use the supplied material to compare alternatives. Worked examples explain unfamiliar methods before you apply them."],
+            ["Develop a recommendation", "Bring your findings into a written argument, making the basis for your decision and its limitations explicit."],
+            ["Review your experience", "Consider which aspects of the work sustained your interest and what you would need to investigate further."],
+          ].map(([title, text], i) => <li key={title}><span className="text-sm font-semibold text-[#1E6F6D]">{i + 1}</span><h3 className={`${displayFont.className} mt-3 text-2xl text-[#002147]`}>{title}</h3><p className="mt-3 text-sm leading-7 text-[#6B6258]">{text}</p></li>)}</ol>
         </div>
       </section>
-
-      <section className="bg-white">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="rounded-[2rem] border border-[#002147]/10 bg-white p-8 shadow-[0_18px_60px_rgba(42,36,32,0.06)] sm:p-10">
-            <div className="max-w-4xl">
-              <h2
-                className={`${displayFont.className} text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
-              >
-                Structured exploration, not career advice.
-              </h2>
-              <div className="mt-6 space-y-6 text-lg leading-8 text-[#6B6258]">
-                <p>
-                  Career Labs is a focused programme designed to help students engage with real fields of work before making academic decisions around them. It is not a personality quiz. It is not a one-off conversation about strengths and interests. It is applied, structured, and built to produce clarity rather than reassurance.
-                </p>
-                <p>
-                  For a student who already has a direction in mind, Career Labs tests that interest against reality. For a student who feels genuinely unsure, it provides a structured way to discover what resonates and what doesn&apos;t. In both cases, students work through activities tied to actual industries and disciplines. They encounter real problems, realistic scenarios, and the kind of thinking these fields demand. The goal is the same regardless of where the student starts. Enough meaningful contact with a field that they can speak about it with understanding, not just enthusiasm.
-                </p>
-                <p>
-                  Each completed programme comes with a certificate of completion.
-                </p>
-              </div>
-            </div>
-          </div>
+      <section className="mx-auto grid max-w-7xl gap-10 px-6 py-14 sm:px-10 lg:grid-cols-2 lg:px-12">
+        <div><h2 className={`${displayFont.className} text-3xl text-[#002147]`}>Access and saving your work</h2>
+          <p className="mt-4 leading-8 text-[#6B6258]">Answers save in this browser on this device. They are not submitted to Edussentials or synced to another device. Download your work before clearing browser data, using a shared device or switching browsers. Private browsing may not retain it.</p>
+          <p className="mt-4 leading-8 text-[#6B6258]">Access is free and requires no registration. The Lab provides a record of your work for personal reflection; it does not issue an automatic certificate.</p>
+        </div>
+        <div><h2 className={`${displayFont.className} text-3xl text-[#002147]`}>The scope of this introduction</h2>
+          <p className="mt-4 leading-8 text-[#6B6258]">The Economics and Finance Lab concentrates on a defined set of decisions within a much wider field. It introduces analytical methods you can explore further, rather than attempting to reproduce a degree programme. Your experience provides material for reflection, not a verdict on career suitability.</p>
+          <a className={`${button} mt-6`} href={workbook}>Begin the Economics & Finance Lab →</a>
         </div>
       </section>
-
-      <section className="border-b border-[#002147]/10 bg-[#f6f0e8]">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="rounded-[2rem] border border-[#d2b48c]/25 bg-[#f8f4ee] p-8 shadow-[0_18px_60px_rgba(42,36,32,0.06)] sm:p-10">
-            <div className="max-w-4xl">
-              <h2
-                className={`${displayFont.className} text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
-              >
-                Because most career guidance happens too late and says too little.
-              </h2>
-              <div className="mt-6 space-y-6 text-lg leading-8 text-[#6B6258]">
-                <p>
-                  The typical path often follows the same pattern. A student starts moving toward a subject or field based on a mix of parental input, peer influence, and surface-level research, then builds important academic decisions around that choice before they have properly tested it. If the foundation is shaky, everything built on top of it is harder to defend.
-                </p>
-                <p>
-                  We created Career Labs because we kept seeing the same problem repeat. Some students were building applications around fields they had never actually tested. Others were holding back from choosing anything at all because nothing had been made concrete enough to evaluate. In both cases, the decision-making was thin. That gap makes applications weaker. More importantly, it leads to choices that are much harder to revisit once university begins.
-                </p>
-                <p>
-                  Career Labs exists to close that gap well before the pressure of deadlines takes over.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C65D3A]">
-              Two formats, depending on the depth of exploration needed.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-8 lg:grid-cols-2">
-            <article className="rounded-[2rem] border border-[#002147]/10 bg-white p-8 shadow-[0_18px_60px_rgba(42,36,32,0.06)] sm:p-10">
-              <div className="max-w-4xl">
-                <h3
-                  className={`${displayFont.className} text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
-                >
-                  Career Labs Guided
-                </h3>
-                <div className="mt-6 space-y-6 text-lg leading-8 text-[#6B6258]">
-                  <p>
-                    Career Labs Guided is a three-month, self-paced but guided programme designed for students who want to explore one field in depth.
-                  </p>
-                  <p>
-                    Students move through structured activities, selected reading material, and sustained exploration that helps them understand how the field works in practice, not just how it appears from the outside. A guide supports the process throughout, answers questions, and helps the student think through what they are learning at each stage.
-                  </p>
-                  <p>
-                    The programme ends with a final project that brings the exploration together. If done well, that project can become a meaningful addition to the student&apos;s resume.
-                  </p>
-                </div>
-              </div>
-            </article>
-
-            <article className="rounded-[2rem] border border-[#d2b48c]/25 bg-[#f8f4ee] p-8 shadow-[0_18px_60px_rgba(42,36,32,0.06)] sm:p-10">
-              <div className="max-w-4xl">
-                <h3
-                  className={`${displayFont.className} text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
-                >
-                  Career Labs Explore
-                </h3>
-                <div className="mt-6 space-y-6 text-lg leading-8 text-[#6B6258]">
-                  <p>
-                    Career Labs Explore is a 3–5 hour experience designed to give students a practical window into a specific field.
-                  </p>
-                  <p>
-                    Through a short case, activity set, or simulation-style task, students get a feel for the kind of work, questions, and thinking the field involves. It is a focused first look, useful for students who want to test an area before deciding whether they want to explore it more deeply.
-                  </p>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-[#002147]/10 bg-[#f6f0e8]">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="rounded-[2rem] border border-[#002147]/10 bg-white p-8 shadow-[0_18px_60px_rgba(42,36,32,0.06)] sm:p-10">
-            <div className="max-w-4xl">
-              <h2
-                className={`${displayFont.className} text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
-              >
-                What students actually walk away with.
-              </h2>
-              <div className="mt-6 space-y-6 text-lg leading-8 text-[#6B6258]">
-                <p>
-                  Students who go through Career Labs tend to arrive at the application process with something most others lack. A working understanding of the field they say they want to enter.
-                </p>
-                <p>
-                  That changes the quality of everything that follows. Their university list is more intentional because they understand what programmes in that field actually offer. Their essays carry more weight because they can draw on real engagement instead of surface-level interest. Their interviews feel more grounded because they have something concrete to talk about.
-                </p>
-                <p>
-                  Career Labs does not guarantee a perfect choice. But it does make the choice more informed, more defensible, and far less likely to unravel once the student is already committed.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-12 lg:py-24">
-          <div className="rounded-[2rem] border border-[#d2b48c]/25 bg-[#f8f4ee] p-8 shadow-[0_18px_60px_rgba(42,36,32,0.06)] sm:p-10">
-            <div className="max-w-4xl">
-              <h2
-                className={`${displayFont.className} text-4xl font-medium leading-tight text-[#002147] sm:text-5xl`}
-              >
-                Not a workshop. Not a webinar. Not a quiz.
-              </h2>
-              <div className="mt-6 space-y-6 text-lg leading-8 text-[#6B6258]">
-                <p>
-                  Most career exploration for students falls into one of two categories. There are broad, motivational sessions that ask students what they enjoy and suggest fields based on vague alignment. And there are aptitude-style assessments that sort people into categories without ever letting them test what those categories actually feel like in practice.
-                </p>
-                <p>
-                  Career Labs does neither. It puts students in contact with fields through activities that reflect what working in or studying that field actually involves. The exploration is specific, grounded, and designed to produce understanding rather than excitement. It treats students as capable of doing real intellectual work and gives them the structure to do it.
-                </p>
-                <p>
-                  That is the difference between thinking you might like something and knowing what it actually asks of you.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <CTABand
-        heading="The best time to explore is before you have to decide."
-        body="If a student is approaching the stage where subject choices, university preferences, and application narratives are beginning to take shape, Career Labs is worth considering. A conversation with us will help you understand which format fits and when to begin."
-      />
-      </main>
-    </>
-  );
+    </main>
+  </>;
 }
