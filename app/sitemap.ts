@@ -1,3 +1,4 @@
+import { exploreSubjects } from "./lib/explore";
 import type { MetadataRoute } from "next";
 import { articles } from "./lib/content";
 import { BASE_URL } from "./lib/site";
@@ -58,12 +59,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    {
-      url: `${baseUrl}/career-labs/explore/economics`,
-      lastModified: new Date("2026-11-18"),
-      changeFrequency: "monthly",
+    ...exploreSubjects.map(({ slug }) => ({
+      url: `${baseUrl}/career-labs/explore/${slug}`,
+      lastModified: new Date(slug === "economics" ? "2026-11-18" : "2026-11-20"),
+      changeFrequency: "monthly" as const,
       priority: 0.6,
-    },
+    })),
     {
       url: `${baseUrl}/contact`,
       lastModified: siteLastModified,
