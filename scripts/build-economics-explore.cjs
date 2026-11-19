@@ -1,4 +1,7 @@
+// CommonJS is required by this .cjs build script.
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const fs=require('fs');
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const path=require('path');
 const out=path.join(__dirname,'../public/labs/economics');fs.mkdirSync(out,{recursive:true});
 const VERSION='Economics Explore • 18 November 2026 • public v1';
