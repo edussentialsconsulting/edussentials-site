@@ -45,18 +45,88 @@ const CFG={"questions":[{"id":"cancel-free","step":4,"label":"Remaining seats af
 const initial=()=>({answers:{},writing:{},attempts:[],hints:[],extra:{},step:0});let state=initial(),checked=new Set(),extension={validate:()=>[],reset:()=>{},report:()=>[]};
 try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&typeof s==='object'){for(const k of ['answers','writing','extra'])if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k]))state[k]=s[k];for(const k of ['attempts','hints'])if(Array.isArray(s[k]))state[k]=s[k];if(Number.isInteger(s.step)&&s.step>=0&&s.step<N.length)state.step=s.step;}}catch{}
 const value=(obj,id)=>typeof obj[id]==='string'?obj[id]:'';
-function result(q){const v=value(state.answers,q.id);return v===''?'missing':q.kind==='number'?(/^[-+]?\d+(?:\.\d+)?%?$/.test(v.trim())&&Number(v.trim().replace('%',''))===q.answer?'correct':'incorrect'):v===String(q.answer)?'correct':'incorrect';}
+function numericEntry(q, raw) {
+  let s = raw.trim();
+  if (!s) return {status: 'missing'};
+  const number = /^[+-]?\d+(?:\.\d+)?$/;
+  let guidance = 'Enter the number in the unit shown in the question.';
+  if (q.unit === 'percent') {
+    s = s.replace(/\s*%$/, '');
+    guidance = 'Enter a percentage, for example 45 or 45%.';
+  } else if (q.unit === 'points') {
+    s = s.replace(/\s*(?:pp|percentage points?)$/i, '');
+    guidance = 'Enter the difference in percentage points, for example 15 or 15 pp. A percent sign denotes a different unit.';
+  } else if (q.unit === 'rupees') {
+    s = s.replace(/^₹\s*/, '');
+    if (/^[+-]?(?:\d{1,3}(?:,\d{3})+|\d{1,2}(?:,\d{2})*,\d{3})(?:\.\d+)?$/.test(s)) s = s.replaceAll(',', '');
+    guidance = 'Enter a rupee amount, for example 2,500 or ₹2,500.';
+  }
+  if (!number.test(s)) return {status:'incorrect', guidance};
+  return {status:Number(s) === q.answer ? 'correct' : 'incorrect'};
+}
+function result(q) {
+  const raw = value(state.answers, q.id);
+  if (q.kind === 'number') return numericEntry(q, raw).status;
+  if (!raw) return 'missing';
+  return raw === String(q.answer) ? 'correct' : 'incorrect';
+}
+
+function fieldTitle(id) {
+  return W.find(field => field.id === id)?.label ||
+    document.getElementById(id)?.labels?.[0]?.textContent.trim() ||
+    id.replaceAll('-', ' ');
+}
+function readableAnswer(q, raw) {
+  if (raw === '' || raw == null) return '[blank]';
+  return q?.options?.[Number(raw)] ?? String(raw);
+}
+function snapshotLines(snapshot) {
+  if (!snapshot) return ['No entry recorded.'];
+  const lines = [];
+  if (snapshot.time) lines.push(new Date(snapshot.time).toLocaleString());
+  for (const [id, raw] of Object.entries(snapshot.answers || {})) {
+    const q = Q.find(item => item.id === id);
+    if (raw !== '') lines.push((q?.label || fieldTitle(id)) + ': ' + readableAnswer(q, raw));
+  }
+  for (const [id, entry] of Object.entries(snapshot.writing || {})) {
+    if (entry) lines.push(fieldTitle(id) + ': ' + entry);
+  }
+  if (snapshot.hints?.length) lines.push('Help opened: ' + snapshot.hints.join(', '));
+  return lines.length ? lines : ['No entry recorded.'];
+}
+function attemptLines() {
+  const lines = [], previous = new Map();
+  for (const [index, attempt] of state.attempts.entries()) {
+    lines.push('', 'Attempt ' + (index + 1) + ' · ' + attempt.stage,
+      new Date(attempt.time).toLocaleString());
+    if (Number.isInteger(attempt.total)) lines.push(attempt.correct + ' of ' + attempt.total + ' correct.');
+    let changes = 0;
+    for (const [id, raw] of Object.entries({...attempt.answers, ...attempt.writing})) {
+      const q = Q.find(item => item.id === id);
+      const before = previous.get(id);
+      previous.set(id, raw);
+      if (before === raw || (before === undefined && !raw)) continue;
+      const entry = q ? readableAnswer(q, raw) : raw || '[blank]';
+      const earlier = before === undefined || before === '' ? '' : ' (previously: ' + readableAnswer(q, before) + ')';
+      lines.push((q?.label || fieldTitle(id)) + ': ' + entry + earlier);
+      changes++;
+    }
+    if (!changes && Number.isInteger(attempt.total)) lines.push('No changes to recorded responses.');
+    if (attempt.requirements?.length) lines.push('Still to complete: ' + attempt.requirements.join(' '));
+  }
+  return lines.length ? lines : ['No checks recorded yet.'];
+}
 function progress(){const n=Q.filter(q=>value(state.answers,q.id)!=='').length;$('overall').textContent=n+' of '+Q.length+' fixed answers entered. Written reasoning is reviewed separately.';$('side-progress').textContent=n+' / '+Q.length+' answers entered';$('progressfill').style.width=(Q.length?100*n/Q.length:0)+'%';N.forEach((_,i)=>{const q=Q.filter(q=>q.step===i),w=W.filter(w=>w.step===i&&w.required);$('nav-status-'+i).textContent=q.length?q.filter(q=>value(state.answers,q.id)!=='').length+' / '+q.length+' answers':w.length?w.filter(w=>value(state.writing,w.id).trim()).length+' / '+w.length+' written':'Read and investigate';});if(extension.progress)extension.progress();}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));$('save-status').textContent='Saved in this browser. Export to keep a separate copy.';}catch{$('save-status').textContent='Browser saving unavailable. Export before leaving.';}progress();}
 function clearSummary(){$('completion-message').textContent='';$('scorecard').replaceChildren();}
 function showStep(i,focus=true){state.step=i;document.querySelectorAll('[data-panel]').forEach(el=>el.hidden=Number(el.dataset.panel)!==i);document.querySelectorAll('[data-step]').forEach(el=>Number(el.dataset.step)===i?el.setAttribute('aria-current','step'):el.removeAttribute('aria-current'));$('previous').disabled=i===0;$('next').hidden=i===N.length-1;$('next').textContent=N[i+1]||'';if(focus){save();const h=document.querySelector('[data-panel="'+i+'"] h2');h.focus({preventScroll:true});h.scrollIntoView({block:'start'});}}
 for(const q of Q){$(q.id).value=value(state.answers,q.id);$(q.id).addEventListener(q.kind==='number'?'input':'change',()=>{state.answers[q.id]=$(q.id).value;$(q.id).removeAttribute('aria-invalid');$(q.id).removeAttribute('data-correct');$(q.id+'-feedback').textContent='';if(checked.has(q.step))$('result-'+q.step).textContent='Answers changed. Check this stage again.';clearSummary();save();});}
 for(const w of W){$(w.id).value=value(state.writing,w.id);$(w.id).addEventListener('input',()=>{state.writing[w.id]=$(w.id).value;clearSummary();save();});}
-function check(s,record=true){checked.add(s);const qs=Q.filter(q=>q.step===s);let correct=0,missing=0;for(const q of qs){const r=result(q),el=$(q.id),f=$(q.id+'-feedback');el.setAttribute('aria-invalid',r==='correct'?'false':'true');f.className='feedback'+(r==='correct'?' ok':'');if(r==='correct'){correct++;el.setAttribute('data-correct','true');f.textContent='Correct.';}else{el.removeAttribute('data-correct');if(r==='missing')missing++;f.textContent=r==='missing'?(q.kind==='number'?'Enter a number.':'Choose an answer.'):q.hint;}}$('result-'+s).textContent=correct+' of '+qs.length+' correct; '+missing+' unanswered.';if(record){state.attempts.push({time:new Date().toISOString(),stage:N[s],correct,total:qs.length,answers:Object.fromEntries(qs.map(q=>[q.id,value(state.answers,q.id)])),writing:{...state.writing}});save();}return {stage:N[s],correct,total:qs.length};}
+function check(s,record=true){checked.add(s);const qs=Q.filter(q=>q.step===s);let correct=0,missing=0;for(const q of qs){const r=result(q),el=$(q.id),f=$(q.id+'-feedback');el.setAttribute('aria-invalid',r==='correct'?'false':'true');f.className='feedback'+(r==='correct'?' ok':'');if(r==='correct'){correct++;el.setAttribute('data-correct','true');f.textContent='Correct.';}else{el.removeAttribute('data-correct');if(r==='missing')missing++;f.textContent=r==='missing'?(q.kind==='number'?'Enter a number.':'Choose an answer.'):(q.kind === 'number' && numericEntry(q,value(state.answers,q.id)).guidance || q.hint);}}$('result-'+s).textContent=correct+' of '+qs.length+' correct; '+missing+' unanswered.';if(record){state.attempts.push({time:new Date().toISOString(),stage:N[s],correct,total:qs.length,answers:Object.fromEntries(qs.map(q=>[q.id,value(state.answers,q.id)])),writing:{...state.writing}});save();}return {stage:N[s],correct,total:qs.length};}
 document.querySelectorAll('[data-step]').forEach(b=>b.addEventListener('click',()=>showStep(Number(b.dataset.step))));document.querySelectorAll('[data-check]').forEach(b=>b.addEventListener('click',()=>check(Number(b.dataset.check))));$('previous').addEventListener('click',()=>showStep(Math.max(0,state.step-1)));$('next').addEventListener('click',()=>showStep(Math.min(N.length-1,state.step+1)));
 document.querySelectorAll('[data-hint]').forEach(d=>d.addEventListener('toggle',()=>{if(d.open&&!state.hints.includes(d.dataset.hint)){state.hints.push(d.dataset.hint);state.attempts.push({time:new Date().toISOString(),stage:'Hint opened: '+d.dataset.hint,writing:{...state.writing}});save();}}));
 $('complete').addEventListener('click',()=>{const scores=[...new Set(Q.map(q=>q.step))].map(s=>check(s,false)),correct=scores.reduce((n,s)=>n+s.correct,0),missing=W.filter(w=>w.required&&!value(state.writing,w.id).trim()),extra=extension.validate();$('completion-message').textContent=correct===Q.length&&!missing.length&&!extra.length?'All required checks pass and your written responses are present. Review the reasoning with the checklist before exporting. Writing quality has not been automatically assessed.':correct+' of '+Q.length+' fixed answers correct; '+missing.length+' written responses still needed. Further practical steps: '+extra.length+'.';const ul=document.createElement('ul');for(const text of [...scores.map(s=>s.stage+': '+s.correct+' / '+s.total),...missing.map(w=>'Still to write: '+w.label),...extra]){const li=document.createElement('li');li.textContent=text;ul.append(li);}$('scorecard').replaceChildren(ul);state.attempts.push({time:new Date().toISOString(),stage:'Final review',correct,total:Q.length,answers:{...state.answers},writing:{...state.writing},requirements:extra});save();});
-$('export').addEventListener('click',()=>{const text=['EDUSSENTIALS CONSULTING','Career Lab Explore: '+CFG.subject,'Student work record','Exported: '+new Date().toLocaleString(),'',...N.flatMap((n,i)=>['STEP '+(i+1)+': '+n,...Q.filter(q=>q.step===i).map(q=>q.label+'\n'+(value(state.answers,q.id)===''?'[Not answered]':q.kind==='number'?state.answers[q.id]:q.options[Number(state.answers[q.id])])+'\n'),...W.filter(w=>w.step===i).map(w=>w.label+'\n'+(value(state.writing,w.id)||'[Not written]')+'\n')]),...extension.report(),'ATTEMPT HISTORY',...state.attempts.map(a=>JSON.stringify(a)),'HELP OPENED: '+state.hints.join(', '),'Written entries and completion scores do not establish writing quality or career suitability. Nothing is automatically submitted.'].join('\n');$('report-text').value=text;$('report-dialog').showModal();const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=CFG.subject+' Explore - My Work.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+$('export').addEventListener('click',()=>{const text=['EDUSSENTIALS CONSULTING','Career Lab Explore: '+CFG.subject,'Student work record','Exported: '+new Date().toLocaleString(),'',...N.flatMap((n,i)=>['STEP '+(i+1)+': '+n,...Q.filter(q=>q.step===i).map(q=>q.label+'\n'+(value(state.answers,q.id)===''?'[Not answered]':q.kind==='number'?state.answers[q.id]:q.options[Number(state.answers[q.id])])+'\n'),...W.filter(w=>w.step===i).map(w=>w.label+'\n'+(value(state.writing,w.id)||'[Not written]')+'\n')]),...extension.report(),'ATTEMPT HISTORY',...attemptLines(),'HELP OPENED: '+state.hints.join(', '),'Written entries and completion scores do not establish writing quality or career suitability. Nothing is automatically submitted.'].join('\n');$('report-text').value=text;$('report-dialog').showModal();const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=CFG.subject+' Explore - My Work.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
 $('close-report').addEventListener('click',()=>$('report-dialog').close());$('select-report').addEventListener('click',()=>{$('report-text').focus();$('report-text').select();});$('print').addEventListener('click',()=>window.print());$('reset').addEventListener('click',()=>$('reset-dialog').showModal());$('cancel-reset').addEventListener('click',()=>$('reset-dialog').close());$('confirm-reset').addEventListener('click',()=>{state=initial();checked.clear();document.querySelectorAll('[data-answer],[data-writing]').forEach(el=>{el.value='';el.removeAttribute('aria-invalid');el.removeAttribute('data-correct');});document.querySelectorAll('.feedback,.summary').forEach(el=>el.textContent='');document.querySelectorAll('details[open]').forEach(el=>el.open=false);clearSummary();extension.reset();$('reset-dialog').close();showStep(0);});showStep(state.step,false);progress();
 
 const E=(function computingEngine(){
@@ -94,7 +164,39 @@ $('run-pack').addEventListener('click',()=>{try{if(!state.extra.initialDiagnosis
 $('verify-repair').addEventListener('click',()=>{try{if(!hasPack())throw Error('Complete a qualifying test pack before verifying the repair.');const code=E.compile(edits()),tests=[...testPack().map((t,i)=>({...t,name:'Your test '+(i+1)})),...E.suite],rows=tests.map(t=>{const expected=E.oracle(t),actual=E.run(t,code);return {name:t.name,expected,actual,pass:E.same(actual,expected)};}),passed=rows.filter(r=>r.pass).length;state.extra.repair={pass:passed===rows.length,fingerprint:repairFingerprint(),passed,total:rows.length,rows};state.extra.cancel=null;status('repair-status',passed+' of '+rows.length+' scenarios pass (your 4 plus 8 reference cases).');status('cancel-status','Repair rerun. Verify the current cancellation extension.');$('cancel-results').replaceChildren();results('repair-results',rows);log({type:'repair verification',code,rows,passed});}catch(err){state.extra.repair=null;state.extra.cancel=null;status('repair-status',err.message);$('repair-results').replaceChildren();log({type:'repair input error',error:err.message});}});
 $('verify-cancel').addEventListener('click',()=>{try{if(!hasRepair())throw Error('Verify a passing booking repair before extending it.');const patch={record:$('cancel-record').value,restore:$('cancel-restore').value,remove:$('cancel-remove').value};if(!['marker','quantity'].includes(patch.record)||!['one','quantity'].includes(patch.restore)||!['keep','yes'].includes(patch.remove))throw Error('Choose all three cancellation expressions.');const tests=[...E.cancelSuite,...E.suite.map(t=>({name:'Booking regression: '+t.name,capacity:t.capacity,actions:t.requests.map(([id,n])=>['BOOK',id,n])}))],rows=tests.map(t=>{const expected=E.cancellationOracle(t),actual=E.cancellation(t,patch);return {name:t.name,expected,actual,pass:E.same(actual,expected)};}),passed=rows.filter(r=>r.pass).length;state.extra.cancel={pass:passed===rows.length,fingerprint:cancelFingerprint(),passed,total:rows.length,rows};status('cancel-status',passed+' of '+rows.length+' scenarios pass (5 cancellation sequences plus 8 booking regressions).');results('cancel-results',rows);log({type:'cancellation verification',patch,rows,passed});}catch(err){state.extra.cancel=null;status('cancel-status',err.message);$('cancel-results').replaceChildren();log({type:'cancellation input error',error:err.message});}});
 extension.validate=()=>[...(!state.extra.initialDiagnosis?['Record an initial diagnosis.']:[]),...(!hasPack()?['Build a qualifying four-test pack with correct predictions.']:[]),...(!hasRepair()?['Verify the current repair against all 12 scenarios.']:[]),...(!hasCancel()?['Verify the current extension against all 13 scenarios.']:[])];
-extension.report=()=>['INITIAL DIAGNOSIS',JSON.stringify(state.extra.initialDiagnosis||null),'CURRENT TESTS AND EDITS',JSON.stringify(inputs()),'EXECUTABLE REQUIREMENTS',...extension.validate(),'TEST AND REPAIR HISTORY',...history().map(r=>JSON.stringify(r))];
+function inputLines(entries) {
+  return Object.entries(entries || {}).filter(([,v]) => v !== '').map(([id,v]) => {
+    const control = $(id);
+    const option = control?.options && Array.from(control.options).find(item => item.value === v);
+    return fieldTitle(id) + ': ' + (option?.text || v);
+  });
+}
+function scenarioLine(row) {
+  const title = row.name || 'Student test';
+  const lines = [title + ' — ' + (row.pass ? 'Passed' : 'Review result')];
+  const describe = outcome => outcome.result + ', ' + outcome.remaining + ' seats remaining' +
+    (outcome.bookings ? ', bookings: ' + (outcome.bookings.map(([id,n]) => id+' ('+n+')').join(', ') || 'none') :
+     ', accepted IDs: ' + (outcome.ids?.join(', ') || 'none'));
+  for (const [i, expected] of (row.expected || []).entries()) {
+    const actual = (row.actual || row.original || [])[i];
+    lines.push('  Request ' + (i+1) + ' · expected ' + describe(expected) + (actual ? ' · observed ' + describe(actual) : ''));
+  }
+  return lines;
+}
+extension.report = () => {
+  const lines = ['INITIAL DIAGNOSIS', ...snapshotLines(state.extra.initialDiagnosis),
+    '', 'CURRENT TESTS AND EDITS', ...inputLines(inputs()), '', 'PRACTICAL CHECKS',
+    ...(extension.validate().length ? extension.validate() : ['All practical checks passed.']), '', 'TEST AND REPAIR HISTORY'];
+  for (const [i, record] of history().entries()) {
+    lines.push('', (i+1) + '. ' + record.type + ' · ' + new Date(record.time).toLocaleString(),
+      ...inputLines(record.inputs), ...snapshotLines({writing:record.writing}).filter(s => s !== 'No entry recorded.'));
+    if (record.error) lines.push(record.error);
+    if (record.errors?.length) lines.push(...record.errors);
+    if (record.rows) lines.push(...record.rows.flatMap((row,index) => scenarioLine({...row, name:row.name || 'Test '+(index+1), pass:row.pass ?? E.same(row.expected,row.original)})));
+  }
+  if (!history().length) lines.push('No trials recorded yet.');
+  return lines;
+};
 extension.reset=()=>{document.querySelectorAll('[data-extra]').forEach(el=>el.value='');for(const id of ['diagnosis-status','pack-status','repair-status','cancel-status'])status(id,'No current recorded result.');for(const id of ['pack-results','repair-results','cancel-results'])$(id).replaceChildren();codePreview();};
 codePreview();if(state.extra.initialDiagnosis)status('diagnosis-status','Initial diagnosis restored; its original text remains in your export.');if(hasPack())status('pack-status','Restored qualifying test pack.');if(hasRepair()){status('repair-status','Restored: 12 of 12 repair scenarios pass.');results('repair-results',state.extra.repair.rows);}if(hasCancel()){status('cancel-status','Restored: 13 of 13 extension scenarios pass.');results('cancel-results',state.extra.cancel.rows);}
 
