@@ -6,7 +6,7 @@ import { buildBreadcrumbSchema, BASE_URL } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Career Labs Explore | Free subject exploration | Edussentials",
-  description: "Explore seven academic disciplines through free case workbooks, from designing a library and testing a pump to checking a local news story before it goes to press.",
+  description: "Explore eight academic disciplines through free case workbooks, from designing a library and testing a pump to checking a local news story before it goes to press.",
   alternates: { canonical: `${BASE_URL}/career-labs` },
 };
 const button = "inline-flex items-center justify-center rounded-lg bg-[#002147] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#16416a] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1E6F6D]";

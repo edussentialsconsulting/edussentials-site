@@ -6,4 +6,5 @@ export const exploreSubjects = [
   { slug: "engineering", name: "Engineering", caseTitle: "Which Pump Should the Garden Buy?", description: "Interpret a site plan, compare three suppliers and use field measurements to defend a purchase to the garden committee." },
   { slug: "architecture", name: "Architecture", caseTitle: "How Can Twelve Readers Share the Library at Four O’Clock?", description: "Draw two layouts for a neighbourhood library, decide who gets the window and test whether readers can reach the returns desk when the afternoon queue forms." },
   { slug: "media-and-communication", name: "Media & Communication", caseTitle: "Will the Last Bus Run on Monday?", description: "A timetable shared in a parents’ group is missing the bus Leena takes home from rehearsal. Check the original and report what passengers need to know." },
+  { slug: "business-and-management", name: "Business & Management", caseTitle: "Would a Second Payment Counter Shorten the Lunch Queue?", description: "A festival stall has one volunteer to spare. Replay the lunch rush to decide where that person can shorten the wait and how many meals to prepare before the next break." },
 ];
