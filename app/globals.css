@@ -1,4 +1,15 @@
 @import "tailwindcss";
+@import "@fontsource-variable/cormorant-garamond";
+@import "@fontsource-variable/cormorant-garamond/wght-italic.css";
+@import "@fontsource-variable/libre-franklin";
+
+.font-edussentials-display {
+  font-family: "Cormorant Garamond Variable", Georgia, serif;
+}
+
+.font-edussentials-body {
+  font-family: "Libre Franklin Variable", Arial, sans-serif;
+}
 
 html {
   scroll-behavior: smooth;
