@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async rewrites() {
     return [{
-      source: "/career-labs/explore/:subject(economics|law|computing|behavioural-science|engineering)",
+      source: "/career-labs/explore/:subject(economics|law|computing|behavioural-science|engineering|architecture)",
       destination: "/labs/:subject/index.html",
     }];
   },

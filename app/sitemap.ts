@@ -55,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/career-labs`,
-      lastModified: new Date("2026-11-18"),
+      lastModified: new Date("2026-11-20"),
       changeFrequency: "monthly",
       priority: 0.7,
     },
