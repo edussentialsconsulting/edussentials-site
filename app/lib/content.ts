@@ -52,6 +52,7 @@ export type Article = {
 };
 
 // ---- Registry ----
+import { studentInternship } from "../content/what-makes-a-student-internship-worth-doing";
 import { changingDegreeSubject } from "../content/changing-degree-subject-after-enrolment";
 import { mastersAfterWorkExperience } from "../content/choosing-a-masters-after-work-experience";
 import { familyDegreeDisagreement } from "../content/when-parents-and-students-disagree-on-a-degree";
@@ -70,6 +71,7 @@ import { strongLetterOfRecommendation } from "../content/how-to-ask-for-a-strong
 import { universityShortlist } from "../content/how-to-assess-a-university-shortlist";
 
 export const articles: Article[] = [
+  studentInternship,
   changingDegreeSubject,
   mastersAfterWorkExperience,
   familyDegreeDisagreement,
